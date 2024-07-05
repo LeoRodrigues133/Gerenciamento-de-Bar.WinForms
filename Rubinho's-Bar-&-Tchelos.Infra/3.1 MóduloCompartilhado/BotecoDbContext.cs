@@ -1,6 +1,8 @@
-﻿namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
 {
-    public class BotecoDbContext
+    public class BotecoDbContext : DbContext
     {
     }
 }

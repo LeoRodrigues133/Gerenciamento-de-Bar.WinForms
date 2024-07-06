@@ -10,8 +10,9 @@
 
 namespace Rubinho_s_Bar___Tchelos.WinApp.Properties {
     using System;
-    
-    
+    using System.Drawing;
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,7 +24,12 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.Properties {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
-        
+        internal static Image btnComidas;
+        internal static Image btnDrink;
+        internal static Image btnServiço;
+        internal static Image btnAddItem1;
+        internal static Image btnRemoQuantiaItem1;
+        internal static Image btnAddQuantiaITem1;
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;

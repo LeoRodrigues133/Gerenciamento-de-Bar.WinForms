@@ -1,6 +1,3 @@
-using Rubinho_s_Bar___Tchelos.Dominio.MóduloPessoas;
-using Rubinho_s_Bar___Tchelos.WinApp._1._5_MóduloPessoas;
-
 namespace Rubinho_s_Bar___Tchelos.WinApp
 {
     internal static class Program

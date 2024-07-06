@@ -1,5 +1,4 @@
 ﻿using Rubinho_s_Bar___Tchelos.Dominio.MóduloPessoas;
-using Rubinho_s_Bar___Tchelos.Infra.MóduloPessoas;
 
 
 namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPessoas

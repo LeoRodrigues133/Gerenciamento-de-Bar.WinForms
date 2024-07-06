@@ -1,4 +1,4 @@
-﻿namespace Rubinho_s_Bar___Tchelos.WinApp._1._4_MóduloProduto
+﻿namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto
 {
     partial class TelaProdutoForm
     {

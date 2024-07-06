@@ -1,8 +1,7 @@
-﻿using Rubinho_s_Bar___Tchelos.Dominio.MóduloPessoas;
-using Rubinho_s_Bar___Tchelos.Infra.MóduloPessoas;
-using Rubinho_s_Bar___Tchelos.WinApp._1._5_MóduloPessoas;
-using Rubinho_s_Bar___Tchelos.WinApp.MóduloCompartilhado;
+﻿using Rubinho_s_Bar___Tchelos.Infra.MóduloPessoas;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloPessoas;
+using Rubinho_s_Bar___Tchelos.Dominio.MóduloPessoas;
+using Rubinho_s_Bar___Tchelos.WinApp.MóduloCompartilhado;
 
 namespace Rubinho_s_Bar___Tchelos.WinApp._MóduloPessoas
 {

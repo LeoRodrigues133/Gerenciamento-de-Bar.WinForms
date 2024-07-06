@@ -5,12 +5,11 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
     public class ControladorPedido : ControladorBase, IControladorEditavel
     {
         public override string TipoCadastro => "Pedidos";
-
-        public override string ToolTipAdicionar => "Cadastrar um novo pedido";
         public string ToolTipEditar => "Editar um pedido existente";
 
         public override string ToolTipExcluir => "Excluir um pedido existente";
 
+        public override string ToolTipAdicionar => "Cadastrar um novo pedido";
 
         public override void Adicionar()
         {

@@ -10,10 +10,9 @@ namespace Rubinho_s_Bar___Tchelos.WinApp._MóduloPessoas
 
         RepositorioPessoasEmOrm repositorioPessoas;
         TabelaPessoaControl tabelaPessoas;
-        List<Garçom> a = new();
-        public ControladorPessoas(RepositorioPessoasEmOrm rPessoas)
+        public ControladorPessoas()
         {
-            repositorioPessoas = rPessoas;
+            
         }
 
         public override string TipoCadastro => "Pessoas";
@@ -26,7 +25,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp._MóduloPessoas
 
         public override void Adicionar()
         {
-            TelaPessoasForm tela = new TelaPessoasForm(a);
+            TelaPessoasForm tela = new TelaPessoasForm();
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -55,7 +54,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp._MóduloPessoas
 
         void IControladorEditavel.Editar()
         {
-            TelaPessoasForm tela = new TelaPessoasForm(a);
+            TelaPessoasForm tela = new TelaPessoasForm();
 
             int idSelecionado = tabelaPessoas.ObterRegistroSelecionado();
 

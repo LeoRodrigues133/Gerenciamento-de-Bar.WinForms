@@ -9,6 +9,8 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa
 
         RepositorioMesaEmOrm repositorioMesas;
         TabelaMesaControl tabelaMesas;
+        public List<Mesa> mesas = new List<Mesa>();
+        TelaMesaForm tela;
 
         public override string TipoCadastro => "Mesas";
 
@@ -18,13 +20,19 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa
         public override string ToolTipExcluir => "Remover uma mesa do salão";
 
 
+        public ControladoMesa()
+        {
+            
+        }
         public override void Adicionar()
         {
             Mesa novaMesa = new Mesa();
 
-            repositorioMesas.Cadastrar(novaMesa);
+            mesas.Add(novaMesa);
 
-            CarregarMesas();
+            //repositorioMesas.Cadastrar(novaMesa);
+
+            CarregarMesas(tela);
 
             TelaPrincipalForm.Instancia.AtualizarRodape($"Uma nova mesa foi adicionada com sucesso!");
         }
@@ -52,7 +60,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa
                 return;
             }
 
-            CarregarMesas();
+            CarregarMesas(tela);
 
             TelaPrincipalForm.Instancia.AtualizarRodape("O mesa foi removida com sucesso");
 
@@ -63,16 +71,16 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa
             if (tabelaMesas == null)
                 tabelaMesas = new TabelaMesaControl();
 
-            CarregarMesas();
+            CarregarMesas(tela);
 
             return tabelaMesas;
 
         }
-        private void CarregarMesas()
+        private void CarregarMesas(TelaMesaForm tela)
         {
-            List<Mesa> Mesas = repositorioMesas.SelecionarTodos();
+            List<Mesa> mesas = repositorioMesas.SelecionarTodos();
 
-            tabelaMesas.AtualizarRegistros(Mesas);
+            tabelaMesas.AtualizarRegistros(mesas);
 
         }
     }

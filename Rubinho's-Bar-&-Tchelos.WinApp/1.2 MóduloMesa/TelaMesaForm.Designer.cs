@@ -44,7 +44,6 @@
             btnAdicionar.TabIndex = 0;
             btnAdicionar.Text = "Adicionar";
             btnAdicionar.UseVisualStyleBackColor = true;
-            btnAdicionar.Click += btnAdicionar_Click;
             // 
             // btnSalvar
             // 
@@ -55,7 +54,6 @@
             btnSalvar.TabIndex = 0;
             btnSalvar.Text = "Salvar";
             btnSalvar.UseVisualStyleBackColor = true;
-            btnSalvar.Click += btnSalvar_Click;
             // 
             // btnCancelar
             // 
@@ -86,7 +84,6 @@
             btnExcluir.TabIndex = 0;
             btnExcluir.Text = "Remover";
             btnExcluir.UseVisualStyleBackColor = true;
-            btnExcluir.Click += btnExcluir_Click;
             // 
             // TelaMesaForm
             // 

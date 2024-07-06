@@ -10,16 +10,36 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto
             InitializeComponent();
             
 
-            Produto a = new("Batatafrita", 32);
-            Produto b = new("Batatafrita2", 22);
-            Produto c = new("Batatafrita3", 19);
-            Produto d = new("Batatafrita4", 17);
+            Produto a = new("Batatafrita", 32, EnumCategoriaProduto.Comidas);
+            Produto b = new("Cheese Salada", 22, EnumCategoriaProduto.Comidas);
+            Produto c = new("Polenta Frita", 19, EnumCategoriaProduto.Comidas);
+            Produto d = new("Bauru", 17, EnumCategoriaProduto.Comidas);
+
+            Produto a1 = new("Cerveja Heineken", 32, EnumCategoriaProduto.Bebidas);
+            Produto b2 = new("Pinga boa", 22, EnumCategoriaProduto.Bebidas);
+            Produto c3 = new("Alcool de posto", 7, EnumCategoriaProduto.Bebidas);
+            Produto d4 = new("Veneno", 17, EnumCategoriaProduto.Bebidas);
+
+            Produto a21 = new("Dança exótica", 80, EnumCategoriaProduto.Serviços);
+            Produto b22 = new("Ombro amigo", 99, EnumCategoriaProduto.Serviços);
+            Produto c23 = new("Duelo de 38", 38, EnumCategoriaProduto.Serviços);
+            Produto d24 = new("Tchelos deluxe service", 999, EnumCategoriaProduto.Serviços);
 
 
             produtos.Add(a);
             produtos.Add(b);
             produtos.Add(c);
             produtos.Add(d);
+
+            produtos.Add(a1);
+            produtos.Add(b2);
+            produtos.Add(c3);
+            produtos.Add(d4);
+
+            produtos.Add(a21);
+            produtos.Add(b22);
+            produtos.Add(c23);
+            produtos.Add(d24);
 
         }
     }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+
             TabComanda = new TabControl();
             tabPageComanda = new TabPage();
             chkServiço = new CheckBox();

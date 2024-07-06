@@ -1,7 +1,11 @@
-﻿namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using System.Security.Cryptography;
+
+namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 {
     partial class TelaPedidoForm
     {
+        private string caminho = Directory.GetCurrentDirectory().Split(@"bin\")[0] + @"\Resources\";
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -248,7 +252,7 @@
             // 
             // btnServiços
             // 
-            btnServiços.Image = Properties.Resources.btnServiço;
+            btnServiços.Image = Image.FromFile(caminho + @"btnServiço.png");
             btnServiços.Location = new Point(208, 59);
             btnServiços.Name = "btnServiços";
             btnServiços.Size = new Size(50, 42);
@@ -257,7 +261,7 @@
             // 
             // btnBebidas
             // 
-            btnBebidas.Image = Properties.Resources.btnDrink;
+            btnBebidas.Image = Image.FromFile(caminho + @"btnDrink.png"); 
             btnBebidas.Location = new Point(152, 59);
             btnBebidas.Name = "btnBebidas";
             btnBebidas.Size = new Size(50, 42);
@@ -266,7 +270,7 @@
             // 
             // btnComidas
             // 
-            btnComidas.Image = Properties.Resources.btnComidas;
+            btnComidas.Image = Image.FromFile(caminho + @"btnComidas.png");
             btnComidas.Location = new Point(96, 59);
             btnComidas.Name = "btnComidas";
             btnComidas.Size = new Size(50, 42);
@@ -313,7 +317,7 @@
             // button2
             // 
             button2.BackColor = Color.White;
-            button2.Image = Properties.Resources.btnAddQuantiaITem1;
+            button2.Image = Image.FromFile(caminho + @"btnAddQuantiaITem1.png");
             button2.Location = new Point(230, 291);
             button2.Name = "button2";
             button2.Size = new Size(30, 30);
@@ -324,7 +328,7 @@
             // button1
             // 
             button1.BackColor = Color.White;
-            button1.Image = Properties.Resources.btnRemoQuantiaItem1;
+            button1.Image = Image.FromFile(caminho + @"btnRemoQuantiaItem1.png");
             button1.Location = new Point(34, 291);
             button1.Name = "button1";
             button1.Size = new Size(30, 30);
@@ -334,7 +338,7 @@
             // 
             // btnAddItens
             // 
-            btnAddItens.Image = Properties.Resources.btnAddItem1;
+            btnAddItens.Image = Image.FromFile(caminho + @"btnAdicionarItem.png");
             btnAddItens.Location = new Point(34, 220);
             btnAddItens.Name = "btnAddItens";
             btnAddItens.Size = new Size(226, 50);
@@ -408,6 +412,7 @@
 
         #endregion
 
+        private Button btnRemover;
         private TabControl TabComanda;
         private TabPage tabPageComanda;
         private TabPage tabPagePedido;

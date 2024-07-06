@@ -40,16 +40,53 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             gridProdutos.ConfigurarGridSomenteLeitura();
             gridProdutos.ConfigurarGridZebrado();
             #region Gerado Pelo GPT
+            gridProdutos.CellPainting += GridProdutos_CellPainting;
             gridProdutos.CellContentClick += GridProdutos_CellContentClick;
+        }
+
+        private void GridProdutos_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.ColumnIndex == gridProdutos.Columns[$"btnRemover"].Index && e.RowIndex >= 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                var w = Properties.Resources.btnRemover.Width;
+                var h = Properties.Resources.btnRemover.Height;
+                var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
+                var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
+
+
+                e.Graphics.DrawImage(Properties.Resources.btnRemover, new Rectangle(x, y, w, h));
+                e.Handled = true;
+            }
         }
 
         private void GridProdutos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == gridProdutos.Columns["btnTeste"].Index && e.RowIndex >= 0)
+
+            if (e.ColumnIndex == gridProdutos.Columns[$"btnRemover"].Index && e.RowIndex >= 0)
             {
-                p.RemoveAt(e.RowIndex);
-                gridProdutos.Rows.RemoveAt(e.RowIndex);
+            Produto produtoSelecionado = p[e.RowIndex];
+
+                if (produtoSelecionado.Quantia > 1)
+                    produtoSelecionado.Quantia--;
+                else
+                {
+                    DialogResult result = MessageBox.Show(
+                                                       $"Você deseja remover \"{produto.Nome}\" do pedido?",
+                                                       "Confirmar remoção",
+                                                       MessageBoxButtons.YesNo,
+                                                       MessageBoxIcon.Warning);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        p.RemoveAt(e.RowIndex);
+                        gridProdutos.Rows.RemoveAt(e.RowIndex);
+                    }
+                }
+                AtualizarRegistros(p);
             }
+
         }
         #endregion
 
@@ -59,7 +96,6 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 
             foreach (Produto produto in repositorio)
                 gridProdutos.Rows.Add(produto.Nome, produto.Quantia, produto.Valor.ToString("C"));
-
         }
 
         private DataGridViewColumn[] CriarColunas()
@@ -69,7 +105,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
                 new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Produto" },
                 new DataGridViewTextBoxColumn { DataPropertyName = "Quantia", HeaderText = "Quantia" },
                 new DataGridViewTextBoxColumn { DataPropertyName = "Valor", HeaderText = "Valor" },
-                new DataGridViewButtonColumn { Name = "btnTeste", HeaderText = "Ação", Text = "X", UseColumnTextForButtonValue = true }
+                new DataGridViewButtonColumn { Name = "btnRemover",HeaderText = "Remover", UseColumnTextForButtonValue = true }
             };
         }
 
@@ -87,12 +123,19 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 
         private void btnAddItens_Click(object sender, EventArgs e)
         {
+
             int quantiaAdicionada = Convert.ToInt32(txtQuantiaItens.Text);
 
             if (p == null)
                 p = new List<Produto>();
 
             produto = (Produto)cmbProdutos.SelectedItem;
+
+            //if (produto == null)
+            //{
+            //    TelaPrincipalForm.Instancia.AtualizarRodape("Selecione um produto para adicionar ao pedido.");
+            //    return;
+            //}
 
             Produto buscador = p.Find(x => x.Nome == produto.Nome);
 

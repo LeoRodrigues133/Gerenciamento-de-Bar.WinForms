@@ -9,4 +9,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Rubinho's-Bar-&amp;-Tchelos.Dominio\Rubinho's-Bar-&amp;-Tchelos.Dominio.csproj" />
+    <ProjectReference Include="..\Rubinho's-Bar-&amp;-Tchelos.Infra\Rubinho's-Bar-&amp;-Tchelos.Infra.csproj" />
+  </ItemGroup>
+
 </Project>

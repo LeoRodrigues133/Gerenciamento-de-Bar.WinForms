@@ -14,13 +14,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Documentacao", "4. Docum
 		TextFile1.txt = TextFile1.txt
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Controle_De_Bar.Dominio", "Controle_De_Bar.Dominio\Controle_De_Bar.Dominio.csproj", "{B5717A9B-9E1B-4A07-9208-D61F0D926A25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rubinho's-Bar-&-Tchelos.Doc", "Controle_De_Bar.Dominio\Rubinho's-Bar-&-Tchelos.Doc.csproj", "{B5717A9B-9E1B-4A07-9208-D61F0D926A25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rubinho's-Bar-&-Tchelos.WinApp", "Rubinho's-Bar-&-Tchelos.WinApp\Rubinho's-Bar-&-Tchelos.WinApp.csproj", "{2DF171CD-2D08-4B54-A83B-70F1EA13A66D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rubinho's-Bar-&-Tchelos.WinApp", "Rubinho's-Bar-&-Tchelos.WinApp\Rubinho's-Bar-&-Tchelos.WinApp.csproj", "{2DF171CD-2D08-4B54-A83B-70F1EA13A66D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rubinho's-Bar-&-Tchelos.Dominio", "Rubinho's-Bar-&-Tchelos.Dominio\Rubinho's-Bar-&-Tchelos.Dominio.csproj", "{2067D7FC-0731-4DB5-935A-9AE03A4C4EC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rubinho's-Bar-&-Tchelos.Dominio", "Rubinho's-Bar-&-Tchelos.Dominio\Rubinho's-Bar-&-Tchelos.Dominio.csproj", "{2067D7FC-0731-4DB5-935A-9AE03A4C4EC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rubinho's-Bar-&-Tchelos.Infra", "Rubinho's-Bar-&-Tchelos.Infra\Rubinho's-Bar-&-Tchelos.Infra.csproj", "{0D922D2B-B4E6-440F-9390-A9B64058CA64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rubinho's-Bar-&-Tchelos.Infra", "Rubinho's-Bar-&-Tchelos.Infra\Rubinho's-Bar-&-Tchelos.Infra.csproj", "{0D922D2B-B4E6-440F-9390-A9B64058CA64}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

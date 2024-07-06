@@ -9,10 +9,9 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa
         public int NumeroDaMesa { get; set; }
         public List<Pedido> Pedidos { get; set; }
 
-        public Mesa(List<Pedido> pedidos, int numeroDaMesa)
+        public Mesa()
         {
-            Pedidos = pedidos;
-            NumeroDaMesa = numeroDaMesa;
+            NumeroDaMesa = NumeroDaMesas();
         }
         public override void AtualizarRegistro(EntidadeBase novoRegistro)
         {
@@ -22,6 +21,21 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa
         public override List<string> Validar()
         {
             throw new NotImplementedException();
+        }
+
+        int NumeroDaMesas()
+        {
+            List<Mesa> Salao = new();
+
+            Salao.Add(this);
+            
+            int i = 0;
+
+            foreach (Mesa mesa in Salao)
+            {
+                i += 10;
+            }
+            return i;
         }
     }
 }

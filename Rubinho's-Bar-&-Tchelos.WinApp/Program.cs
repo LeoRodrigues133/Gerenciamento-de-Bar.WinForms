@@ -1,3 +1,6 @@
+using Rubinho_s_Bar___Tchelos.Dominio.MóduloPessoas;
+using Rubinho_s_Bar___Tchelos.WinApp._1._5_MóduloPessoas;
+
 namespace Rubinho_s_Bar___Tchelos.WinApp
 {
     internal static class Program
@@ -11,7 +14,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new TelaPrincipal());
+            Application.Run(new TelaPrincipalForm());
         }
     }
 }

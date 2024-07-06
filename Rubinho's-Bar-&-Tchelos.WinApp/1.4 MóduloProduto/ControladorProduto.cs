@@ -2,13 +2,13 @@
 
 namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto
 {
-    public class ControladorProduto : ControladorBase
+    public class ControladorProduto : ControladorBase, IControladorEditavel
     {
         public override string TipoCadastro => "Produtos";
 
         public override string ToolTipAdicionar => "Cadastrar um novo produto";
 
-        public override string ToolTipEditar => "Editar um produto existente";
+        string IControladorEditavel.ToolTipEditar => "Editar um produto existente";
 
         public override string ToolTipExcluir => "Excluir um produto";
 
@@ -17,7 +17,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto
             throw new NotImplementedException();
         }
 
-        public override void Editar()
+        void IControladorEditavel.Editar()
         {
             throw new NotImplementedException();
         }

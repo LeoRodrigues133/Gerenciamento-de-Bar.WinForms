@@ -1,27 +1,29 @@
 ﻿using Rubinho_s_Bar___Tchelos.Dominio.MóduloCompartilhado;
 using Rubinho_s_Bar___Tchelos.Dominio.MóduloProduto;
 
-namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido
+namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido.Pedidos
 {
     public class Pedido : EntidadeBase
     {
         public List<Produto> Produtos { get; set; }
-        public int QtdProduto { get; set; }
 
-        public Pedido(List<Produto> produtos, int qtdProduto)
+        public Pedido(List<Produto> produtos)
         {
             Produtos = produtos;
-            QtdProduto = qtdProduto;
         }
 
         public override void AtualizarRegistro(EntidadeBase novoRegistro)
         {
-            throw new NotImplementedException();
+            Pedido a = (Pedido) novoRegistro;
+
+            Produtos = a.Produtos;
         }
 
         public override List<string> Validar()
         {
-            throw new NotImplementedException();
+            List<string> erros = new List<string>();
+
+            return erros;
         }
     }
 }

@@ -49,13 +49,15 @@
             btnComidas = new Button();
             label3 = new Label();
             lblProduto = new Label();
-            comboBox1 = new ComboBox();
+            cmbProdutos = new ComboBox();
             txtQuantiaItens = new TextBox();
             button2 = new Button();
             button1 = new Button();
             btnAddItens = new Button();
             lblId = new Label();
             txtId = new TextBox();
+            btnCancelar = new Button();
+            btnSalvar = new Button();
             TabComanda.SuspendLayout();
             tabPageComanda.SuspendLayout();
             groupBoxPagamento.SuspendLayout();
@@ -217,7 +219,7 @@
             tabPagePedido.Controls.Add(btnComidas);
             tabPagePedido.Controls.Add(label3);
             tabPagePedido.Controls.Add(lblProduto);
-            tabPagePedido.Controls.Add(comboBox1);
+            tabPagePedido.Controls.Add(cmbProdutos);
             tabPagePedido.Controls.Add(txtQuantiaItens);
             tabPagePedido.Controls.Add(button2);
             tabPagePedido.Controls.Add(button1);
@@ -287,13 +289,13 @@
             lblProduto.TabIndex = 6;
             lblProduto.Text = "Produto:";
             // 
-            // comboBox1
+            // cmbProdutos
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(77, 107);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(201, 28);
-            comboBox1.TabIndex = 5;
+            cmbProdutos.FormattingEnabled = true;
+            cmbProdutos.Location = new Point(77, 107);
+            cmbProdutos.Name = "cmbProdutos";
+            cmbProdutos.Size = new Size(201, 28);
+            cmbProdutos.TabIndex = 5;
             // 
             // txtQuantiaItens
             // 
@@ -311,21 +313,23 @@
             // 
             button2.BackColor = Color.White;
             button2.Image = Properties.Resources.btnAddQuantiaITem1;
-            button2.Location = new Point(34, 291);
+            button2.Location = new Point(230, 291);
             button2.Name = "button2";
             button2.Size = new Size(30, 30);
             button2.TabIndex = 3;
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // button1
             // 
             button1.BackColor = Color.White;
             button1.Image = Properties.Resources.btnRemoQuantiaItem1;
-            button1.Location = new Point(230, 291);
+            button1.Location = new Point(34, 291);
             button1.Name = "button1";
             button1.Size = new Size(30, 30);
             button1.TabIndex = 3;
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // btnAddItens
             // 
@@ -335,6 +339,7 @@
             btnAddItens.Size = new Size(226, 50);
             btnAddItens.TabIndex = 1;
             btnAddItens.UseVisualStyleBackColor = true;
+            btnAddItens.Click += btnAddItens_Click;
             // 
             // lblId
             // 
@@ -355,11 +360,34 @@
             txtId.Text = "0";
             txtId.TextAlign = HorizontalAlignment.Right;
             // 
+            // btnCancelar
+            // 
+            btnCancelar.DialogResult = DialogResult.Cancel;
+            btnCancelar.Location = new Point(530, 460);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(116, 49);
+            btnCancelar.TabIndex = 4;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = true;
+            // 
+            // btnSalvar
+            // 
+            btnSalvar.DialogResult = DialogResult.OK;
+            btnSalvar.Location = new Point(408, 460);
+            btnSalvar.Name = "btnSalvar";
+            btnSalvar.Size = new Size(116, 49);
+            btnSalvar.TabIndex = 5;
+            btnSalvar.Text = "Salvar";
+            btnSalvar.UseVisualStyleBackColor = true;
+            btnSalvar.Click += btnSalvar_Click;
+            // 
             // TelaPedidoForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(660, 466);
+            ClientSize = new Size(658, 521);
+            Controls.Add(btnCancelar);
+            Controls.Add(btnSalvar);
             Controls.Add(txtId);
             Controls.Add(lblId);
             Controls.Add(TabComanda);
@@ -402,10 +430,12 @@
         private Button button2;
         private Label label3;
         private Label lblProduto;
-        private ComboBox comboBox1;
+        private ComboBox cmbProdutos;
         private Button btnServiços;
         private Button btnBebidas;
         private Button btnComidas;
         private DataGridView gridProdutos;
+        private Button btnCancelar;
+        private Button btnSalvar;
     }
 }

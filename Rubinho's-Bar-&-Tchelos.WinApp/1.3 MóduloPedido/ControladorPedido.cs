@@ -1,4 +1,6 @@
-﻿using Rubinho_s_Bar___Tchelos.WinApp.MóduloCompartilhado;
+﻿using Rubinho_s_Bar___Tchelos.Dominio.MóduloProduto;
+using Rubinho_s_Bar___Tchelos.WinApp.MóduloCompartilhado;
+using Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto;
 
 namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 {
@@ -13,7 +15,10 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 
         public override void Adicionar()
         {
-            throw new NotImplementedException();
+            TelaPedidoForm tela = new TelaPedidoForm();
+
+            carregarProdutos(tela);
+            DialogResult resultado = tela.ShowDialog();
         }
 
         public void Editar()
@@ -29,6 +34,17 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
         public override UserControl ObterListagem()
         {
             throw new NotImplementedException();
+        }
+
+        void carregarProdutos(TelaPedidoForm telaPedido)
+        {
+            TelaProdutoForm t = new();
+
+
+            List<Produto> a = t.produtos;
+
+            telaPedido.povoarcboxproduto(a);
+
         }
     }
 }

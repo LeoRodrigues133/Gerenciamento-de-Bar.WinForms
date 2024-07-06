@@ -1,6 +1,7 @@
 using Rubinho_s_Bar___Tchelos.Infra.MóduloPessoas;
 using Rubinho_s_Bar___Tchelos.WinApp._MóduloPessoas;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloCompartilhado;
+using Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido;
 
 namespace Rubinho_s_Bar___Tchelos.WinApp
 {
@@ -11,6 +12,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp
         ControladorBase controlador;
 
         RepositorioPessoasEmOrm repositorioPessoas;
+
 
         public static TelaPrincipalForm Instancia { get; private set; }
 
@@ -86,6 +88,13 @@ namespace Rubinho_s_Bar___Tchelos.WinApp
         private void funcionáriosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             controlador = new ControladorPessoas(repositorioPessoas);
+
+            ConfigurarTelaPrincipal(controlador);
+        }
+
+        private void pedidosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            controlador = new ControladorPedido();
 
             ConfigurarTelaPrincipal(controlador);
         }

@@ -1,5 +1,5 @@
 ﻿using Rubinho_s_Bar___Tchelos.Dominio.MóduloCompartilhado;
-using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido;
+using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido.Pedidos;
 
 namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa
 {

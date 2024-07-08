@@ -4,11 +4,24 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto
 {
     public partial class TelaProdutoForm : Form
     {
-           public List<Produto> produtos = new List<Produto>();
+        public List<Produto> produtos = new List<Produto>();
+
+        Produto produto;
+
+        public Produto Produto
+        {
+            set
+            {
+                txtNome.Text = value.Nome;
+                txtId.Text = value.Id.ToString();
+                numValor.Value = value.Valor;
+            }
+            get => produto;
+        }
         public TelaProdutoForm()
         {
             InitializeComponent();
-            
+
 
             Produto a = new("Batatafrita", 32, EnumCategoriaProduto.Comidas);
             Produto b = new("Cheese Salada", 22, EnumCategoriaProduto.Comidas);
@@ -41,6 +54,17 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto
             produtos.Add(c23);
             produtos.Add(d24);
 
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            string nome = txtNome.Text;
+            decimal valor = numValor.Value;
+            EnumCategoriaProduto categoria = (EnumCategoriaProduto)cmbCategoria.SelectedItem;
+
+            produto = new Produto(nome, valor, categoria);
+
+            TelaPrincipalForm.Instancia.AtualizarRodape("Um novo produto foi registrado.");
         }
     }
 }

@@ -1,35 +1,124 @@
-﻿using Rubinho_s_Bar___Tchelos.WinApp.MóduloCompartilhado;
+﻿using Rubinho_s_Bar___Tchelos.Dominio.MóduloPessoas;
+using Rubinho_s_Bar___Tchelos.Dominio.MóduloProduto;
+using Rubinho_s_Bar___Tchelos.Infra.MóduloProduto;
+using Rubinho_s_Bar___Tchelos.WinApp.MóduloCompartilhado;
+using Rubinho_s_Bar___Tchelos.WinApp.MóduloPessoas;
 
 namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto
 {
     public class ControladorProduto : ControladorBase, IControladorEditavel
     {
+        RepositorioProdutoEmOrm repositorioProduto;
+        TabelaProdutoControl tabelaProduto;
+
+        public ControladorProduto()
+        {
+
+        }
+
         public override string TipoCadastro => "Produtos";
 
-        public override string ToolTipAdicionar => "Cadastrar um novo produto";
+        public override string ToolTipAdicionar => "Cadastrar um novo novoProduto";
 
-        string IControladorEditavel.ToolTipEditar => "Editar um produto existente";
+        string IControladorEditavel.ToolTipEditar => "Editar um novoProduto existente";
 
-        public override string ToolTipExcluir => "Excluir um produto";
+        public override string ToolTipExcluir => "Excluir um novoProduto";
 
         public override void Adicionar()
         {
-            throw new NotImplementedException();
+            TelaProdutoForm telaProduto = new TelaProdutoForm();
+
+            DialogResult resultado = telaProduto.ShowDialog();
+
+            if (resultado != DialogResult.OK) return;
+
+            Produto novoProduto = telaProduto.Produto;
+
+            List<Produto> produtos = repositorioProduto.SelecionarTodos();
+
+            foreach (Produto p in produtos)
+            {
+                if (p.Nome == novoProduto.Nome)
+                {
+                    TelaPrincipalForm.Instancia.AtualizarRodape($"Já existe um produto com este nome registrado");
+                    return;
+                }
+            }
+
+            repositorioProduto.Cadastrar(novoProduto);
+
+            CarregarProdutos();
         }
 
         void IControladorEditavel.Editar()
         {
-            throw new NotImplementedException();
+            TelaProdutoForm tela = new TelaProdutoForm();
+
+            int idSelecionado = tabelaProduto.ObterRegistroSelecionado();
+
+            Produto Selecionado = repositorioProduto.SelecionarPorId(idSelecionado);
+
+            if (Selecionado == null)
+            {
+                TelaPrincipalForm.Instancia.AtualizarRodape(
+                    "Não é possível realizar esta ação sem um registro selecionado");
+                return;
+            }
+
+            tela.Produto = Selecionado;
+
+            DialogResult resultado = tela.ShowDialog();
+
+            if (resultado != DialogResult.OK) return;
+
+            Produto produtoEditado = tela.Produto;
+
+            repositorioProduto.Editar(Selecionado.Id, produtoEditado);
+
+            CarregarProdutos();
         }
 
         public override void Excluir()
         {
-            throw new NotImplementedException();
+            int idSelecionado = tabelaProduto.ObterRegistroSelecionado();
+
+            Produto Selecionado = repositorioProduto.SelecionarPorId(idSelecionado);
+
+            if (Selecionado == null)
+            {
+                TelaPrincipalForm.Instancia.AtualizarRodape(
+                    "Não é possível realizar esta ação sem um registro selecionado");
+                return;
+            }
+
+            DialogResult resultado = MessageBox.Show(
+                $"Você deseja realmente excluir o \"{Selecionado.Nome}\"?",
+                "Confirmar exclusão",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (resultado != DialogResult.Yes) return;
+
+            TelaPrincipalForm.Instancia.AtualizarRodape(
+                $"Você demitiu {Selecionado.Nome}!");
+
         }
 
         public override UserControl ObterListagem()
         {
-            throw new NotImplementedException();
+            if (tabelaProduto == null)
+                tabelaProduto = new TabelaProdutoControl();
+
+            //CarregarPessoas();
+
+            return tabelaProduto;
+        }
+        
+        private void CarregarProdutos()
+        {
+            List<Produto> produtos = repositorioProduto.SelecionarTodos();
+
+            tabelaProduto.AtualizarRegistros(produtos);
         }
     }
 }

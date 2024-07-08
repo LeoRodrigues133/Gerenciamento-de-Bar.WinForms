@@ -1,32 +1,57 @@
 ﻿using Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa;
+using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado;
 
 namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloMesa
 {
     public class RepositorioMesaEmOrm : IRepositorioMesa
     {
+        BotecoDbContext dbContext;
+        public RepositorioMesaEmOrm(BotecoDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
+
         public void Cadastrar(Mesa novoRegistro)
         {
-            throw new NotImplementedException();
+            dbContext.Mesas.Add(novoRegistro);
+            dbContext.SaveChanges();
         }
 
         public bool Editar(int id, Mesa editarRegistro)
         {
-            throw new NotImplementedException();
+            Mesa mesaSelecionada = dbContext.Mesas.Find(id)!;
+
+            if (mesaSelecionada == null)
+                return false;
+
+            mesaSelecionada.AtualizarRegistro(editarRegistro);
+
+            dbContext.SaveChanges();
+
+            return true;
         }
 
         public bool Excluir(int id)
         {
-            throw new NotImplementedException();
+            Mesa mesaSelecionada = dbContext.Mesas.Find(id);
+
+            if(mesaSelecionada == null)
+                return false;
+
+            dbContext.Remove(mesaSelecionada);
+            dbContext.SaveChanges();
+
+            return true;
         }
 
         public Mesa SelecionarPorId(int id)
         {
-            throw new NotImplementedException();
+            return dbContext.Mesas.Find(id);
         }
 
         public List<Mesa> SelecionarTodos()
         {
-            throw new NotImplementedException();
+            return dbContext.Mesas.ToList();
         }
     }
 }

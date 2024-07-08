@@ -1,12 +1,20 @@
 ﻿using Rubinho_s_Bar___Tchelos.Dominio.MóduloProduto;
+using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado;
 
 namespace Rubinho_s_Bar___Tchelos.Infra.MóduloProduto
 {
     public class RepositorioProdutoEmOrm : IRepositorioProduto
     {
-        public void Cadastrar(Produto novoRegistro)
+        BotecoDbContext dbContext;
+        public RepositorioProdutoEmOrm(BotecoDbContext dbContext)
         {
-            throw new NotImplementedException();
+            this.dbContext = dbContext;
+        }
+        public void Cadastrar(Produto novoRegistro)
+        {/*
+
+            dbContext.Produtos.Add(novoRegistro);
+            dbContext.SaveChanges();*/
         }
 
         public bool Editar(int id, Produto editarRegistro)

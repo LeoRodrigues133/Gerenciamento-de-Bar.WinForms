@@ -33,10 +33,10 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto
             Produto c3 = new("Alcool de posto", 7, EnumCategoriaProduto.Bebidas);
             Produto d4 = new("Veneno", 17, EnumCategoriaProduto.Bebidas);
 
-            Produto a21 = new("Dança exótica", 80, EnumCategoriaProduto.Serviços);
-            Produto b22 = new("Ombro amigo", 99, EnumCategoriaProduto.Serviços);
-            Produto c23 = new("Duelo de 38", 38, EnumCategoriaProduto.Serviços);
-            Produto d24 = new("Tchelos deluxe service", 999, EnumCategoriaProduto.Serviços);
+            Produto a21 = new("Dança exótica", 80, EnumCategoriaProduto.Servicos);
+            Produto b22 = new("Ombro amigo", 99, EnumCategoriaProduto.Servicos);
+            Produto c23 = new("Duelo de 38", 38, EnumCategoriaProduto.Servicos);
+            Produto d24 = new("Tchelos deluxe service", 999, EnumCategoriaProduto.Servicos);
 
 
             produtos.Add(a);

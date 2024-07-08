@@ -1,32 +1,60 @@
 ﻿using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido;
+using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado;
 
 namespace Rubinho_s_Bar___Tchelos.Infra.MóduloPedido
 {
     public class RepositorioPedidoEmOrm : IRepositorioComanda
     {
+
+        BotecoDbContext dbContext;
+
+        public RepositorioPedidoEmOrm(BotecoDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
+
         public void Cadastrar(Comanda novoRegistro)
         {
-            throw new NotImplementedException();
+            dbContext.Comandas.Add(novoRegistro);
+            dbContext.SaveChanges();
+
         }
 
         public bool Editar(int id, Comanda editarRegistro)
         {
-            throw new NotImplementedException();
+            Comanda comandaSelecionada = dbContext.Comandas.Find(id);
+
+            if (comandaSelecionada == null) 
+                return false;
+
+            comandaSelecionada.AtualizarRegistro(editarRegistro);
+
+            dbContext.SaveChanges();
+
+            return true;
         }
 
         public bool Excluir(int id)
         {
-            throw new NotImplementedException();
+            Comanda comandaSelecionada = dbContext.Comandas.Find(id);
+
+            if(comandaSelecionada == null)
+                return false;
+
+            dbContext.Comandas.Remove(comandaSelecionada);
+            dbContext.SaveChanges();
+
+            return true;
         }
 
         public Comanda SelecionarPorId(int id)
         {
-            throw new NotImplementedException();
+            return dbContext.Comandas.Find(id);
         }
 
         public List<Comanda> SelecionarTodos()
         {
-            throw new NotImplementedException();
+            return dbContext.Comandas.ToList();
         }
     }
 }

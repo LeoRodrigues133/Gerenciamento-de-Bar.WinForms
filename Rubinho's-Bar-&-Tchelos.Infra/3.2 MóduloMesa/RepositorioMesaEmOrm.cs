@@ -19,7 +19,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloMesa
 
         public bool Editar(int id, Mesa editarRegistro)
         {
-            Mesa mesaSelecionada = dbContext.Mesas.Find(id)!;
+            Mesa mesaSelecionada = dbContext.Mesas.Find(id);
 
             if (mesaSelecionada == null)
                 return false;

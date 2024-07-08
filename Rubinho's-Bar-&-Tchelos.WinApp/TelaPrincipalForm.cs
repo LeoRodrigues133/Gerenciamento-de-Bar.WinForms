@@ -1,4 +1,9 @@
+using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido;
+using Rubinho_s_Bar___Tchelos.Infra.MóduloPedido;
 using Rubinho_s_Bar___Tchelos.Infra.MóduloPessoas;
+using Rubinho_s_Bar___Tchelos.Infra.MóduloProduto;
+using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado;
+using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloMesa;
 using Rubinho_s_Bar___Tchelos.WinApp._MóduloPessoas;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloCompartilhado;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa;
@@ -13,7 +18,9 @@ namespace Rubinho_s_Bar___Tchelos.WinApp
         ControladorBase controlador;
 
         RepositorioPessoasEmOrm repositorioPessoas;
-
+        RepositorioMesaEmOrm repositorioMesa;
+        RepositorioPedidoEmOrm repositorioPedido;
+        RepositorioProdutoEmOrm repositorioProduto;
 
         public static TelaPrincipalForm Instancia { get; private set; }
 
@@ -24,7 +31,15 @@ namespace Rubinho_s_Bar___Tchelos.WinApp
             toolStripTipo.Text = string.Empty;
 
             Instancia = this;
-            repositorioPessoas = new RepositorioPessoasEmOrm();
+
+            BotecoDbContext dbContext = new();
+
+            repositorioMesa = new RepositorioMesaEmOrm(dbContext);
+            repositorioPedido = new RepositorioPedidoEmOrm(dbContext);
+            repositorioProduto = new RepositorioProdutoEmOrm(dbContext);
+            repositorioPessoas = new RepositorioPessoasEmOrm(dbContext);
+
+
 
         }
 

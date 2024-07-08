@@ -1,32 +1,59 @@
-﻿using Rubinho_s_Bar___Tchelos.Dominio.MóduloPessoas;
+﻿using Microsoft.EntityFrameworkCore;
+using Rubinho_s_Bar___Tchelos.Dominio.MóduloPessoas;
+using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado;
 
 namespace Rubinho_s_Bar___Tchelos.Infra.MóduloPessoas
 {
     public class RepositorioPessoasEmOrm : IRepositorioPessoas
     {
+        BotecoDbContext dbContext;
+        public RepositorioPessoasEmOrm(BotecoDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
         public void Cadastrar(Garçom novoRegistro)
         {
-            throw new NotImplementedException();
+            dbContext.Garçons.Add(novoRegistro);
+            dbContext.SaveChanges();
         }
 
         public bool Editar(int id, Garçom editarRegistro)
         {
-            throw new NotImplementedException();
+            Garçom garçomSelecionado = dbContext.Garçons.Find(id);
+
+            if (garçomSelecionado == null)
+                return false;
+
+            garçomSelecionado.AtualizarRegistro(editarRegistro);
+
+            dbContext.SaveChanges();
+
+            return true;
         }
 
         public bool Excluir(int id)
         {
-            throw new NotImplementedException();
+            Garçom garçomSelecionado = dbContext.Garçons.Find(id);
+
+            if (garçomSelecionado == null)
+                return false;
+
+            garçomSelecionado.AtualizarRegistro(garçomSelecionado);
+
+            dbContext.SaveChanges();
+
+            return true;
+
         }
 
         public Garçom SelecionarPorId(int id)
         {
-            throw new NotImplementedException();
+            return dbContext.Garçons.Find(id);
         }
 
         public List<Garçom> SelecionarTodos()
         {
-            throw new NotImplementedException();
+            return dbContext.Garçons.ToList();
         }
     }
 }

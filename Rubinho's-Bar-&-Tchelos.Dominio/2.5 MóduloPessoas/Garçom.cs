@@ -6,7 +6,7 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPessoas
     {
         public string Nome { get; set; }
         public string Cpf { get; set; }
-        EnumCargo Cargo { get; set; }
+        public EnumCargo Cargo { get; set; }
 
         public Garçom(string nome, string cpf, EnumCargo cargo)
         {

@@ -11,30 +11,47 @@ namespace Rubinho_s_Bar___Tchelos.Infra.MóduloProduto
             this.dbContext = dbContext;
         }
         public void Cadastrar(Produto novoRegistro)
-        {/*
+        {
 
             dbContext.Produtos.Add(novoRegistro);
-            dbContext.SaveChanges();*/
+            dbContext.SaveChanges();
         }
 
         public bool Editar(int id, Produto editarRegistro)
         {
-            throw new NotImplementedException();
+            Produto produtoSelecionado = dbContext.Produtos.Find(id);
+
+            if (produtoSelecionado == null)
+                return false;
+
+            produtoSelecionado.AtualizarRegistro(editarRegistro);
+
+            dbContext.SaveChanges();
+            
+            return true;
         }
 
         public bool Excluir(int id)
         {
-            throw new NotImplementedException();
+            Produto produtoSelecionado = dbContext.Produtos.Find(id);
+
+            if (produtoSelecionado == null)
+                return false;
+
+            dbContext.Produtos.Remove(produtoSelecionado);
+            dbContext.SaveChanges();
+
+            return true;
         }
 
         public Produto SelecionarPorId(int id)
         {
-            throw new NotImplementedException();
+            return dbContext.Produtos.Find(id);
         }
 
         public List<Produto> SelecionarTodos()
         {
-            throw new NotImplementedException();
+            return dbContext.Produtos.ToList();
         }
     }
 }

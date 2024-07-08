@@ -18,11 +18,11 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto
 
         public override string TipoCadastro => "Produtos";
 
-        public override string ToolTipAdicionar => "Cadastrar um novo novoProduto";
+        public override string ToolTipAdicionar => "Cadastrar um novo produto";
 
-        string IControladorEditavel.ToolTipEditar => "Editar um novoProduto existente";
+        string IControladorEditavel.ToolTipEditar => "Editar produto existente";
 
-        public override string ToolTipExcluir => "Excluir um novoProduto";
+        public override string ToolTipExcluir => "Excluir produto";
 
         public override void Adicionar()
         {

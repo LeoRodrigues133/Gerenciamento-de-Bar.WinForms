@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Rubinho's-Bar-&amp;-Tchelos.Dominio\Rubinho's-Bar-&amp;-Tchelos.Dominio.csproj" />
+    <ProjectReference Include="..\Rubinho's-Bar-&amp;-Tchelos.Dominio\RubinhosBarETchelos.Dominio.csproj" />
   </ItemGroup>
 
 </Project>

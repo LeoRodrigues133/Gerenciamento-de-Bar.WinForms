@@ -92,7 +92,6 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPessoas
             }
 
             //MEU   DEUS    QUE     DOR     FOI     FAZER   ISSO!!!!
-
         }
     }
 }

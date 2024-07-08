@@ -6,7 +6,7 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido.Pedidos
     public class Pedido : EntidadeBase
     {
         public List<Produto> Produtos { get; set; }
-
+        public Pedido(){}
         public Pedido(List<Produto> produtos)
         {
             Produtos = produtos;

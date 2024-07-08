@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Rubinho's-Bar-&amp;-Tchelos.Dominio\Rubinho's-Bar-&amp;-Tchelos.Dominio.csproj" />
-    <ProjectReference Include="..\Rubinho's-Bar-&amp;-Tchelos.Infra\Rubinho's-Bar-&amp;-Tchelos.Infra.csproj" />
+    <ProjectReference Include="..\Rubinho's-Bar-&amp;-Tchelos.Dominio\RubinhosBarETchelos.Dominio.csproj" />
+    <ProjectReference Include="..\Rubinho's-Bar-&amp;-Tchelos.Infra\RubinhosBarETchelos.Infra.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,16 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa;
+using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido.Pedidos;
+using Rubinho_s_Bar___Tchelos.Dominio.MóduloProduto;
 
 namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
 {
     public class BotecoDbContext : DbContext
     {
-        public DbSet<Mesa> Mesas { get;internal set; }
+        public DbSet<Mesa> Mesas { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionString =
-               "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=BotecoDb;Integrated Security=True;Pooling=False;Encrypt=True;Trust Server Certificate=False";
+            string connectionString ="Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=BotecoDb;Integrated Security=True;Pooling=False;Encrypt=True;";
 
             optionsBuilder.UseSqlServer(connectionString);
 
@@ -31,6 +32,9 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
                     .IsRequired()
                     .HasColumnType("int");
             });
+
+            modelBuilder.Ignore<Produto>();
+            modelBuilder.Ignore<Pedido>();
 
             base.OnModelCreating(modelBuilder);
         }

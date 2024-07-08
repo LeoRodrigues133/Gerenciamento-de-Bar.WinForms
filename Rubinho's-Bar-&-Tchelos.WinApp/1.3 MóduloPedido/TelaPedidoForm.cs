@@ -62,6 +62,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
                 e.Handled = true;
             }
         }
+        #endregion
 
         private void GridProdutos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -99,7 +100,6 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             }
 
         }
-        #endregion
 
         public void AtualizarRegistros(List<Produto> repositorio)
         {
@@ -256,10 +256,9 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 
             Array StatusPagamento = Enum.GetValues(typeof(EnumStatusPagamento));
 
-            foreach (var status in StatusPagamento)
-            {
-                cmbStatus.Items.Add(status);
-            }
+            foreach (EnumStatusPagamento status in StatusPagamento)
+                    cmbStatus.Items.Add(status);
+
         }
     }
 }

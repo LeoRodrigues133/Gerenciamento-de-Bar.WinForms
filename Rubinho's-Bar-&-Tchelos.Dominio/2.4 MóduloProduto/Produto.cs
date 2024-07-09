@@ -18,7 +18,6 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloProduto
             Nome = nome;
             Valor = valor;
             CategoriaProduto = categoria;
-            Quantia = 0;
         }
 
         public override void AtualizarRegistro(EntidadeBase novoRegistro)

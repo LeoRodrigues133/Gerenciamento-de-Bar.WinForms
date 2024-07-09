@@ -30,95 +30,20 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 
         Produto produto;
         Pedido pedido;
-        List<Produto> p;
+        List<Produto> listProdutos;
         ControladorPedido controladorPedido;
         public TelaPedidoForm(ControladorPedido c)
         {
 
             InitializeComponent();
             controladorPedido = c;
-            gridProdutos.Columns.AddRange(CriarColunas());
-
-            gridProdutos.ConfigurarGridSomenteLeitura();
-            gridProdutos.ConfigurarGridZebrado();
-            #region Gerado Pelo GPT
-            gridProdutos.CellPainting += GridProdutos_CellPainting;
-            gridProdutos.CellContentClick += GridProdutos_CellContentClick;
         }
-
-        private void GridProdutos_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-            if (e.ColumnIndex == gridProdutos.Columns[$"btnRemover"].Index && e.RowIndex >= 0)
-            {
-                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
-
-                var w = Properties.Resources.btnRemover.Width;
-                var h = Properties.Resources.btnRemover.Height;
-                var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
-                var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
-
-
-                e.Graphics.DrawImage(Properties.Resources.btnRemover, new Rectangle(x, y, w, h));
-                e.Handled = true;
-            }
-        }
-        #endregion
-
-        private void GridProdutos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-            if (e.ColumnIndex == gridProdutos.Columns[$"btnRemover"].Index && e.RowIndex >= 0)
-            {
-                Produto produtoSelecionado = p[e.RowIndex];
-
-                decimal total = Convert.ToDecimal(txtValorTotal.Text);
-
-                total -= produtoSelecionado.Valor;
-                if (produtoSelecionado.Quantia > 1)
-                {
-
-                    produtoSelecionado.Quantia--;
-                }
-
-                else
-                {
-                    DialogResult result = MessageBox.Show(
-                                                       $"Você deseja remover \"{produto.Nome}\" do pedido?",
-                                                       "Confirmar remoção",
-                                                       MessageBoxButtons.YesNo,
-                                                       MessageBoxIcon.Warning);
-
-                    if (result == DialogResult.Yes)
-                    {
-                        p.RemoveAt(e.RowIndex);
-                        gridProdutos.Rows.RemoveAt(e.RowIndex);
-
-                    }
-                }
-                AtualizarRegistros(p);
-
-                txtValorTotal.Text = total.ToString();
-            }
-
-        }
-
         public void AtualizarRegistros(List<Produto> repositorio)
         {
             gridProdutos.Rows.Clear();
 
             foreach (Produto produto in repositorio)
                 gridProdutos.Rows.Add(produto.Nome, produto.Quantia, produto.Valor.ToString("C"));
-        }
-
-        private DataGridViewColumn[] CriarColunas()
-        {
-            return new DataGridViewColumn[]
-            {
-                new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Produto" },
-                new DataGridViewTextBoxColumn { DataPropertyName = "Quantia", HeaderText = "Quantia" },
-                new DataGridViewTextBoxColumn { DataPropertyName = "Valor", HeaderText = "Valor" },
-                new DataGridViewButtonColumn { Name = "btnRemover",HeaderText = "Remover", UseColumnTextForButtonValue = true }
-            };
         }
 
         public int ObterRegistroSelecionado()
@@ -138,45 +63,13 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 
             int quantiaAdicionada = Convert.ToInt32(txtQuantiaItens.Text);
 
-            if (p == null)
-                p = new List<Produto>();
+            if (listProdutos == null)
+                listProdutos = new List<Produto>();
 
             produto = (Produto)cmbProdutos.SelectedItem;
 
-            Produto buscador = p.Find(x => x.Nome == produto.Nome);
 
-            if (buscador == null)
-            {
-                if (quantiaAdicionada > 0)
-                    produto.Quantia = quantiaAdicionada;
-                else
-                    produto.Quantia = 1;
-
-                p.Add(produto);
-            }
-            else
-            {
-                if (quantiaAdicionada != 0)
-                    produto.Quantia += quantiaAdicionada;
-                else
-                    produto.Quantia++;
-            }
-
-            txtQuantiaItens.Text = "0";
-
-            decimal total = 0;
-            foreach (Produto produto in p)
-            {
-                if (produto.Quantia > 0)
-                    total += produto.Quantia * produto.Valor;
-                else
-                    total += produto.Valor;
-            }
-
-
-            txtValorTotal.Text = total.ToString();
-
-            AtualizarRegistros(p);
+            AtualizarRegistros(listProdutos);
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -65,11 +65,11 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
             {
 
                 pedidoBuilder.Property(pd => pd.Id).IsRequired().ValueGeneratedOnAdd();
-                pedidoBuilder.HasMany(pd => pd.Produtos).WithOne(p => p.Pedido)
+                /*pedidoBuilder.HasMany(pd => pd.Produtos).WithOne(p => p.Pedido)
                 .IsRequired()
                 .HasForeignKey("Pedido_Id")
                 .HasConstraintName("FK_TBPedido_TBProduto")
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Restrict);*/
 
             });
             modelBuilder.Entity<Produto>(produtoBuilder =>

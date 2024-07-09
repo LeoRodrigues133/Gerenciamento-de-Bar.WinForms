@@ -14,6 +14,19 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido.Pedidos
             Quantidade = quantidade;
         }
 
+        public bool VerificarProduto(Pedido pedido, List<Produto> produtos)
+        {
+            Produto produto = pedido.Produto;
+
+            Produto buscador = produtos.Find(x => x.Nome == produto.Nome)!;
+
+            if (buscador == null)
+                return false;
+
+            return true;
+        }
+
+
         public override void AtualizarRegistro(EntidadeBase novoRegistro)
         {
             Pedido a = (Pedido) novoRegistro;

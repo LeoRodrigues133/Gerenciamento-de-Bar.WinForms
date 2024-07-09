@@ -47,7 +47,6 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             cmbStatus = new ComboBox();
             lblStatus = new Label();
             tabPagePedido = new TabPage();
-            gridProdutos = new DataGridView();
             btnServiços = new Button();
             btnBebidas = new Button();
             btnComidas = new Button();
@@ -62,22 +61,21 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             txtId = new TextBox();
             btnCancelar = new Button();
             btnSalvar = new Button();
+            listProdutos = new ListBox();
             TabComanda.SuspendLayout();
             tabPageComanda.SuspendLayout();
             groupBoxPagamento.SuspendLayout();
             tabPagePedido.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)gridProdutos).BeginInit();
             SuspendLayout();
             // 
             // TabComanda
             // 
             TabComanda.Controls.Add(tabPageComanda);
             TabComanda.Controls.Add(tabPagePedido);
-            TabComanda.Location = new Point(21, 54);
-            TabComanda.Margin = new Padding(3, 2, 3, 2);
+            TabComanda.Location = new Point(24, 72);
             TabComanda.Name = "TabComanda";
             TabComanda.SelectedIndex = 0;
-            TabComanda.Size = new Size(533, 274);
+            TabComanda.Size = new Size(609, 365);
             TabComanda.TabIndex = 3;
             // 
             // tabPageComanda
@@ -91,22 +89,20 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             tabPageComanda.Controls.Add(lblMesa);
             tabPageComanda.Controls.Add(cmbStatus);
             tabPageComanda.Controls.Add(lblStatus);
-            tabPageComanda.Location = new Point(4, 24);
-            tabPageComanda.Margin = new Padding(3, 2, 3, 2);
+            tabPageComanda.Location = new Point(4, 29);
             tabPageComanda.Name = "tabPageComanda";
-            tabPageComanda.Padding = new Padding(3, 2, 3, 2);
-            tabPageComanda.Size = new Size(525, 246);
+            tabPageComanda.Padding = new Padding(3, 3, 3, 3);
+            tabPageComanda.Size = new Size(601, 332);
             tabPageComanda.TabIndex = 0;
             tabPageComanda.Text = "Comanda";
             // 
             // chkServiço
             // 
             chkServiço.AutoSize = true;
-            chkServiço.Location = new Point(362, 44);
-            chkServiço.Margin = new Padding(3, 2, 3, 2);
+            chkServiço.Location = new Point(414, 59);
             chkServiço.Name = "chkServiço";
             chkServiço.RightToLeft = RightToLeft.Yes;
-            chkServiço.Size = new Size(108, 19);
+            chkServiço.Size = new Size(134, 24);
             chkServiço.TabIndex = 3;
             chkServiço.Text = ":Taxa de serviço";
             chkServiço.UseVisualStyleBackColor = true;
@@ -119,11 +115,9 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             groupBoxPagamento.Controls.Add(lblTotal);
             groupBoxPagamento.Controls.Add(lblDesconto);
             groupBoxPagamento.Enabled = false;
-            groupBoxPagamento.Location = new Point(5, 159);
-            groupBoxPagamento.Margin = new Padding(3, 2, 3, 2);
+            groupBoxPagamento.Location = new Point(6, 212);
             groupBoxPagamento.Name = "groupBoxPagamento";
-            groupBoxPagamento.Padding = new Padding(3, 2, 3, 2);
-            groupBoxPagamento.Size = new Size(515, 86);
+            groupBoxPagamento.Size = new Size(589, 115);
             groupBoxPagamento.TabIndex = 3;
             groupBoxPagamento.TabStop = false;
             groupBoxPagamento.Text = "Pagamento";
@@ -133,10 +127,9 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             txtValorTotal.BackColor = SystemColors.ControlLight;
             txtValorTotal.BorderStyle = BorderStyle.None;
             txtValorTotal.Font = new Font("Segoe UI", 15F);
-            txtValorTotal.Location = new Point(83, 49);
-            txtValorTotal.Margin = new Padding(3, 2, 3, 2);
+            txtValorTotal.Location = new Point(95, 65);
             txtValorTotal.Name = "txtValorTotal";
-            txtValorTotal.Size = new Size(426, 27);
+            txtValorTotal.Size = new Size(487, 34);
             txtValorTotal.TabIndex = 1;
             txtValorTotal.Text = "0";
             txtValorTotal.TextAlign = HorizontalAlignment.Right;
@@ -146,10 +139,9 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             txtDesconto.BackColor = SystemColors.ControlLight;
             txtDesconto.BorderStyle = BorderStyle.None;
             txtDesconto.Font = new Font("Segoe UI", 15F);
-            txtDesconto.Location = new Point(83, 20);
-            txtDesconto.Margin = new Padding(3, 2, 3, 2);
+            txtDesconto.Location = new Point(95, 27);
             txtDesconto.Name = "txtDesconto";
-            txtDesconto.Size = new Size(426, 27);
+            txtDesconto.Size = new Size(487, 34);
             txtDesconto.TabIndex = 1;
             txtDesconto.Text = "0";
             txtDesconto.TextAlign = HorizontalAlignment.Right;
@@ -157,79 +149,76 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             // lblTotal
             // 
             lblTotal.AutoSize = true;
-            lblTotal.Location = new Point(39, 60);
+            lblTotal.Location = new Point(45, 80);
             lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(35, 15);
+            lblTotal.Size = new Size(45, 20);
             lblTotal.TabIndex = 0;
             lblTotal.Text = "Total:";
             // 
             // lblDesconto
             // 
             lblDesconto.AutoSize = true;
-            lblDesconto.Location = new Point(13, 28);
+            lblDesconto.Location = new Point(15, 37);
             lblDesconto.Name = "lblDesconto";
-            lblDesconto.Size = new Size(60, 15);
+            lblDesconto.Size = new Size(75, 20);
             lblDesconto.TabIndex = 0;
             lblDesconto.Text = "Desconto:";
             // 
             // cmbGarçom
             // 
             cmbGarçom.FormattingEnabled = true;
-            cmbGarçom.Location = new Point(76, 88);
-            cmbGarçom.Margin = new Padding(3, 2, 3, 2);
+            cmbGarçom.Location = new Point(87, 117);
             cmbGarçom.Name = "cmbGarçom";
-            cmbGarçom.Size = new Size(177, 23);
+            cmbGarçom.Size = new Size(202, 28);
             cmbGarçom.TabIndex = 1;
             // 
             // lblGarçom
             // 
             lblGarçom.AutoSize = true;
-            lblGarçom.Location = new Point(15, 91);
+            lblGarçom.Location = new Point(17, 121);
             lblGarçom.Name = "lblGarçom";
-            lblGarçom.Size = new Size(52, 15);
+            lblGarçom.Size = new Size(64, 20);
             lblGarçom.TabIndex = 0;
             lblGarçom.Text = "Garçom:";
             // 
             // cmbMesa
             // 
             cmbMesa.FormattingEnabled = true;
-            cmbMesa.Location = new Point(76, 42);
-            cmbMesa.Margin = new Padding(3, 2, 3, 2);
+            cmbMesa.Location = new Point(87, 56);
             cmbMesa.Name = "cmbMesa";
-            cmbMesa.Size = new Size(177, 23);
+            cmbMesa.Size = new Size(202, 28);
             cmbMesa.TabIndex = 0;
             // 
             // lblMesa
             // 
             lblMesa.AutoSize = true;
-            lblMesa.Location = new Point(30, 45);
+            lblMesa.Location = new Point(34, 60);
             lblMesa.Name = "lblMesa";
-            lblMesa.Size = new Size(38, 15);
+            lblMesa.Size = new Size(47, 20);
             lblMesa.TabIndex = 0;
             lblMesa.Text = "Mesa:";
             // 
             // cmbStatus
             // 
             cmbStatus.FormattingEnabled = true;
-            cmbStatus.Location = new Point(310, 88);
-            cmbStatus.Margin = new Padding(3, 2, 3, 2);
+            cmbStatus.Location = new Point(354, 117);
             cmbStatus.Name = "cmbStatus";
-            cmbStatus.Size = new Size(170, 23);
+            cmbStatus.Size = new Size(194, 28);
             cmbStatus.TabIndex = 2;
             // 
             // lblStatus
             // 
             lblStatus.AutoSize = true;
-            lblStatus.Location = new Point(262, 91);
+            lblStatus.Location = new Point(299, 121);
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(42, 15);
+            lblStatus.Size = new Size(52, 20);
             lblStatus.TabIndex = 0;
             lblStatus.Text = "Status:";
             // 
             // tabPagePedido
             // 
             tabPagePedido.BackColor = SystemColors.Window;
-            tabPagePedido.Controls.Add(gridProdutos);
+            tabPagePedido.Controls.Add(listProdutos);
             tabPagePedido.Controls.Add(btnServiços);
             tabPagePedido.Controls.Add(btnBebidas);
             tabPagePedido.Controls.Add(btnComidas);
@@ -240,38 +229,20 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             tabPagePedido.Controls.Add(button2);
             tabPagePedido.Controls.Add(button1);
             tabPagePedido.Controls.Add(btnAddItens);
-            tabPagePedido.Location = new Point(4, 24);
-            tabPagePedido.Margin = new Padding(3, 2, 3, 2);
+            tabPagePedido.Location = new Point(4, 29);
             tabPagePedido.Name = "tabPagePedido";
-            tabPagePedido.Padding = new Padding(3, 2, 3, 2);
-            tabPagePedido.Size = new Size(525, 246);
+            tabPagePedido.Padding = new Padding(3, 3, 3, 3);
+            tabPagePedido.Size = new Size(601, 332);
             tabPagePedido.TabIndex = 1;
             tabPagePedido.Text = "Pedido";
-            // 
-            // gridProdutos
-            // 
-            gridProdutos.AllowUserToAddRows = false;
-            gridProdutos.AllowUserToDeleteRows = false;
-            gridProdutos.BackgroundColor = SystemColors.ControlLight;
-            gridProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridProdutos.Dock = DockStyle.Right;
-            gridProdutos.Location = new Point(257, 2);
-            gridProdutos.Margin = new Padding(3, 2, 3, 2);
-            gridProdutos.Name = "gridProdutos";
-            gridProdutos.ReadOnly = true;
-            gridProdutos.RowHeadersVisible = false;
-            gridProdutos.RowHeadersWidth = 51;
-            gridProdutos.Size = new Size(265, 242);
-            gridProdutos.TabIndex = 8;
             // 
             // btnServiços
             // 
             btnServiços.BackColor = Color.White;
             btnServiços.Cursor = Cursors.Hand;
-            btnServiços.Location = new Point(174, 61);
-            btnServiços.Margin = new Padding(3, 2, 3, 2);
+            btnServiços.Location = new Point(199, 81);
             btnServiços.Name = "btnServiços";
-            btnServiços.Size = new Size(52, 32);
+            btnServiços.Size = new Size(59, 43);
             btnServiços.TabIndex = 3;
             btnServiços.UseVisualStyleBackColor = false;
             btnServiços.Click += btnServiços_Click;
@@ -280,10 +251,9 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             // 
             btnBebidas.BackColor = Color.White;
             btnBebidas.Cursor = Cursors.Hand;
-            btnBebidas.Location = new Point(98, 61);
-            btnBebidas.Margin = new Padding(3, 2, 3, 2);
+            btnBebidas.Location = new Point(112, 81);
             btnBebidas.Name = "btnBebidas";
-            btnBebidas.Size = new Size(53, 32);
+            btnBebidas.Size = new Size(61, 43);
             btnBebidas.TabIndex = 2;
             btnBebidas.UseVisualStyleBackColor = false;
             btnBebidas.Click += btnBebidas_Click;
@@ -292,10 +262,9 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             // 
             btnComidas.BackColor = Color.White;
             btnComidas.Cursor = Cursors.Hand;
-            btnComidas.Location = new Point(28, 61);
-            btnComidas.Margin = new Padding(3, 2, 3, 2);
+            btnComidas.Location = new Point(32, 81);
             btnComidas.Name = "btnComidas";
-            btnComidas.Size = new Size(49, 32);
+            btnComidas.Size = new Size(56, 43);
             btnComidas.TabIndex = 1;
             btnComidas.UseVisualStyleBackColor = false;
             btnComidas.Click += btnComidas_Click;
@@ -303,28 +272,27 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(3, 91);
+            label3.Location = new Point(3, 121);
             label3.Name = "label3";
-            label3.Size = new Size(0, 15);
+            label3.Size = new Size(0, 20);
             label3.TabIndex = 6;
             // 
             // lblProduto
             // 
             lblProduto.AutoSize = true;
             lblProduto.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
-            lblProduto.Location = new Point(76, 14);
+            lblProduto.Location = new Point(87, 19);
             lblProduto.Name = "lblProduto";
-            lblProduto.Size = new Size(94, 30);
+            lblProduto.Size = new Size(123, 37);
             lblProduto.TabIndex = 6;
             lblProduto.Text = "Produto";
             // 
             // cmbProdutos
             // 
             cmbProdutos.FormattingEnabled = true;
-            cmbProdutos.Location = new Point(29, 97);
-            cmbProdutos.Margin = new Padding(3, 2, 3, 2);
+            cmbProdutos.Location = new Point(33, 129);
             cmbProdutos.Name = "cmbProdutos";
-            cmbProdutos.Size = new Size(197, 23);
+            cmbProdutos.Size = new Size(225, 28);
             cmbProdutos.TabIndex = 4;
             // 
             // txtQuantiaItens
@@ -332,10 +300,9 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             txtQuantiaItens.BackColor = SystemColors.Control;
             txtQuantiaItens.BorderStyle = BorderStyle.FixedSingle;
             txtQuantiaItens.Font = new Font("Segoe UI", 12F);
-            txtQuantiaItens.Location = new Point(60, 158);
-            txtQuantiaItens.Margin = new Padding(3, 2, 3, 2);
+            txtQuantiaItens.Location = new Point(69, 211);
             txtQuantiaItens.Name = "txtQuantiaItens";
-            txtQuantiaItens.Size = new Size(135, 29);
+            txtQuantiaItens.Size = new Size(154, 34);
             txtQuantiaItens.TabIndex = 4;
             txtQuantiaItens.Text = "0";
             txtQuantiaItens.TextAlign = HorizontalAlignment.Center;
@@ -344,10 +311,9 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             // 
             button2.BackColor = Color.White;
             button2.Cursor = Cursors.Hand;
-            button2.Location = new Point(201, 158);
-            button2.Margin = new Padding(3, 2, 3, 2);
+            button2.Location = new Point(230, 211);
             button2.Name = "button2";
-            button2.Size = new Size(26, 29);
+            button2.Size = new Size(30, 39);
             button2.TabIndex = 7;
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
@@ -356,10 +322,9 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             // 
             button1.BackColor = Color.White;
             button1.Cursor = Cursors.Hand;
-            button1.Location = new Point(28, 158);
-            button1.Margin = new Padding(3, 2, 3, 2);
+            button1.Location = new Point(32, 211);
             button1.Name = "button1";
-            button1.Size = new Size(26, 29);
+            button1.Size = new Size(30, 39);
             button1.TabIndex = 6;
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
@@ -368,10 +333,9 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             // 
             btnAddItens.Cursor = Cursors.Hand;
             btnAddItens.FlatAppearance.BorderColor = Color.White;
-            btnAddItens.Location = new Point(28, 191);
-            btnAddItens.Margin = new Padding(3, 2, 3, 2);
+            btnAddItens.Location = new Point(32, 255);
             btnAddItens.Name = "btnAddItens";
-            btnAddItens.Size = new Size(199, 38);
+            btnAddItens.Size = new Size(227, 51);
             btnAddItens.TabIndex = 5;
             btnAddItens.UseVisualStyleBackColor = false;
             btnAddItens.Click += btnAddItens_Click;
@@ -379,9 +343,9 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             // lblId
             // 
             lblId.AutoSize = true;
-            lblId.Location = new Point(27, 19);
+            lblId.Location = new Point(31, 25);
             lblId.Name = "lblId";
-            lblId.Size = new Size(20, 15);
+            lblId.Size = new Size(25, 20);
             lblId.TabIndex = 0;
             lblId.Text = "Id:";
             // 
@@ -389,10 +353,9 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             // 
             txtId.BackColor = SystemColors.ControlLight;
             txtId.Enabled = false;
-            txtId.Location = new Point(54, 16);
-            txtId.Margin = new Padding(3, 2, 3, 2);
+            txtId.Location = new Point(62, 21);
             txtId.Name = "txtId";
-            txtId.Size = new Size(58, 23);
+            txtId.Size = new Size(66, 27);
             txtId.TabIndex = 1;
             txtId.Text = "0";
             txtId.TextAlign = HorizontalAlignment.Right;
@@ -400,10 +363,9 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             // btnCancelar
             // 
             btnCancelar.DialogResult = DialogResult.Cancel;
-            btnCancelar.Location = new Point(448, 345);
-            btnCancelar.Margin = new Padding(3, 2, 3, 2);
+            btnCancelar.Location = new Point(512, 460);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(102, 37);
+            btnCancelar.Size = new Size(117, 49);
             btnCancelar.TabIndex = 4;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
@@ -411,27 +373,34 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             // btnSalvar
             // 
             btnSalvar.DialogResult = DialogResult.OK;
-            btnSalvar.Location = new Point(340, 345);
-            btnSalvar.Margin = new Padding(3, 2, 3, 2);
+            btnSalvar.Location = new Point(389, 460);
             btnSalvar.Name = "btnSalvar";
-            btnSalvar.Size = new Size(102, 37);
+            btnSalvar.Size = new Size(117, 49);
             btnSalvar.TabIndex = 5;
             btnSalvar.Text = "Salvar";
             btnSalvar.UseVisualStyleBackColor = true;
             btnSalvar.Click += btnSalvar_Click;
             // 
+            // listProdutos
+            // 
+            listProdutos.Dock = DockStyle.Right;
+            listProdutos.FormattingEnabled = true;
+            listProdutos.Location = new Point(448, 3);
+            listProdutos.Name = "listProdutos";
+            listProdutos.Size = new Size(150, 326);
+            listProdutos.TabIndex = 8;
+            // 
             // TelaPedidoForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(561, 391);
+            ClientSize = new Size(641, 521);
             Controls.Add(btnCancelar);
             Controls.Add(btnSalvar);
             Controls.Add(txtId);
             Controls.Add(lblId);
             Controls.Add(TabComanda);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             MdiChildrenMinimizedAnchorBottom = false;
             MinimizeBox = false;
@@ -446,7 +415,6 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             groupBoxPagamento.PerformLayout();
             tabPagePedido.ResumeLayout(false);
             tabPagePedido.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)gridProdutos).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -481,8 +449,8 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
         private Button btnServiços;
         private Button btnBebidas;
         private Button btnComidas;
-        private DataGridView gridProdutos;
         private Button btnCancelar;
         private Button btnSalvar;
+        private ListBox listProdutos;
     }
 }

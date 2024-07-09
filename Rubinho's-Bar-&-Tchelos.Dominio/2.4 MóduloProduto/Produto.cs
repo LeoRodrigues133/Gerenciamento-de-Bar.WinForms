@@ -7,8 +7,6 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloProduto
     {
         public string Nome { get; set; }
         public decimal Valor { get; set; }
-        public Pedido Pedido { get; set; }
-        public int Quantia {  get; set; }
         public EnumCategoriaProduto CategoriaProduto { get; set; }
 
         public Produto(){}

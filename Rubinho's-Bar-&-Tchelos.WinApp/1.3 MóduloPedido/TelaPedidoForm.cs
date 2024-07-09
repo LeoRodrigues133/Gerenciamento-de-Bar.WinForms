@@ -30,7 +30,6 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 
         Produto produto;
         Pedido pedido;
-        List<Produto> listProdutos;
         ControladorPedido controladorPedido;
         public TelaPedidoForm(ControladorPedido c)
         {
@@ -40,15 +39,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
         }
         public void AtualizarRegistros(List<Produto> repositorio)
         {
-            gridProdutos.Rows.Clear();
 
-            foreach (Produto produto in repositorio)
-                gridProdutos.Rows.Add(produto.Nome, produto.Quantia, produto.Valor.ToString("C"));
-        }
-
-        public int ObterRegistroSelecionado()
-        {
-            return gridProdutos.SelecionarId();
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -60,16 +51,31 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 
         private void btnAddItens_Click(object sender, EventArgs e)
         {
+            List<Produto> ListaProdutos = listProdutos.Items.Cast<Produto>().ToList();
 
             int quantiaAdicionada = Convert.ToInt32(txtQuantiaItens.Text);
 
-            if (listProdutos == null)
-                listProdutos = new List<Produto>();
-
             produto = (Produto)cmbProdutos.SelectedItem;
 
+            Pedido novoPedido = new Pedido(produto, quantiaAdicionada);
 
-            AtualizarRegistros(listProdutos);
+            if (!pedido.VerificarProduto(novoPedido, ListaProdutos))
+                listProdutos.Items.Add(novoPedido);
+            else
+            {
+                ListaProdutos.Find(x => x.Nome == novoPedido.Produto.Nome);
+                if (quantiaAdicionada > 0)
+                    novoPedido.Quantidade += quantiaAdicionada;
+                else
+                {
+                    int NotAMagicNumber = 1;
+
+                    novoPedido.Quantidade += NotAMagicNumber;
+                }
+            }
+
+
+            AtualizarRegistros(ListaProdutos);
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -43,39 +43,45 @@
             // lblId
             // 
             lblId.AutoSize = true;
-            lblId.Location = new Point(94, 70);
+            lblId.Location = new Point(36, 18);
             lblId.Name = "lblId";
-            lblId.Size = new Size(25, 20);
+            lblId.Size = new Size(20, 15);
             lblId.TabIndex = 0;
             lblId.Text = "Id:";
             // 
             // txtId
             // 
+            txtId.BackColor = SystemColors.ControlLight;
             txtId.Enabled = false;
-            txtId.Location = new Point(123, 67);
+            txtId.Location = new Point(62, 16);
+            txtId.Margin = new Padding(3, 2, 3, 2);
             txtId.Name = "txtId";
-            txtId.Size = new Size(61, 27);
-            txtId.TabIndex = 1;
+            txtId.ReadOnly = true;
+            txtId.Size = new Size(53, 23);
+            txtId.TabIndex = 0;
             txtId.Text = "0";
-            txtId.TextAlign = HorizontalAlignment.Right;
             // 
             // btnCancelar
             // 
+            btnCancelar.Cursor = Cursors.Hand;
             btnCancelar.DialogResult = DialogResult.Cancel;
-            btnCancelar.Location = new Point(464, 236);
+            btnCancelar.Location = new Point(324, 65);
+            btnCancelar.Margin = new Padding(3, 2, 3, 2);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(116, 49);
-            btnCancelar.TabIndex = 2;
+            btnCancelar.Size = new Size(102, 50);
+            btnCancelar.TabIndex = 5;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             // 
             // btnSalvar
             // 
+            btnSalvar.Cursor = Cursors.Hand;
             btnSalvar.DialogResult = DialogResult.OK;
-            btnSalvar.Location = new Point(342, 236);
+            btnSalvar.Location = new Point(216, 65);
+            btnSalvar.Margin = new Padding(3, 2, 3, 2);
             btnSalvar.Name = "btnSalvar";
-            btnSalvar.Size = new Size(116, 49);
-            btnSalvar.TabIndex = 3;
+            btnSalvar.Size = new Size(102, 50);
+            btnSalvar.TabIndex = 4;
             btnSalvar.Text = "Salvar";
             btnSalvar.UseVisualStyleBackColor = true;
             btnSalvar.Click += btnSalvar_Click;
@@ -83,59 +89,67 @@
             // lblNome
             // 
             lblNome.AutoSize = true;
-            lblNome.Location = new Point(66, 103);
+            lblNome.Location = new Point(12, 43);
             lblNome.Name = "lblNome";
-            lblNome.Size = new Size(53, 20);
+            lblNome.Size = new Size(43, 15);
             lblNome.TabIndex = 0;
             lblNome.Text = "Nome:";
             // 
             // txtNome
             // 
-            txtNome.Location = new Point(123, 100);
+            txtNome.Cursor = Cursors.IBeam;
+            txtNome.Location = new Point(62, 41);
+            txtNome.Margin = new Padding(3, 2, 3, 2);
             txtNome.Name = "txtNome";
-            txtNome.Size = new Size(362, 27);
+            txtNome.Size = new Size(364, 23);
             txtNome.TabIndex = 1;
             // 
             // cmbCargo
             // 
+            cmbCargo.Cursor = Cursors.IBeam;
             cmbCargo.FormattingEnabled = true;
-            cmbCargo.Location = new Point(123, 186);
+            cmbCargo.Location = new Point(62, 92);
+            cmbCargo.Margin = new Padding(3, 2, 3, 2);
             cmbCargo.Name = "cmbCargo";
-            cmbCargo.Size = new Size(151, 28);
-            cmbCargo.TabIndex = 4;
+            cmbCargo.Size = new Size(148, 23);
+            cmbCargo.TabIndex = 3;
             // 
             // lblCargo
             // 
             lblCargo.AutoSize = true;
-            lblCargo.Location = new Point(67, 189);
+            lblCargo.Location = new Point(13, 94);
             lblCargo.Name = "lblCargo";
-            lblCargo.Size = new Size(52, 20);
+            lblCargo.Size = new Size(42, 15);
             lblCargo.TabIndex = 0;
             lblCargo.Text = "Cargo:";
             // 
             // lblCpf
             // 
             lblCpf.AutoSize = true;
-            lblCpf.Location = new Point(66, 136);
+            lblCpf.Location = new Point(12, 68);
             lblCpf.Name = "lblCpf";
-            lblCpf.Size = new Size(35, 20);
+            lblCpf.Size = new Size(29, 15);
             lblCpf.TabIndex = 0;
             lblCpf.Text = "Cpf:";
             // 
             // txtCpf
             // 
-            txtCpf.Location = new Point(123, 133);
+            txtCpf.Cursor = Cursors.IBeam;
+            txtCpf.Location = new Point(62, 66);
+            txtCpf.Margin = new Padding(3, 2, 3, 2);
             txtCpf.MaxLength = 14;
             txtCpf.Name = "txtCpf";
-            txtCpf.Size = new Size(169, 27);
-            txtCpf.TabIndex = 1;
+            txtCpf.Size = new Size(148, 23);
+            txtCpf.TabIndex = 2;
             txtCpf.KeyDown += txtCpf_MaskCPF;
             // 
             // TelaPessoasForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AcceptButton = btnSalvar;
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(592, 297);
+            CancelButton = btnCancelar;
+            ClientSize = new Size(438, 127);
             Controls.Add(cmbCargo);
             Controls.Add(btnCancelar);
             Controls.Add(btnSalvar);
@@ -146,8 +160,14 @@
             Controls.Add(lblNome);
             Controls.Add(txtId);
             Controls.Add(lblId);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 2, 3, 2);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "TelaPessoasForm";
-            Text = "TelaPessoasForm";
+            ShowIcon = false;
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Cadastro De Funcionarios";
             ResumeLayout(false);
             PerformLayout();
         }

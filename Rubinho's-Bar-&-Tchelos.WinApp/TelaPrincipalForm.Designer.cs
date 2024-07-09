@@ -244,7 +244,7 @@
             Name = "TelaPrincipalForm";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Gerador De Testes";
+            Text = "Gestão De Bar";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             statusStrip1.ResumeLayout(false);

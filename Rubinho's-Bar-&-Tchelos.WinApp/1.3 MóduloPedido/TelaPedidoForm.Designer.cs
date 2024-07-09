@@ -82,7 +82,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             // 
             // tabPageComanda
             // 
-            tabPageComanda.BackColor = SystemColors.GradientInactiveCaption;
+            tabPageComanda.BackColor = SystemColors.Control;
             tabPageComanda.Controls.Add(chkServiço);
             tabPageComanda.Controls.Add(groupBoxPagamento);
             tabPageComanda.Controls.Add(cmbGarçom);
@@ -107,13 +107,13 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             chkServiço.Name = "chkServiço";
             chkServiço.RightToLeft = RightToLeft.Yes;
             chkServiço.Size = new Size(108, 19);
-            chkServiço.TabIndex = 4;
+            chkServiço.TabIndex = 3;
             chkServiço.Text = ":Taxa de serviço";
             chkServiço.UseVisualStyleBackColor = true;
             // 
             // groupBoxPagamento
             // 
-            groupBoxPagamento.BackColor = Color.LightSlateGray;
+            groupBoxPagamento.BackColor = SystemColors.Control;
             groupBoxPagamento.Controls.Add(txtValorTotal);
             groupBoxPagamento.Controls.Add(txtDesconto);
             groupBoxPagamento.Controls.Add(lblTotal);
@@ -130,7 +130,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             // 
             // txtValorTotal
             // 
-            txtValorTotal.BackColor = Color.LightSlateGray;
+            txtValorTotal.BackColor = SystemColors.ControlLight;
             txtValorTotal.BorderStyle = BorderStyle.None;
             txtValorTotal.Font = new Font("Segoe UI", 15F);
             txtValorTotal.Location = new Point(83, 49);
@@ -143,7 +143,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             // 
             // txtDesconto
             // 
-            txtDesconto.BackColor = Color.LightSlateGray;
+            txtDesconto.BackColor = SystemColors.ControlLight;
             txtDesconto.BorderStyle = BorderStyle.None;
             txtDesconto.Font = new Font("Segoe UI", 15F);
             txtDesconto.Location = new Point(83, 20);
@@ -179,7 +179,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             cmbGarçom.Margin = new Padding(3, 2, 3, 2);
             cmbGarçom.Name = "cmbGarçom";
             cmbGarçom.Size = new Size(177, 23);
-            cmbGarçom.TabIndex = 2;
+            cmbGarçom.TabIndex = 1;
             // 
             // lblGarçom
             // 
@@ -197,7 +197,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             cmbMesa.Margin = new Padding(3, 2, 3, 2);
             cmbMesa.Name = "cmbMesa";
             cmbMesa.Size = new Size(177, 23);
-            cmbMesa.TabIndex = 2;
+            cmbMesa.TabIndex = 0;
             // 
             // lblMesa
             // 
@@ -222,9 +222,9 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             lblStatus.AutoSize = true;
             lblStatus.Location = new Point(262, 91);
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(39, 15);
+            lblStatus.Size = new Size(42, 15);
             lblStatus.TabIndex = 0;
-            lblStatus.Text = "Status";
+            lblStatus.Text = "Status:";
             // 
             // tabPagePedido
             // 
@@ -252,6 +252,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             // 
             gridProdutos.AllowUserToAddRows = false;
             gridProdutos.AllowUserToDeleteRows = false;
+            gridProdutos.BackgroundColor = SystemColors.ControlLight;
             gridProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             gridProdutos.Dock = DockStyle.Right;
             gridProdutos.Location = new Point(257, 2);
@@ -265,32 +266,38 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             // 
             // btnServiços
             // 
-            btnServiços.Location = new Point(182, 44);
+            btnServiços.BackColor = Color.White;
+            btnServiços.Cursor = Cursors.Hand;
+            btnServiços.Location = new Point(174, 61);
             btnServiços.Margin = new Padding(3, 2, 3, 2);
             btnServiços.Name = "btnServiços";
-            btnServiços.Size = new Size(44, 32);
-            btnServiços.TabIndex = 7;
-            btnServiços.UseVisualStyleBackColor = true;
+            btnServiços.Size = new Size(52, 32);
+            btnServiços.TabIndex = 3;
+            btnServiços.UseVisualStyleBackColor = false;
             btnServiços.Click += btnServiços_Click;
             // 
             // btnBebidas
             // 
-            btnBebidas.Location = new Point(133, 44);
+            btnBebidas.BackColor = Color.White;
+            btnBebidas.Cursor = Cursors.Hand;
+            btnBebidas.Location = new Point(98, 61);
             btnBebidas.Margin = new Padding(3, 2, 3, 2);
             btnBebidas.Name = "btnBebidas";
-            btnBebidas.Size = new Size(44, 32);
-            btnBebidas.TabIndex = 7;
-            btnBebidas.UseVisualStyleBackColor = true;
+            btnBebidas.Size = new Size(53, 32);
+            btnBebidas.TabIndex = 2;
+            btnBebidas.UseVisualStyleBackColor = false;
             btnBebidas.Click += btnBebidas_Click;
             // 
             // btnComidas
             // 
-            btnComidas.Location = new Point(84, 44);
+            btnComidas.BackColor = Color.White;
+            btnComidas.Cursor = Cursors.Hand;
+            btnComidas.Location = new Point(28, 61);
             btnComidas.Margin = new Padding(3, 2, 3, 2);
             btnComidas.Name = "btnComidas";
-            btnComidas.Size = new Size(44, 32);
-            btnComidas.TabIndex = 7;
-            btnComidas.UseVisualStyleBackColor = true;
+            btnComidas.Size = new Size(49, 32);
+            btnComidas.TabIndex = 1;
+            btnComidas.UseVisualStyleBackColor = false;
             btnComidas.Click += btnComidas_Click;
             // 
             // label3
@@ -304,30 +311,31 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             // lblProduto
             // 
             lblProduto.AutoSize = true;
-            lblProduto.Location = new Point(5, 82);
+            lblProduto.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            lblProduto.Location = new Point(76, 14);
             lblProduto.Name = "lblProduto";
-            lblProduto.Size = new Size(53, 15);
+            lblProduto.Size = new Size(94, 30);
             lblProduto.TabIndex = 6;
-            lblProduto.Text = "Produto:";
+            lblProduto.Text = "Produto";
             // 
             // cmbProdutos
             // 
             cmbProdutos.FormattingEnabled = true;
-            cmbProdutos.Location = new Point(67, 80);
+            cmbProdutos.Location = new Point(29, 97);
             cmbProdutos.Margin = new Padding(3, 2, 3, 2);
             cmbProdutos.Name = "cmbProdutos";
-            cmbProdutos.Size = new Size(176, 23);
-            cmbProdutos.TabIndex = 5;
+            cmbProdutos.Size = new Size(197, 23);
+            cmbProdutos.TabIndex = 4;
             // 
             // txtQuantiaItens
             // 
-            txtQuantiaItens.BackColor = Color.AliceBlue;
-            txtQuantiaItens.BorderStyle = BorderStyle.None;
+            txtQuantiaItens.BackColor = SystemColors.Control;
+            txtQuantiaItens.BorderStyle = BorderStyle.FixedSingle;
             txtQuantiaItens.Font = new Font("Segoe UI", 12F);
-            txtQuantiaItens.Location = new Point(61, 220);
+            txtQuantiaItens.Location = new Point(60, 158);
             txtQuantiaItens.Margin = new Padding(3, 2, 3, 2);
             txtQuantiaItens.Name = "txtQuantiaItens";
-            txtQuantiaItens.Size = new Size(135, 22);
+            txtQuantiaItens.Size = new Size(135, 29);
             txtQuantiaItens.TabIndex = 4;
             txtQuantiaItens.Text = "0";
             txtQuantiaItens.TextAlign = HorizontalAlignment.Center;
@@ -335,33 +343,37 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             // button2
             // 
             button2.BackColor = Color.White;
-            button2.Location = new Point(201, 218);
+            button2.Cursor = Cursors.Hand;
+            button2.Location = new Point(201, 158);
             button2.Margin = new Padding(3, 2, 3, 2);
             button2.Name = "button2";
-            button2.Size = new Size(26, 22);
-            button2.TabIndex = 3;
+            button2.Size = new Size(26, 29);
+            button2.TabIndex = 7;
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
             // button1
             // 
             button1.BackColor = Color.White;
-            button1.Location = new Point(30, 218);
+            button1.Cursor = Cursors.Hand;
+            button1.Location = new Point(28, 158);
             button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(26, 22);
-            button1.TabIndex = 3;
+            button1.Size = new Size(26, 29);
+            button1.TabIndex = 6;
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // btnAddItens
             // 
-            btnAddItens.Location = new Point(30, 165);
+            btnAddItens.Cursor = Cursors.Hand;
+            btnAddItens.FlatAppearance.BorderColor = Color.White;
+            btnAddItens.Location = new Point(28, 191);
             btnAddItens.Margin = new Padding(3, 2, 3, 2);
             btnAddItens.Name = "btnAddItens";
-            btnAddItens.Size = new Size(198, 38);
-            btnAddItens.TabIndex = 1;
-            btnAddItens.UseVisualStyleBackColor = true;
+            btnAddItens.Size = new Size(199, 38);
+            btnAddItens.TabIndex = 5;
+            btnAddItens.UseVisualStyleBackColor = false;
             btnAddItens.Click += btnAddItens_Click;
             // 
             // lblId
@@ -375,6 +387,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             // 
             // txtId
             // 
+            txtId.BackColor = SystemColors.ControlLight;
             txtId.Enabled = false;
             txtId.Location = new Point(54, 16);
             txtId.Margin = new Padding(3, 2, 3, 2);
@@ -387,7 +400,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             // btnCancelar
             // 
             btnCancelar.DialogResult = DialogResult.Cancel;
-            btnCancelar.Location = new Point(464, 345);
+            btnCancelar.Location = new Point(448, 345);
             btnCancelar.Margin = new Padding(3, 2, 3, 2);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(102, 37);
@@ -398,7 +411,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             // btnSalvar
             // 
             btnSalvar.DialogResult = DialogResult.OK;
-            btnSalvar.Location = new Point(357, 345);
+            btnSalvar.Location = new Point(340, 345);
             btnSalvar.Margin = new Padding(3, 2, 3, 2);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(102, 37);
@@ -411,15 +424,21 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(576, 391);
+            ClientSize = new Size(561, 391);
             Controls.Add(btnCancelar);
             Controls.Add(btnSalvar);
             Controls.Add(txtId);
             Controls.Add(lblId);
             Controls.Add(TabComanda);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 2, 3, 2);
+            MaximizeBox = false;
+            MdiChildrenMinimizedAnchorBottom = false;
+            MinimizeBox = false;
             Name = "TelaPedidoForm";
-            Text = "TelaPedidoForm";
+            ShowIcon = false;
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Cadastro De Pedidos";
             TabComanda.ResumeLayout(false);
             tabPageComanda.ResumeLayout(false);
             tabPageComanda.PerformLayout();

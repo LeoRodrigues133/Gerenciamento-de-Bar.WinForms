@@ -57,7 +57,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPessoas
 
             string Cpf = txtCpf.Text;
 
-            EnumCargo Cargo = (EnumCargo)cmbCargo.SelectedItem;
+            EnumCargo Cargo = (EnumCargo)cmbCargo.SelectedItem!;
 
             garçom = new Garçom(Nome, Cpf, Cargo);
             if (!garçom.VerificarDualidade(repositorioPessoas, garçom))

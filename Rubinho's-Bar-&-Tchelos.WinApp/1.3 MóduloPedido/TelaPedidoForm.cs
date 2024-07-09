@@ -127,9 +127,9 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            Mesa mesa = (Mesa)cmbMesa.SelectedItem;
-            Garçom garçom = (Garçom)cmbGarçom.SelectedItem;
-            EnumStatusPagamento status = (EnumStatusPagamento)cmbStatus.SelectedItem;
+            Mesa mesa = (Mesa)cmbMesa.SelectedItem!;
+            Garçom garçom = (Garçom)cmbGarçom.SelectedItem!;
+            EnumStatusPagamento status = (EnumStatusPagamento)cmbStatus.SelectedItem!;
         }
 
         private void btnAddItens_Click(object sender, EventArgs e)
@@ -140,7 +140,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             if (p == null)
                 p = new List<Produto>();
 
-            produto = (Produto)cmbProdutos.SelectedItem;
+            produto = (Produto)cmbProdutos.SelectedItem!;
 
             //if (produto == null)
             //{

@@ -60,7 +60,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto
         {
             string nome = txtNome.Text;
             decimal valor = numValor.Value;
-            EnumCategoriaProduto categoria = (EnumCategoriaProduto)cmbCategoria.SelectedItem;
+            EnumCategoriaProduto categoria = (EnumCategoriaProduto)cmbCategoria.SelectedItem!;
 
             produto = new Produto(nome, valor, categoria);
 

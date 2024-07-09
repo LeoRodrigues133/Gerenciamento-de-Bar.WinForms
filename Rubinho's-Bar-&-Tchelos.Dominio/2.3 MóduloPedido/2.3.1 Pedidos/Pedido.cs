@@ -10,6 +10,7 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido.Pedidos
         public Pedido(List<Produto> produtos)
         {
             Produtos = produtos;
+
         }
 
         public override void AtualizarRegistro(EntidadeBase novoRegistro)

@@ -78,18 +78,25 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPessoas
         private void txtCpf_MaskCPF(object sender, KeyEventArgs e)
         {
             TextBox txt = txtCpf;
+            if (e.KeyCode != Keys.Back)
+                if (txt.TextLength == 3 || txt.TextLength == 7)
+                {
+                    txtCpf.Text += ".";
+                    txtCpf.SelectionStart = txtCpf.Text.Length;
+                }
+                else if (txt.TextLength == 11)
+                {
+                    txtCpf.Text += "-";
+                    txtCpf.SelectionStart = txtCpf.Text.Length;
+                }
+                else if (e.KeyCode == Keys.Back && txtCpf.Text.Length == 11)
+                    txtCpf.Text = txtCpf.Text.Substring(0, txtCpf.Text.Length - 1);
 
-            if (txt.TextLength == 3 || txt.TextLength == 7)
-            {
-                txtCpf.Text += ".";
-                txtCpf.SelectionStart = txtCpf.Text.Length;
-            }
+                else if (e.KeyCode == Keys.Back && txtCpf.Text.Length == 6)
+                    txtCpf.Text = txtCpf.Text.Substring(0, txtCpf.Text.Length - 1);
 
-            else if (txt.TextLength == 11)
-            {
-                txtCpf.Text += "-";
-                txtCpf.SelectionStart = txtCpf.Text.Length;
-            }
+                else if (e.KeyCode == Keys.Back && txtCpf.Text.Length == 3)
+                    txtCpf.Text = txtCpf.Text.Substring(0, txtCpf.Text.Length - 1);
 
             //MEU   DEUS    QUE     DOR     FOI     FAZER   ISSO!!!!
         }

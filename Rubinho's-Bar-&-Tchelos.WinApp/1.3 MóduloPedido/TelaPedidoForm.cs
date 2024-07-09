@@ -96,6 +96,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
                     }
                 }
                 AtualizarRegistros(p);
+
                 txtValorTotal.Text = total.ToString();
             }
 
@@ -142,12 +143,6 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 
             produto = (Produto)cmbProdutos.SelectedItem;
 
-            //if (produto == null)
-            //{
-            //    TelaPrincipalForm.Instancia.AtualizarRodape("Selecione um produto para adicionar ao pedido.");
-            //    return;
-            //}
-
             Produto buscador = p.Find(x => x.Nome == produto.Nome);
 
             if (buscador == null)
@@ -178,7 +173,9 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
                     total += produto.Valor;
             }
 
+
             txtValorTotal.Text = total.ToString();
+
             AtualizarRegistros(p);
         }
 
@@ -257,7 +254,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             Array StatusPagamento = Enum.GetValues(typeof(EnumStatusPagamento));
 
             foreach (EnumStatusPagamento status in StatusPagamento)
-                    cmbStatus.Items.Add(status);
+                cmbStatus.Items.Add(status);
 
         }
     }

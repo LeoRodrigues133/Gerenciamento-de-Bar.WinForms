@@ -47,26 +47,25 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             cmbStatus = new ComboBox();
             lblStatus = new Label();
             tabPagePedido = new TabPage();
-            gridProdutos = new DataGridView();
-            btnServiços = new Button();
-            btnBebidas = new Button();
-            btnComidas = new Button();
             label3 = new Label();
-            lblProduto = new Label();
-            cmbProdutos = new ComboBox();
-            txtQuantiaItens = new TextBox();
-            button2 = new Button();
-            button1 = new Button();
-            btnAddItens = new Button();
             lblId = new Label();
             txtId = new TextBox();
             btnCancelar = new Button();
             btnSalvar = new Button();
+            btnAddItens = new Button();
+            button1 = new Button();
+            button2 = new Button();
+            txtQuantiaItens = new TextBox();
+            cmbProdutos = new ComboBox();
+            lblProduto = new Label();
+            btnComidas = new Button();
+            btnBebidas = new Button();
+            btnServiços = new Button();
+            listProdutos = new ListBox();
             TabComanda.SuspendLayout();
             tabPageComanda.SuspendLayout();
             groupBoxPagamento.SuspendLayout();
             tabPagePedido.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)gridProdutos).BeginInit();
             SuspendLayout();
             // 
             // TabComanda
@@ -229,7 +228,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             // tabPagePedido
             // 
             tabPagePedido.BackColor = SystemColors.Window;
-            tabPagePedido.Controls.Add(gridProdutos);
+            tabPagePedido.Controls.Add(listProdutos);
             tabPagePedido.Controls.Add(btnServiços);
             tabPagePedido.Controls.Add(btnBebidas);
             tabPagePedido.Controls.Add(btnComidas);
@@ -248,58 +247,6 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             tabPagePedido.TabIndex = 1;
             tabPagePedido.Text = "Pedido";
             // 
-            // gridProdutos
-            // 
-            gridProdutos.AllowUserToAddRows = false;
-            gridProdutos.AllowUserToDeleteRows = false;
-            gridProdutos.BackgroundColor = SystemColors.ControlLight;
-            gridProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridProdutos.Dock = DockStyle.Right;
-            gridProdutos.Location = new Point(257, 2);
-            gridProdutos.Margin = new Padding(3, 2, 3, 2);
-            gridProdutos.Name = "gridProdutos";
-            gridProdutos.ReadOnly = true;
-            gridProdutos.RowHeadersVisible = false;
-            gridProdutos.RowHeadersWidth = 51;
-            gridProdutos.Size = new Size(265, 242);
-            gridProdutos.TabIndex = 8;
-            // 
-            // btnServiços
-            // 
-            btnServiços.BackColor = Color.White;
-            btnServiços.Cursor = Cursors.Hand;
-            btnServiços.Location = new Point(174, 61);
-            btnServiços.Margin = new Padding(3, 2, 3, 2);
-            btnServiços.Name = "btnServiços";
-            btnServiços.Size = new Size(52, 32);
-            btnServiços.TabIndex = 3;
-            btnServiços.UseVisualStyleBackColor = false;
-            btnServiços.Click += btnServiços_Click;
-            // 
-            // btnBebidas
-            // 
-            btnBebidas.BackColor = Color.White;
-            btnBebidas.Cursor = Cursors.Hand;
-            btnBebidas.Location = new Point(98, 61);
-            btnBebidas.Margin = new Padding(3, 2, 3, 2);
-            btnBebidas.Name = "btnBebidas";
-            btnBebidas.Size = new Size(53, 32);
-            btnBebidas.TabIndex = 2;
-            btnBebidas.UseVisualStyleBackColor = false;
-            btnBebidas.Click += btnBebidas_Click;
-            // 
-            // btnComidas
-            // 
-            btnComidas.BackColor = Color.White;
-            btnComidas.Cursor = Cursors.Hand;
-            btnComidas.Location = new Point(28, 61);
-            btnComidas.Margin = new Padding(3, 2, 3, 2);
-            btnComidas.Name = "btnComidas";
-            btnComidas.Size = new Size(49, 32);
-            btnComidas.TabIndex = 1;
-            btnComidas.UseVisualStyleBackColor = false;
-            btnComidas.Click += btnComidas_Click;
-            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -307,74 +254,6 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             label3.Name = "label3";
             label3.Size = new Size(0, 15);
             label3.TabIndex = 6;
-            // 
-            // lblProduto
-            // 
-            lblProduto.AutoSize = true;
-            lblProduto.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
-            lblProduto.Location = new Point(76, 14);
-            lblProduto.Name = "lblProduto";
-            lblProduto.Size = new Size(94, 30);
-            lblProduto.TabIndex = 6;
-            lblProduto.Text = "Produto";
-            // 
-            // cmbProdutos
-            // 
-            cmbProdutos.FormattingEnabled = true;
-            cmbProdutos.Location = new Point(29, 97);
-            cmbProdutos.Margin = new Padding(3, 2, 3, 2);
-            cmbProdutos.Name = "cmbProdutos";
-            cmbProdutos.Size = new Size(197, 23);
-            cmbProdutos.TabIndex = 4;
-            // 
-            // txtQuantiaItens
-            // 
-            txtQuantiaItens.BackColor = SystemColors.Control;
-            txtQuantiaItens.BorderStyle = BorderStyle.FixedSingle;
-            txtQuantiaItens.Font = new Font("Segoe UI", 12F);
-            txtQuantiaItens.Location = new Point(60, 158);
-            txtQuantiaItens.Margin = new Padding(3, 2, 3, 2);
-            txtQuantiaItens.Name = "txtQuantiaItens";
-            txtQuantiaItens.Size = new Size(135, 29);
-            txtQuantiaItens.TabIndex = 4;
-            txtQuantiaItens.Text = "0";
-            txtQuantiaItens.TextAlign = HorizontalAlignment.Center;
-            // 
-            // button2
-            // 
-            button2.BackColor = Color.White;
-            button2.Cursor = Cursors.Hand;
-            button2.Location = new Point(201, 158);
-            button2.Margin = new Padding(3, 2, 3, 2);
-            button2.Name = "button2";
-            button2.Size = new Size(26, 29);
-            button2.TabIndex = 7;
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
-            // 
-            // button1
-            // 
-            button1.BackColor = Color.White;
-            button1.Cursor = Cursors.Hand;
-            button1.Location = new Point(28, 158);
-            button1.Margin = new Padding(3, 2, 3, 2);
-            button1.Name = "button1";
-            button1.Size = new Size(26, 29);
-            button1.TabIndex = 6;
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
-            // 
-            // btnAddItens
-            // 
-            btnAddItens.Cursor = Cursors.Hand;
-            btnAddItens.FlatAppearance.BorderColor = Color.White;
-            btnAddItens.Location = new Point(28, 191);
-            btnAddItens.Margin = new Padding(3, 2, 3, 2);
-            btnAddItens.Name = "btnAddItens";
-            btnAddItens.Size = new Size(199, 38);
-            btnAddItens.TabIndex = 5;
-            btnAddItens.UseVisualStyleBackColor = false;
-            btnAddItens.Click += btnAddItens_Click;
             // 
             // lblId
             // 
@@ -420,6 +299,120 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             btnSalvar.UseVisualStyleBackColor = true;
             btnSalvar.Click += btnSalvar_Click;
             // 
+            // btnAddItens
+            // 
+            btnAddItens.Cursor = Cursors.Hand;
+            btnAddItens.FlatAppearance.BorderColor = Color.White;
+            btnAddItens.Location = new Point(28, 191);
+            btnAddItens.Margin = new Padding(3, 2, 3, 2);
+            btnAddItens.Name = "btnAddItens";
+            btnAddItens.Size = new Size(199, 38);
+            btnAddItens.TabIndex = 5;
+            btnAddItens.UseVisualStyleBackColor = false;
+            btnAddItens.Click += btnAddItens_Click;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.White;
+            button1.Cursor = Cursors.Hand;
+            button1.Location = new Point(28, 158);
+            button1.Margin = new Padding(3, 2, 3, 2);
+            button1.Name = "button1";
+            button1.Size = new Size(26, 29);
+            button1.TabIndex = 6;
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
+            // 
+            // button2
+            // 
+            button2.BackColor = Color.White;
+            button2.Cursor = Cursors.Hand;
+            button2.Location = new Point(201, 158);
+            button2.Margin = new Padding(3, 2, 3, 2);
+            button2.Name = "button2";
+            button2.Size = new Size(26, 29);
+            button2.TabIndex = 7;
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
+            // 
+            // txtQuantiaItens
+            // 
+            txtQuantiaItens.BackColor = SystemColors.Control;
+            txtQuantiaItens.BorderStyle = BorderStyle.FixedSingle;
+            txtQuantiaItens.Font = new Font("Segoe UI", 12F);
+            txtQuantiaItens.Location = new Point(60, 158);
+            txtQuantiaItens.Margin = new Padding(3, 2, 3, 2);
+            txtQuantiaItens.Name = "txtQuantiaItens";
+            txtQuantiaItens.Size = new Size(135, 29);
+            txtQuantiaItens.TabIndex = 4;
+            txtQuantiaItens.Text = "0";
+            txtQuantiaItens.TextAlign = HorizontalAlignment.Center;
+            // 
+            // cmbProdutos
+            // 
+            cmbProdutos.FormattingEnabled = true;
+            cmbProdutos.Location = new Point(29, 97);
+            cmbProdutos.Margin = new Padding(3, 2, 3, 2);
+            cmbProdutos.Name = "cmbProdutos";
+            cmbProdutos.Size = new Size(197, 23);
+            cmbProdutos.TabIndex = 4;
+            // 
+            // lblProduto
+            // 
+            lblProduto.AutoSize = true;
+            lblProduto.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            lblProduto.Location = new Point(76, 14);
+            lblProduto.Name = "lblProduto";
+            lblProduto.Size = new Size(94, 30);
+            lblProduto.TabIndex = 6;
+            lblProduto.Text = "Produto";
+            // 
+            // btnComidas
+            // 
+            btnComidas.BackColor = Color.White;
+            btnComidas.Cursor = Cursors.Hand;
+            btnComidas.Location = new Point(28, 61);
+            btnComidas.Margin = new Padding(3, 2, 3, 2);
+            btnComidas.Name = "btnComidas";
+            btnComidas.Size = new Size(49, 32);
+            btnComidas.TabIndex = 1;
+            btnComidas.UseVisualStyleBackColor = false;
+            btnComidas.Click += btnComidas_Click;
+            // 
+            // btnBebidas
+            // 
+            btnBebidas.BackColor = Color.White;
+            btnBebidas.Cursor = Cursors.Hand;
+            btnBebidas.Location = new Point(98, 61);
+            btnBebidas.Margin = new Padding(3, 2, 3, 2);
+            btnBebidas.Name = "btnBebidas";
+            btnBebidas.Size = new Size(53, 32);
+            btnBebidas.TabIndex = 2;
+            btnBebidas.UseVisualStyleBackColor = false;
+            btnBebidas.Click += btnBebidas_Click;
+            // 
+            // btnServiços
+            // 
+            btnServiços.BackColor = Color.White;
+            btnServiços.Cursor = Cursors.Hand;
+            btnServiços.Location = new Point(174, 61);
+            btnServiços.Margin = new Padding(3, 2, 3, 2);
+            btnServiços.Name = "btnServiços";
+            btnServiços.Size = new Size(52, 32);
+            btnServiços.TabIndex = 3;
+            btnServiços.UseVisualStyleBackColor = false;
+            btnServiços.Click += btnServiços_Click;
+            // 
+            // listProdutos
+            // 
+            listProdutos.Dock = DockStyle.Right;
+            listProdutos.FormattingEnabled = true;
+            listProdutos.ItemHeight = 15;
+            listProdutos.Location = new Point(258, 2);
+            listProdutos.Name = "listProdutos";
+            listProdutos.Size = new Size(264, 242);
+            listProdutos.TabIndex = 8;
+            // 
             // TelaPedidoForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -446,7 +439,6 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             groupBoxPagamento.PerformLayout();
             tabPagePedido.ResumeLayout(false);
             tabPagePedido.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)gridProdutos).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -471,18 +463,18 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
         private TextBox txtValorTotal;
         private TextBox txtDesconto;
         private CheckBox chkServiço;
-        private Button btnAddItens;
-        private Button button1;
-        private TextBox txtQuantiaItens;
-        private Button button2;
         private Label label3;
-        private Label lblProduto;
-        private ComboBox cmbProdutos;
+        private Button btnCancelar;
+        private Button btnSalvar;
+        private ListBox listProdutos;
         private Button btnServiços;
         private Button btnBebidas;
         private Button btnComidas;
-        private DataGridView gridProdutos;
-        private Button btnCancelar;
-        private Button btnSalvar;
+        private Label lblProduto;
+        private ComboBox cmbProdutos;
+        private TextBox txtQuantiaItens;
+        private Button button2;
+        private Button button1;
+        private Button btnAddItens;
     }
 }

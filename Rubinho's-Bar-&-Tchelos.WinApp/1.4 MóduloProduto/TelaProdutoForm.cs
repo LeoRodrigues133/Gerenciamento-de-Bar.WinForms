@@ -62,7 +62,9 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto
             decimal valor = numValor.Value;
             EnumCategoriaProduto categoria = (EnumCategoriaProduto)cmbCategoria.SelectedItem;
 
-            produto = new Produto(nome, valor, categoria);
+            produto = new Produto(nome, valor, categoria); 
+
+            produtos.Add(produto);
 
             TelaPrincipalForm.Instancia.AtualizarRodape("Um novo produto foi registrado.");
         }

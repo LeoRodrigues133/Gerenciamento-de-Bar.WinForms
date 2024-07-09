@@ -25,13 +25,13 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             get => comanda;
         }
         TabelaPedidoControl t;
-
         EnumCategoriaProduto categoriaSelecionada;
+
 
         Produto produto;
         Pedido pedido;
-        List<Produto> listProdutos;
         ControladorPedido controladorPedido;
+        
         public TelaPedidoForm(ControladorPedido c)
         {
 
@@ -40,15 +40,10 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
         }
         public void AtualizarRegistros(List<Produto> repositorio)
         {
-            gridProdutos.Rows.Clear();
+            listProdutos.Items.Clear();
 
             foreach (Produto produto in repositorio)
-                gridProdutos.Rows.Add(produto.Nome, produto.Quantia, produto.Valor.ToString("C"));
-        }
-
-        public int ObterRegistroSelecionado()
-        {
-            return gridProdutos.SelecionarId();
+                listProdutos.Items.Add(produto);
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -60,16 +55,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 
         private void btnAddItens_Click(object sender, EventArgs e)
         {
-
-            int quantiaAdicionada = Convert.ToInt32(txtQuantiaItens.Text);
-
-            if (listProdutos == null)
-                listProdutos = new List<Produto>();
-
-            produto = (Produto)cmbProdutos.SelectedItem;
-
-
-            AtualizarRegistros(listProdutos);
+ 
         }
 
         private void button2_Click(object sender, EventArgs e)

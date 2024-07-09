@@ -25,5 +25,10 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido.Pedidos
 
             return erros;
         }
+
+        public override string ToString()
+        {
+            return Convert.ToString(Produtos.Count()) ;
+        }
     }
 }

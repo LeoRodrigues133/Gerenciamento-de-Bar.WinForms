@@ -227,7 +227,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 
         private void btnServiços_Click(object sender, EventArgs e)
         {
-            categoriaSelecionada = EnumCategoriaProduto.Servicos;
+            categoriaSelecionada = EnumCategoriaProduto.Serviços;
 
             Comunicador(categoriaSelecionada);
             cmbProdutos.Text = string.Empty;

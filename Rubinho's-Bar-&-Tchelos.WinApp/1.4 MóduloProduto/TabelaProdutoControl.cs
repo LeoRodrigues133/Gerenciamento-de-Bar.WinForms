@@ -21,7 +21,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto
             grid.Rows.Clear();
 
             foreach (Produto p in repositorio)
-                grid.Rows.Add(p.Id.ToString(), p.Nome, p.Valor, p.Quantia, p.CategoriaProduto);
+                grid.Rows.Add(p.Id.ToString(), p.Nome, p.Valor, p.CategoriaProduto);
         }
 
         public int ObterRegistroSelecionado()

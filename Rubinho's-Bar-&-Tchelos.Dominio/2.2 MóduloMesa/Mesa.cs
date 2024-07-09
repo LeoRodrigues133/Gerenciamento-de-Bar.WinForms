@@ -1,4 +1,5 @@
 ﻿using Rubinho_s_Bar___Tchelos.Dominio.MóduloCompartilhado;
+using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido;
 using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido.Pedidos;
 
 namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa
@@ -7,7 +8,7 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa
     {
 
         public int NumeroDaMesa { get; set; }
-        public List<Pedido> Pedidos { get; set; }
+        public List<Comanda> Comandas{ get; set; }
 
         public Mesa()
         {

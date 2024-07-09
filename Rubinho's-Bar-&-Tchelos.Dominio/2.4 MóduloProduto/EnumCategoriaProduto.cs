@@ -4,6 +4,6 @@
     {
         Comidas,
         Bebidas,
-        Servicos
+        Serviços
     }
 }

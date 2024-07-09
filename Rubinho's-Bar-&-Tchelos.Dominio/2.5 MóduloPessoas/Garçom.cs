@@ -1,13 +1,14 @@
 ﻿using Rubinho_s_Bar___Tchelos.Dominio.MóduloCompartilhado;
+using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido;
 
 namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPessoas
 {
     public class Garçom : EntidadeBase
     {
-        public string Nome { get; set; }
         public string Cpf { get; set; }
+        public string Nome { get; set; }
         public EnumCargo Cargo { get; set; }
-
+        public List<Comanda> Comandas {  get; set; }
         public Garçom(string nome, string cpf, EnumCargo cargo)
         {
             Nome = nome;
@@ -46,7 +47,7 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPessoas
 
         public override string ToString()
         {
-            return $"{ Nome} { Cpf}";
+            return Nome;
         }
     }
 }

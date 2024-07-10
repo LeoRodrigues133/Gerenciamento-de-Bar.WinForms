@@ -1,4 +1,5 @@
-﻿using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido;
+﻿using Microsoft.EntityFrameworkCore;
+using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido;
 using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado;
 
 namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloPedido
@@ -22,7 +23,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloPedido
 
         public bool Editar(int id, Comanda editarRegistro)
         {
-            Comanda comandaSelecionada = dbContext.Comandas.Find(id);
+            Comanda comandaSelecionada = dbContext.Comandas.Include(p => p.Pedido).FirstOrDefault(c => c.Id == id)!;
 
             if (comandaSelecionada == null) 
                 return false;
@@ -36,7 +37,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloPedido
 
         public bool Excluir(int id)
         {
-            Comanda comandaSelecionada = dbContext.Comandas.Find(id);
+            Comanda comandaSelecionada = dbContext.Comandas.Find(id)!;
 
             if(comandaSelecionada == null)
                 return false;
@@ -49,12 +50,12 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloPedido
 
         public Comanda SelecionarPorId(int id)
         {
-            return dbContext.Comandas.Find(id);
+            return dbContext.Comandas.Find(id)!;
         }
 
         public List<Comanda> SelecionarTodos()
         {
-            return dbContext.Comandas.ToList();
+            return dbContext.Comandas.Include(x => x.Pedido).ToList();
         }
     }
 }

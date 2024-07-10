@@ -85,7 +85,6 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
             {
                 comandaBuilder.ToTable("TBComanda");
 
-                comandaBuilder.HasKey(c => c.Id);
                 comandaBuilder.Property(c => c.Id).IsRequired().ValueGeneratedOnAdd();
 
                 comandaBuilder.HasOne(c => c.Mesa).WithMany(m => m.Comandas)

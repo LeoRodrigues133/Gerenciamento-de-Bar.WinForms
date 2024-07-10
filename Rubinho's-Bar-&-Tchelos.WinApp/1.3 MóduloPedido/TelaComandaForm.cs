@@ -40,8 +40,8 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             Mesa mesa = (Mesa)cmbMesa.SelectedItem;
             Garçom garçom = (Garçom)cmbGarçom.SelectedItem;
             EnumStatusPagamento status = (EnumStatusPagamento)cmbStatus.SelectedItem;
-            
-            List<Pedido> ListaDePedidos = listProdutos.Items.Cast<Pedido>().ToList();  
+
+            List<Pedido> ListaDePedidos = listProdutos.Items.Cast<Pedido>().ToList();
 
              comanda = new Comanda( garçom, status, mesa,ListaDePedidos);
 
@@ -53,7 +53,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 
             int quantiaAdicionada = Convert.ToInt32(txtQuantiaItens.Text);
 
-            if(quantiaAdicionada <= 0 )
+            if (quantiaAdicionada <= 0)
                 quantiaAdicionada = 1;
             Produto produto = (Produto)cmbProdutos.SelectedItem;
 
@@ -121,7 +121,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             AtualizarProdutos();
         }
 
-            public void CarregarComboBoxPedido(List<Garçom> garçoms, List<Mesa> mesas)
+        public void CarregarComboBoxPedido(List<Garçom> garçoms, List<Mesa> mesas)
         {
             foreach (var g in garçoms)
                 cmbGarçom.Items.Add(g);

@@ -37,7 +37,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloPedido
 
         public bool Excluir(int id)
         {
-            Comanda comandaSelecionada = dbContext.Comandas.Find(id)!;
+            Comanda comandaSelecionada = dbContext.Comandas.Include(x => x.Pedido).FirstOrDefault(p => p.Id == id)!;
 
             if(comandaSelecionada == null)
                 return false;

@@ -21,6 +21,8 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPessoas
             Garçom a = (Garçom)novoRegistro;
 
             Nome = a.Nome;
+            Cpf = a.Cpf;
+            Cargo = a.Cargo;
         }
 
         public override List<string> Validar()

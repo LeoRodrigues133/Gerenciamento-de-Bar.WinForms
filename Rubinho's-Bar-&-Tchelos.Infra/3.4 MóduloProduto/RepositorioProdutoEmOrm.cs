@@ -19,7 +19,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloProduto
 
         public bool Editar(int id, Produto editarRegistro)
         {
-            Produto produtoSelecionado = dbContext.Produtos.Find(id);
+            Produto produtoSelecionado = dbContext.Produtos.Find(id)!;
 
             if (produtoSelecionado == null)
                 return false;
@@ -27,13 +27,13 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloProduto
             produtoSelecionado.AtualizarRegistro(editarRegistro);
 
             dbContext.SaveChanges();
-            
+
             return true;
         }
 
         public bool Excluir(int id)
         {
-            Produto produtoSelecionado = dbContext.Produtos.Find(id);
+            Produto produtoSelecionado = dbContext.Produtos.Find(id)!;
 
             if (produtoSelecionado == null)
                 return false;
@@ -46,7 +46,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloProduto
 
         public Produto SelecionarPorId(int id)
         {
-            return dbContext.Produtos.Find(id);
+            return dbContext.Produtos.Find(id)!;
         }
 
         public List<Produto> SelecionarTodos()

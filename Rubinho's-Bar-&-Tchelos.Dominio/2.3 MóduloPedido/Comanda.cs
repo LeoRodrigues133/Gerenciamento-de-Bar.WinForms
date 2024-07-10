@@ -52,10 +52,10 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido
 
         void CalcularValor(List<Pedido> pedidos)
         {
-            ValorTotal = 0;
 
             foreach (Pedido p in pedidos)
             {
+                ValorTotal = 0;
                 p.Produto.Valor += ValorTotal;
             }
         }

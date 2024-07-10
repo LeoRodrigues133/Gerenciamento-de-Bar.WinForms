@@ -12,7 +12,7 @@ using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado;
 namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
 {
     [DbContext(typeof(BotecoDbContext))]
-    [Migration("20240710134349_add-full")]
+    [Migration("20240710180638_add-full")]
     partial class addfull
     {
         /// <inheritdoc />

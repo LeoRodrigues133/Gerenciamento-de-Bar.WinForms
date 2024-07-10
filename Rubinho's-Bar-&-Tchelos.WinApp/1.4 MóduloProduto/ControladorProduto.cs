@@ -96,10 +96,14 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning);
 
-            if (resultado != DialogResult.Yes) return;
+            if (resultado == DialogResult.Yes)
+            {
+                repositorioProduto.Excluir(Selecionado.Id);
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Você excluir o registro do produto {Selecionado.Nome}!");
+                CarregarRegistros();
+                return;
+            }
 
-            TelaPrincipalForm.Instancia.AtualizarRodape(
-                $"Você demitiu {Selecionado.Nome}!");
 
         }
 

@@ -33,13 +33,12 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloPessoas
 
         public bool Excluir(int id)
         {
-            Garçom garçomSelecionado = dbContext.Garçons.Find(id);
+            Garçom garçomSelecionado = dbContext.Garçons.Find(id)!;
 
             if (garçomSelecionado == null)
                 return false;
 
-            garçomSelecionado.AtualizarRegistro(garçomSelecionado);
-
+            dbContext.Garçons.Remove(garçomSelecionado);
             dbContext.SaveChanges();
 
             return true;
@@ -48,7 +47,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloPessoas
 
         public Garçom SelecionarPorId(int id)
         {
-            return dbContext.Garçons.Find(id);
+            return dbContext.Garçons.Find(id)!;
         }
 
         public List<Garçom> SelecionarTodos()

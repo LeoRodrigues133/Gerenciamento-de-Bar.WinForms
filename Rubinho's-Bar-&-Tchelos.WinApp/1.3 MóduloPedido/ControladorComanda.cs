@@ -12,10 +12,11 @@ using Rubinho_s_Bar___Tchelos.WinApp.MóduloCompartilhado;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloPessoas;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto;
+using Rubinho_s_Bar___Tchelos.WinApp._1._3_MóduloPedido;
 
 namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 {
-    public class ControladorComanda : ControladorBase, IControladorEditavel
+    public class ControladorComanda : ControladorBase, IControladorEditavel, IControladorVisualizarExtrato
     {
         IRepositorioMesa repositorioMesas;
         IRepositorioComanda repositorioPedido;
@@ -137,12 +138,28 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             telaPedido.CarregarComboBoxProdutos(produtos);
             telaPedido.CarregarComboBoxPedido(garçoms, mesas);
         }
+        
+        public void carregarComandas(TelaExtratoForm telaExtrato)
+        {
+            List<Comanda> comandas = repositorioPedido.SelecionarTodos();
+
+            telaExtrato.CarregarComandas(comandas);
+        }
 
         public override void CarregarRegistros()
         {
             List<Comanda> comandas = repositorioPedido.SelecionarTodos();
 
             tabelaPedido.AtualizarRegistros(comandas);
+        }
+
+        public void MostrarExtrato()
+        {
+            TelaExtratoForm telaExtrato = new TelaExtratoForm();
+
+            DialogResult resultado = telaExtrato.ShowDialog();
+
+            if (resultado != DialogResult.OK) return;
         }
     }
 }

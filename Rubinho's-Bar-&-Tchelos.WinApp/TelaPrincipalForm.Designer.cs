@@ -189,6 +189,7 @@
             btnGerarExtrato.Padding = new Padding(5);
             btnGerarExtrato.Size = new Size(78, 38);
             btnGerarExtrato.Text = "Extrato";
+            btnGerarExtrato.Click += btnGerarExtrato_Click;
             // 
             // toolStripSeparator4
             // 

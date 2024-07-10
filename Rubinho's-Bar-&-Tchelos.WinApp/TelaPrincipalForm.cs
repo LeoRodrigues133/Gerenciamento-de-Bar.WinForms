@@ -63,6 +63,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp
             btnAdicionar.Enabled = controladorSelecionado is ControladorBase;
             btnEditar.Enabled = controladorSelecionado is IControladorEditavel;
             btnExcluir.Enabled = controladorSelecionado is ControladorBase;
+            btnGerarExtrato.Enabled = controladorSelecionado is IControladorVisualizarExtrato;
 
             if (controladorSelecionado is IControladorEditavel)
                 btnEditar.Enabled = true;
@@ -74,7 +75,6 @@ namespace Rubinho_s_Bar___Tchelos.WinApp
         {
             btnAdicionar.ToolTipText = controladorSelecionado.ToolTipAdicionar;
             btnExcluir.ToolTipText = controladorSelecionado.ToolTipExcluir;
-
 
         }
 
@@ -137,6 +137,12 @@ namespace Rubinho_s_Bar___Tchelos.WinApp
         private void btnPagamentos_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnGerarExtrato_Click(object sender, EventArgs e)
+        {
+            if (controlador is IControladorVisualizarExtrato controladorExtrato)
+                controladorExtrato.MostrarExtrato();
         }
     }
 }

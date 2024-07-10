@@ -8,11 +8,11 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa
     {
 
         public int NumeroDaMesa { get; set; }
-        public List<Comanda> Comandas{ get; set; }
+        public List<Comanda> Comandas { get; set; }
 
-        public Mesa()
+        public Mesa(int numeroDaMesa)
         {
-            NumeroDaMesa = NumeroDaMesas();
+            NumeroDaMesa = numeroDaMesa;
         }
         public override void AtualizarRegistro(EntidadeBase novoRegistro)
         {
@@ -24,19 +24,23 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa
             throw new NotImplementedException();
         }
 
-        int NumeroDaMesas()
+        public string OrganizarMesas()
         {
-            List<Mesa> Salao = new();
+            string Salao;
 
-            Salao.Add(this);
-            
-            int i = 0;
+            if (NumeroDaMesa >= 110)
+                Salao = $"Segundo Salão {NumeroDaMesa}";
+            else if (NumeroDaMesa >= 210)
+                Salao = $"Terceico Salão {NumeroDaMesa}";
+            else
+                Salao = $"Primeiro Salão {NumeroDaMesa}";
 
-            foreach (Mesa mesa in Salao)
-            {
-                i += 10;
-            }
-            return i;
+            return Salao;
+        }
+
+        public override string ToString()
+        {
+            return $"Mesa: n{NumeroDaMesa}";
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Rubinho_s_Bar___Tchelos.Dominio.MóduloProduto;
 using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado;
 
-namespace Rubinho_s_Bar___Tchelos.Infra.MóduloProduto
+namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloProduto
 {
     public class RepositorioProdutoEmOrm : IRepositorioProduto
     {

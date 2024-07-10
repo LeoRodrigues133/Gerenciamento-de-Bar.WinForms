@@ -10,9 +10,9 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
     public class BotecoDbContext : DbContext
     {
         public DbSet<Mesa> Mesas { get; set; }
-        public DbSet<Comanda> Comandas { get; set; }
-        public DbSet<Produto> Produtos { get; set; }
         public DbSet<Garçom> Garçons { get; set; }
+        public DbSet<Produto> Produtos { get; set; }
+        public DbSet<Comanda> Comandas { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -32,6 +32,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
                 mesaBuilder.Property(m => m.Id).IsRequired().ValueGeneratedOnAdd();
 
                 mesaBuilder.Property(m => m.NumeroDaMesa).IsRequired().HasColumnType("int");
+
                 mesaBuilder.HasMany(m => m.Comandas).WithOne(c => c.Mesa)
                 .IsRequired()
                 .HasForeignKey("Comanda_Id")
@@ -39,10 +40,53 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
                 .OnDelete(DeleteBehavior.Restrict);
 
             });
+            modelBuilder.Entity<Pedido>(pedidoBuilder =>
+            {
+
+                pedidoBuilder.ToTable("TBPedido");
+
+                pedidoBuilder.Property(pd => pd.Id).IsRequired().ValueGeneratedOnAdd();
+
+                pedidoBuilder.Property(pd => pd.Quantidade).IsRequired().HasColumnType("int");
+
+                pedidoBuilder.HasOne(pd => pd.Produto).WithMany()
+                .IsRequired()
+                .HasForeignKey("Pedido_Id")
+                .HasConstraintName("FK_TBPedido_TBProduto")
+                .OnDelete(DeleteBehavior.NoAction);
+
+            });
+            modelBuilder.Entity<Produto>(produtoBuilder =>
+            {
+                produtoBuilder.ToTable("TBProduto");
+
+                produtoBuilder.Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+
+                produtoBuilder.Property(p => p.Nome).IsRequired().HasColumnType("varchar(100)");
+
+                produtoBuilder.Property(p => p.Valor).IsRequired().HasColumnType("varchar(30)");
+
+                produtoBuilder.Property(p => p.CategoriaProduto).IsRequired().HasColumnType("int");
+
+            });
+            modelBuilder.Entity<Garçom>(garcomBuilder =>
+            {
+                garcomBuilder.ToTable("TBGarçom");
+
+                garcomBuilder.Property(g => g.Id).IsRequired().ValueGeneratedOnAdd();
+
+                garcomBuilder.Property(g => g.Nome).IsRequired().HasColumnType("varchar(100)");
+
+                garcomBuilder.Property(g => g.Cpf).IsRequired().HasColumnType("varchar(50)");
+
+                garcomBuilder.Property(g => g.Cargo).IsRequired().HasColumnType("int");
+
+            });
             modelBuilder.Entity<Comanda>(comandaBuilder =>
             {
                 comandaBuilder.ToTable("TBComanda");
 
+                comandaBuilder.HasKey(c => c.Id);
                 comandaBuilder.Property(c => c.Id).IsRequired().ValueGeneratedOnAdd();
 
                 comandaBuilder.HasOne(c => c.Mesa).WithMany(m => m.Comandas)
@@ -58,39 +102,8 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
                 .OnDelete(DeleteBehavior.Restrict);
 
                 comandaBuilder.Property(c => c.Status).IsRequired().HasColumnType("int");
-                comandaBuilder.Property(c => c.Pedido).IsRequired().HasColumnType("int");
 
-            });
-            modelBuilder.Entity<Pedido>(pedidoBuilder =>
-            {
-
-                pedidoBuilder.Property(pd => pd.Id).IsRequired().ValueGeneratedOnAdd();
-                /*pedidoBuilder.HasMany(pd => pd.Produtos).WithOne(p => p.Pedido)
-                .IsRequired()
-                .HasForeignKey("Pedido_Id")
-                .HasConstraintName("FK_TBPedido_TBProduto")
-                .OnDelete(DeleteBehavior.Restrict);*/
-
-            });
-            modelBuilder.Entity<Produto>(produtoBuilder =>
-            {
-                produtoBuilder.ToTable("TBProduto");
-
-                produtoBuilder.Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
-
-                produtoBuilder.Property(p => p.Nome).IsRequired().HasColumnType("varchar(100)");
-                produtoBuilder.Property(p => p.Valor).IsRequired().HasColumnType("varchar(30)");
-                produtoBuilder.Property(p => p.CategoriaProduto).IsRequired().HasColumnType("int");
-
-            });
-            modelBuilder.Entity<Garçom>(garcomBuilder =>
-            {
-                garcomBuilder.Property(g => g.Id).IsRequired().ValueGeneratedOnAdd();
-
-                garcomBuilder.Property(g => g.Nome).IsRequired().HasColumnType("varchar(100)");
-                garcomBuilder.Property(g => g.Cpf).IsRequired().HasColumnType("varchar(50)");
-                garcomBuilder.Property(g => g.Cargo).IsRequired().HasConversion<int>();
-
+                comandaBuilder.Property(c => c.ValorTotal).IsRequired().HasColumnType("decimal");
             });
 
             base.OnModelCreating(modelBuilder);

@@ -8,20 +8,22 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido
 {
     public class Comanda : EntidadeBase
     {
+        public decimal ValorTotal { get; set; }
         public Mesa Mesa { get; set; }
         public Garçom Garçom { get; set; }
         public EnumStatusPagamento Status { get; set; }
-        public Pedido Pedido { get; set; }
+        public List<Pedido> Pedido { get; set; }
+        public Comanda() { }
 
-
-        public Comanda(Pedido pedido, Garçom garçom, EnumStatusPagamento status, Mesa mesa)
+        public Comanda(Garçom garçom, EnumStatusPagamento status, Mesa mesa, List<Pedido> pedido)
         {
+            Mesa = mesa;
+            Status = status;
             Pedido = pedido;
             Garçom = garçom;
-            Status = status;
-            Mesa = mesa;
-
+            CalcularValor(pedido);
         }
+
         public override void AtualizarRegistro(EntidadeBase novoRegistro)
         {
             Comanda a = (Comanda)novoRegistro;
@@ -48,6 +50,14 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido
             return erros;
         }
 
+        void CalcularValor(List<Pedido> pedidos)
+        {
+            ValorTotal = 0;
 
+            foreach (Pedido p in pedidos)
+            {
+                p.Produto.Valor += ValorTotal;
+            }
+        }
     }
 }

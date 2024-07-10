@@ -1,6 +1,6 @@
 ﻿namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 {
-    partial class TabelaPedidoControl
+    partial class TabelaComandaControl
     {
         /// <summary> 
         /// Required designer variable.

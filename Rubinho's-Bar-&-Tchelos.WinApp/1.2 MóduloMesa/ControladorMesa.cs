@@ -4,35 +4,32 @@ using Rubinho_s_Bar___Tchelos.WinApp.MóduloCompartilhado;
 
 namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa
 {
-    public class ControladoMesa : ControladorBase
+    public class ControladorMesa : ControladorBase
     {
 
-        RepositorioMesaEmOrm repositorioMesas;
-        TabelaMesaControl tabelaMesas;
-        public List<Mesa> mesas = new List<Mesa>();
-        TelaMesaForm tela;
+        public IRepositorioMesa repositorioMesas;
+
+        public TabelaMesaControl tabelaMesas;
+
 
         public override string TipoCadastro => "Mesas";
-
         public override string ToolTipAdicionar => "Adicionar uma nova mesa no salão";
-
-
         public override string ToolTipExcluir => "Remover uma mesa do salão";
 
-
-        public ControladoMesa()
+        public ControladorMesa(IRepositorioMesa repositorioMesas)
         {
-            
+            this.repositorioMesas = repositorioMesas;
         }
         public override void Adicionar()
         {
-            Mesa novaMesa = new Mesa();
+            
+            int EnumeradorDeMesas = repositorioMesas.SelecionarTodos().Count() * 10;
 
-            mesas.Add(novaMesa);
+            Mesa novaMesa = new Mesa(EnumeradorDeMesas);
 
-            //repositorioMesas.Cadastrar(novaMesa);
+            repositorioMesas.Cadastrar(novaMesa);
 
-            CarregarMesas(tela);
+            CarregarRegistros();
 
             TelaPrincipalForm.Instancia.AtualizarRodape($"Uma nova mesa foi adicionada com sucesso!");
         }
@@ -49,7 +46,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa
                 return;
             }
             DialogResult result = MessageBox.Show(
-                $"Você realmente deseja excluir a mesa N{mesaSelecionada.NumeroDaMesa}?",
+                $"Você realmente deseja excluir a mesa Numero {mesaSelecionada.NumeroDaMesa}?",
                 "Confirmar exclusão",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning);
@@ -57,13 +54,19 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa
             if (result == DialogResult.Yes)
             {
                 repositorioMesas.Excluir(mesaSelecionada.Id);
+                CarregarRegistros();
                 return;
             }
 
-            CarregarMesas(tela);
-
             TelaPrincipalForm.Instancia.AtualizarRodape("O mesa foi removida com sucesso");
 
+        }
+
+        public override void CarregarRegistros()
+        {
+            List<Mesa> mesas = repositorioMesas.SelecionarTodos();
+
+            tabelaMesas.AtualizarRegistros(mesas);
         }
 
         public override UserControl ObterListagem()
@@ -71,17 +74,9 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa
             if (tabelaMesas == null)
                 tabelaMesas = new TabelaMesaControl();
 
-            CarregarMesas(tela);
+            CarregarRegistros();
 
             return tabelaMesas;
-
-        }
-        private void CarregarMesas(TelaMesaForm tela)
-        {
-            List<Mesa> mesas = repositorioMesas.SelecionarTodos();
-
-            tabelaMesas.AtualizarRegistros(mesas);
-
         }
     }
 }

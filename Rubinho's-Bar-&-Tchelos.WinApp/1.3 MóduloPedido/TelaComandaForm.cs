@@ -9,9 +9,9 @@ using Rubinho_s_Bar___Tchelos.WinApp.MóduloCompartilhado;
 
 namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 {
-    public partial class TelaPedidoForm : Form
+    public partial class TelaComandaForm : Form
     {
-
+        List<Comanda> comandas = new List<Comanda>();
         Comanda comanda;
         public Comanda Comanda
         {
@@ -21,25 +21,20 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
                 cmbMesa.SelectedItem = value.Mesa;
                 cmbGarçom.SelectedItem = value.Garçom;
                 cmbStatus.SelectedItem = value.Status;
+
             }
             get => comanda;
         }
-        TabelaPedidoControl t;
-
         EnumCategoriaProduto categoriaSelecionada;
 
-        Produto produto;
-        Pedido pedido;
-        ControladorPedido controladorPedido;
-        public TelaPedidoForm(ControladorPedido c)
+
+        ControladorComanda controladorPedido;
+
+        public TelaComandaForm(ControladorComanda Controlador)
         {
 
             InitializeComponent();
-            controladorPedido = c;
-        }
-        public void AtualizarRegistros(List<Produto> repositorio)
-        {
-
+            controladorPedido = Controlador;
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -47,35 +42,29 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             Mesa mesa = (Mesa)cmbMesa.SelectedItem;
             Garçom garçom = (Garçom)cmbGarçom.SelectedItem;
             EnumStatusPagamento status = (EnumStatusPagamento)cmbStatus.SelectedItem;
+            
+            List<Pedido> ListaDePedidos = listProdutos.Items.Cast<Pedido>().ToList();  
+
+            Comanda novaComanda = new Comanda( garçom, status, mesa,ListaDePedidos);
+
+            comandas.Add(novaComanda);
+
         }
 
         private void btnAddItens_Click(object sender, EventArgs e)
         {
-            List<Produto> ListaProdutos = listProdutos.Items.Cast<Produto>().ToList();
 
             int quantiaAdicionada = Convert.ToInt32(txtQuantiaItens.Text);
 
-            produto = (Produto)cmbProdutos.SelectedItem;
+            if(quantiaAdicionada <= 0 )
+                quantiaAdicionada = 1;
+            Produto produto = (Produto)cmbProdutos.SelectedItem;
 
-            Pedido novoPedido = new Pedido(produto, quantiaAdicionada);
-
-            if (!pedido.VerificarProduto(novoPedido, ListaProdutos))
-                listProdutos.Items.Add(novoPedido);
-            else
-            {
-                ListaProdutos.Find(x => x.Nome == novoPedido.Produto.Nome);
-                if (quantiaAdicionada > 0)
-                    novoPedido.Quantidade += quantiaAdicionada;
-                else
-                {
-                    int NotAMagicNumber = 1;
-
-                    novoPedido.Quantidade += NotAMagicNumber;
-                }
-            }
+            Pedido pedido = new Pedido(produto, quantiaAdicionada);
 
 
-            AtualizarRegistros(ListaProdutos);
+            listProdutos.Items.Add(pedido);
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -109,7 +98,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 
             Comunicador(categoriaSelecionada);
             cmbProdutos.Text = string.Empty;
-            controladorPedido.carregarProdutos(this);
+            controladorPedido.CarregarDados(this);
         }
 
         private void btnBebidas_Click(object sender, EventArgs e)
@@ -118,16 +107,15 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 
             Comunicador(categoriaSelecionada);
             cmbProdutos.Text = string.Empty;
-            controladorPedido.carregarProdutos(this);
+            controladorPedido.CarregarDados(this);
         }
-
         private void btnServiços_Click(object sender, EventArgs e)
         {
             categoriaSelecionada = EnumCategoriaProduto.Serviços;
 
             Comunicador(categoriaSelecionada);
             cmbProdutos.Text = string.Empty;
-            controladorPedido.carregarProdutos(this);
+            controladorPedido.CarregarDados(this);
         }
 
         public void CarregarComboBoxProdutos(List<Produto> produtos)

@@ -1,7 +1,7 @@
 ﻿using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido;
 using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado;
 
-namespace Rubinho_s_Bar___Tchelos.Infra.MóduloPedido
+namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloPedido
 {
     public class RepositorioPedidoEmOrm : IRepositorioComanda
     {

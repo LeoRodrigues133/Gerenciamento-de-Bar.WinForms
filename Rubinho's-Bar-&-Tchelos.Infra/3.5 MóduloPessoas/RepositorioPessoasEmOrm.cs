@@ -2,7 +2,7 @@
 using Rubinho_s_Bar___Tchelos.Dominio.MóduloPessoas;
 using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado;
 
-namespace Rubinho_s_Bar___Tchelos.Infra.MóduloPessoas
+namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloPessoas
 {
     public class RepositorioPessoasEmOrm : IRepositorioPessoas
     {

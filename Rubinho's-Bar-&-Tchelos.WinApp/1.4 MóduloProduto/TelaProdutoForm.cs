@@ -1,4 +1,5 @@
-﻿using Rubinho_s_Bar___Tchelos.Dominio.MóduloProduto;
+﻿using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido.Pedidos;
+using Rubinho_s_Bar___Tchelos.Dominio.MóduloProduto;
 
 namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto
 {
@@ -15,6 +16,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto
                 txtNome.Text = value.Nome;
                 txtId.Text = value.Id.ToString();
                 numValor.Value = value.Valor;
+                cmbCategoria.SelectedItem = value.CategoriaProduto;
             }
             get => produto;
         }
@@ -53,7 +55,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto
             produtos.Add(b22);
             produtos.Add(c23);
             produtos.Add(d24);
-
+            CarregarCategorias();
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -62,9 +64,20 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto
             decimal valor = numValor.Value;
             EnumCategoriaProduto categoria = (EnumCategoriaProduto)cmbCategoria.SelectedItem;
 
-            produto = new Produto(nome, valor, categoria);
+            produto = new Produto(nome, valor, categoria); 
+
+            produtos.Add(produto);
 
             TelaPrincipalForm.Instancia.AtualizarRodape("Um novo produto foi registrado.");
+        }
+
+        public void CarregarCategorias
+            ()
+        {
+            Array Categoria = Enum.GetValues(typeof(EnumCategoriaProduto));
+
+            foreach (EnumCategoriaProduto c in Categoria)
+                cmbCategoria.Items.Add(c);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Rubinho_s_Bar___Tchelos.Infra.MóduloPessoas;
+﻿using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloPedido;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloPessoas;
 using Rubinho_s_Bar___Tchelos.Dominio.MóduloPessoas;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloCompartilhado;
@@ -8,19 +8,18 @@ namespace Rubinho_s_Bar___Tchelos.WinApp._MóduloPessoas
     public class ControladorPessoas : ControladorBase, IControladorEditavel
     {
 
-        RepositorioPessoasEmOrm repositorioPessoas;
+        IRepositorioPessoas repositorioPessoas;
+
         TabelaPessoaControl tabelaPessoas;
-        public ControladorPessoas()
+
+        public ControladorPessoas(IRepositorioPessoas repositorioPessoas)
         {
-            
+            this.repositorioPessoas = repositorioPessoas;
         }
 
         public override string TipoCadastro => "Pessoas";
-
         public override string ToolTipAdicionar => "Cadastrar uma nova pessoa";
-
         string IControladorEditavel.ToolTipEditar => "Editar um cadastro de pessoa";
-
         public override string ToolTipExcluir => "Excluir um cadastro de pessoa";
 
         public override void Adicionar()
@@ -46,7 +45,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp._MóduloPessoas
 
             repositorioPessoas.Cadastrar(novoGarçom);
 
-            CarregarPessoas();
+            CarregarRegistros();
 
             TelaPrincipalForm.Instancia.AtualizarRodape($"O registro \"{novoGarçom.Nome}\" foi criado com sucesso!");
 
@@ -77,7 +76,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp._MóduloPessoas
 
             repositorioPessoas.Editar(Selecionado.Id, funcionarioEditado);
 
-            CarregarPessoas();
+            CarregarRegistros();
 
         }
 
@@ -107,21 +106,21 @@ namespace Rubinho_s_Bar___Tchelos.WinApp._MóduloPessoas
             
         }
 
+        public override void CarregarRegistros()
+        {
+            List<Garçom> garçons = repositorioPessoas.SelecionarTodos();
+
+            tabelaPessoas.AtualizarRegistros(garçons);
+        }
+
         public override UserControl ObterListagem()
         {
             if (tabelaPessoas == null)
                 tabelaPessoas = new TabelaPessoaControl();
 
-            //CarregarPessoas();
+            CarregarRegistros();
 
             return tabelaPessoas;
-        }
-
-        private void CarregarPessoas()
-        {
-            List<Garçom> pessoas = repositorioPessoas.SelecionarTodos();
-
-            tabelaPessoas.AtualizarRegistros(pessoas);
         }
     }
 }

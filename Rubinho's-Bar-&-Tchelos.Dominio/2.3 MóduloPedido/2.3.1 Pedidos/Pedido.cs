@@ -8,10 +8,12 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido.Pedidos
         public Produto Produto { get; set; }
         public int Quantidade { get; set; }
         public Pedido() { }
+        //public Comanda Comanda { get; set; }
         public Pedido(Produto produto, int quantidade)
         {
             Produto = produto;
             Quantidade = quantidade;
+
         }
 
         public override void AtualizarRegistro(EntidadeBase novoRegistro)

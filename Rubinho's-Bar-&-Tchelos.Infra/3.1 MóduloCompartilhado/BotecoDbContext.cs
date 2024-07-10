@@ -13,10 +13,12 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
         public DbSet<Garçom> Garçons { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Comanda> Comandas { get; set; }
+        public DbSet<Pedido> Pedidos { get; set; }  
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionString = "Data Source=(LocalDb)\\MSSQLLocalDB;Initial Catalog=Boteco.DB;Integrated Security=True;Pooling=False;Encrypt=True;Trust Server Certificate=False";
+            string connectionString = "Data Source=(LocalDb)\\MSSQLLocalDB;Initial Catalog=Boteco.DB;Integrated Security=True;Pooling=False;";
 
             optionsBuilder.UseSqlServer(connectionString);
 
@@ -33,12 +35,6 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
 
                 mesaBuilder.Property(m => m.NumeroDaMesa).IsRequired().HasColumnType("int");
 
-                mesaBuilder.HasMany(m => m.Comandas).WithOne(c => c.Mesa)
-                .IsRequired()
-                .HasForeignKey("Comanda_Id")
-                .HasConstraintName("FK_TBMesa_TBComanda")
-                .OnDelete(DeleteBehavior.Restrict);
-
             });
             modelBuilder.Entity<Pedido>(pedidoBuilder =>
             {
@@ -51,10 +47,15 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
 
                 pedidoBuilder.HasOne(pd => pd.Produto).WithMany()
                 .IsRequired()
-                .HasForeignKey("Pedido_Id")
+                .HasForeignKey("Produto_Id")
                 .HasConstraintName("FK_TBPedido_TBProduto")
                 .OnDelete(DeleteBehavior.NoAction);
 
+              //  pedidoBuilder.HasOne(pd => pd.Comanda).WithMany()
+              //.IsRequired()
+              //.HasForeignKey("Comanda_Id")
+              //.HasConstraintName("FK_TBPedido_TBComanda")
+              //.OnDelete(DeleteBehavior.NoAction);
             });
             modelBuilder.Entity<Produto>(produtoBuilder =>
             {
@@ -63,7 +64,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
                 produtoBuilder.Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
 
                 produtoBuilder.Property(p => p.Nome).IsRequired().HasColumnType("varchar(100)");
-                /
+                
                 produtoBuilder.Property(p => p.Valor).IsRequired().HasColumnType("varchar(30)");
 
                 produtoBuilder.Property(p => p.CategoriaProduto).IsRequired().HasConversion<int>();
@@ -87,7 +88,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
 
                 comandaBuilder.Property(c => c.Id).IsRequired().ValueGeneratedOnAdd();
 
-                comandaBuilder.HasOne(c => c.Mesa).WithMany(m => m.Comandas)
+                comandaBuilder.HasOne(c => c.Mesa).WithMany()
                 .IsRequired()
                 .HasForeignKey("Mesa_Id")
                 .HasConstraintName("FK_TBComanda_TBMesa")
@@ -98,6 +99,8 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
                 .HasForeignKey("Garcom_Id")
                 .HasConstraintName("FK_TBComanda_TBGarcom")
                 .OnDelete(DeleteBehavior.NoAction);
+
+                comandaBuilder.HasMany(c => c.Pedidos).WithOne().HasForeignKey("Conta_Id");
 
                 comandaBuilder.Property(c => c.Status).IsRequired().HasColumnType("int");
 

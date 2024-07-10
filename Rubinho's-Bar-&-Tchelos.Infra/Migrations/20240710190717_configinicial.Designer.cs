@@ -12,8 +12,8 @@ using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado;
 namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
 {
     [DbContext(typeof(BotecoDbContext))]
-    [Migration("20240710180638_add-full")]
-    partial class addfull
+    [Migration("20240710190717_configinicial")]
+    partial class configinicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,9 +49,6 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Comanda_Id")
-                        .HasColumnType("int");
-
                     b.Property<int>("Garcom_Id")
                         .HasColumnType("int");
 
@@ -81,10 +78,10 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ComandaId")
+                    b.Property<int?>("Conta_Id")
                         .HasColumnType("int");
 
-                    b.Property<int>("Pedido_Id")
+                    b.Property<int>("Produto_Id")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantidade")
@@ -92,9 +89,9 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ComandaId");
+                    b.HasIndex("Conta_Id");
 
-                    b.HasIndex("Pedido_Id");
+                    b.HasIndex("Produto_Id");
 
                     b.ToTable("TBPedido", (string)null);
                 });
@@ -152,14 +149,14 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
                     b.HasOne("Rubinho_s_Bar___Tchelos.Dominio.MóduloPessoas.Garçom", "Garçom")
                         .WithMany("Comandas")
                         .HasForeignKey("Garcom_Id")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired()
                         .HasConstraintName("FK_TBComanda_TBGarcom");
 
                     b.HasOne("Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa.Mesa", "Mesa")
-                        .WithMany("Comandas")
+                        .WithMany()
                         .HasForeignKey("Mesa_Id")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired()
                         .HasConstraintName("FK_TBComanda_TBMesa");
 
@@ -171,12 +168,12 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
             modelBuilder.Entity("Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido.Pedidos.Pedido", b =>
                 {
                     b.HasOne("Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido.Comanda", null)
-                        .WithMany("Pedido")
-                        .HasForeignKey("ComandaId");
+                        .WithMany("Pedidos")
+                        .HasForeignKey("Conta_Id");
 
                     b.HasOne("Rubinho_s_Bar___Tchelos.Dominio.MóduloProduto.Produto", "Produto")
                         .WithMany()
-                        .HasForeignKey("Pedido_Id")
+                        .HasForeignKey("Produto_Id")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired()
                         .HasConstraintName("FK_TBPedido_TBProduto");
@@ -184,14 +181,9 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
                     b.Navigation("Produto");
                 });
 
-            modelBuilder.Entity("Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa.Mesa", b =>
-                {
-                    b.Navigation("Comandas");
-                });
-
             modelBuilder.Entity("Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido.Comanda", b =>
                 {
-                    b.Navigation("Pedido");
+                    b.Navigation("Pedidos");
                 });
 
             modelBuilder.Entity("Rubinho_s_Bar___Tchelos.Dominio.MóduloPessoas.Garçom", b =>

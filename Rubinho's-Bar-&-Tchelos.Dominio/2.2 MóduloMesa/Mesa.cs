@@ -8,7 +8,6 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa
     {
 
         public int NumeroDaMesa { get; set; }
-        public List<Comanda> Comandas { get; set; }
 
         public Mesa(int numeroDaMesa)
         {

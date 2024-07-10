@@ -23,7 +23,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloPedido
 
         public bool Editar(int id, Comanda editarRegistro)
         {
-            Comanda comandaSelecionada = dbContext.Comandas.Include(p => p.Pedido).FirstOrDefault(c => c.Id == id)!;
+            Comanda comandaSelecionada = dbContext.Comandas.Include(p => p.Pedidos).FirstOrDefault(c => c.Id == id)!;
 
             if (comandaSelecionada == null) 
                 return false;
@@ -37,10 +37,12 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloPedido
 
         public bool Excluir(int id)
         {
-            Comanda comandaSelecionada = dbContext.Comandas.Include(x => x.Pedido).FirstOrDefault(p => p.Id == id)!;
+            Comanda comandaSelecionada = dbContext.Comandas.Include(x => x.Pedidos).FirstOrDefault(p => p.Id == id)!;
 
             if(comandaSelecionada == null)
                 return false;
+
+            dbContext.Pedidos.RemoveRange(comandaSelecionada.Pedidos);
 
             dbContext.Comandas.Remove(comandaSelecionada);
             dbContext.SaveChanges();
@@ -55,7 +57,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloPedido
 
         public List<Comanda> SelecionarTodos()
         {
-            return dbContext.Comandas.Include(x => x.Pedido).ToList();
+            return dbContext.Comandas.Include(x => x.Pedidos).ToList();
         }
     }
 }

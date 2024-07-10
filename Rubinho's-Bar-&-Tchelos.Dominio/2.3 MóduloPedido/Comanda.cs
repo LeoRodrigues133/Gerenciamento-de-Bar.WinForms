@@ -12,23 +12,23 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido
         public Mesa Mesa { get; set; }
         public Garçom Garçom { get; set; }
         public EnumStatusPagamento Status { get; set; }
-        public List<Pedido> Pedido { get; set; }
+        public List<Pedido> Pedidos { get; set; }
         public Comanda() { }
 
-        public Comanda(Garçom garçom, EnumStatusPagamento status, Mesa mesa, List<Pedido> pedido)
+        public Comanda(Garçom garçom, EnumStatusPagamento status, Mesa mesa, List<Pedido> pedidos)
         {
             Mesa = mesa;
             Status = status;
-            Pedido = pedido;
+            Pedidos = pedidos;
             Garçom = garçom;
-            CalcularValor(pedido);
+            CalcularValor(pedidos);
         }
 
         public override void AtualizarRegistro(EntidadeBase novoRegistro)
         {
             Comanda a = (Comanda)novoRegistro;
 
-            Pedido = a.Pedido;
+            Pedidos = a.Pedidos;
         }
 
         public override List<string> Validar()
@@ -44,7 +44,7 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido
             if (Status == null)
                 erros.Add("Não é possível iniciar uma comanda sem definir o status de pagamento");
 
-            if (Pedido == null)
+            if (Pedidos == null)
                 erros.Add("Deve haver ao menos um produto no pedido para iniciar a comanda");
 
             return erros;

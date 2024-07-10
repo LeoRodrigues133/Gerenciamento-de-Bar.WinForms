@@ -5,7 +5,7 @@
 namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
 {
     /// <inheritdoc />
-    public partial class addfull : Migration
+    public partial class configinicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -62,8 +62,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
                     ValorTotal = table.Column<decimal>(type: "decimal(18,0)", nullable: false),
                     Mesa_Id = table.Column<int>(type: "int", nullable: false),
                     Garcom_Id = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    Comanda_Id = table.Column<int>(type: "int", nullable: false)
+                    Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -72,14 +71,12 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
                         name: "FK_TBComanda_TBGarcom",
                         column: x => x.Garcom_Id,
                         principalTable: "TBGarçom",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_TBComanda_TBMesa",
                         column: x => x.Mesa_Id,
                         principalTable: "TBMesa",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -88,21 +85,21 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Pedido_Id = table.Column<int>(type: "int", nullable: false),
+                    Produto_Id = table.Column<int>(type: "int", nullable: false),
                     Quantidade = table.Column<int>(type: "int", nullable: false),
-                    ComandaId = table.Column<int>(type: "int", nullable: true)
+                    Conta_Id = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TBPedido", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TBPedido_TBComanda_ComandaId",
-                        column: x => x.ComandaId,
+                        name: "FK_TBPedido_TBComanda_Conta_Id",
+                        column: x => x.Conta_Id,
                         principalTable: "TBComanda",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_TBPedido_TBProduto",
-                        column: x => x.Pedido_Id,
+                        column: x => x.Produto_Id,
                         principalTable: "TBProduto",
                         principalColumn: "Id");
                 });
@@ -118,14 +115,14 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
                 column: "Mesa_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TBPedido_ComandaId",
+                name: "IX_TBPedido_Conta_Id",
                 table: "TBPedido",
-                column: "ComandaId");
+                column: "Conta_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TBPedido_Pedido_Id",
+                name: "IX_TBPedido_Produto_Id",
                 table: "TBPedido",
-                column: "Pedido_Id");
+                column: "Produto_Id");
         }
 
         /// <inheritdoc />

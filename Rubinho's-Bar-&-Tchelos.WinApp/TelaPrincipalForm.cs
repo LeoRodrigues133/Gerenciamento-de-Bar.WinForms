@@ -133,5 +133,10 @@ namespace Rubinho_s_Bar___Tchelos.WinApp
 
             ConfigurarTelaPrincipal(controlador);
         }
+
+        private void btnPagamentos_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

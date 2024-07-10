@@ -16,7 +16,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=BotecoDb;Integrated Security=True;Pooling=False;Encrypt=True;";
+            string connectionString = "Data Source=(LocalDb)\\MSSQLLocalDB;Initial Catalog=Boteco.DB;Integrated Security=True;Pooling=False;Encrypt=True;Trust Server Certificate=False";
 
             optionsBuilder.UseSqlServer(connectionString);
 

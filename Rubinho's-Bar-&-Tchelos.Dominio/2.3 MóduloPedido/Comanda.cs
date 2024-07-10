@@ -21,7 +21,6 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido
             Status = status;
             Pedidos = pedidos;
             Garçom = garçom;
-            CalcularValor(pedidos);
         }
 
         public override void AtualizarRegistro(EntidadeBase novoRegistro)
@@ -50,14 +49,20 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido
             return erros;
         }
 
-        void CalcularValor(List<Pedido> pedidos)
+         public decimal CalcularValor(List<Pedido> pedidos, decimal ValorTotal)
         {
+
 
             foreach (Pedido p in pedidos)
             {
-                ValorTotal = 0;
-                p.Produto.Valor += ValorTotal;
+                if (p.Quantidade > 0)
+                {
+                    ValorTotal += p.Quantidade * p.Produto.Valor;
+                }
+                else
+                    p.Produto.Valor += ValorTotal;
             }
+            return ValorTotal;
         }
     }
 }

@@ -20,6 +20,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
         IRepositorioMesa repositorioMesas;
         IRepositorioComanda repositorioPedido;
         IRepositorioPessoas repositorioPessoas;
+        IRepositorioProduto repositorioProdutos;
 
         TabelaComandaControl tabelaPedido;
 
@@ -28,11 +29,12 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
         public override string ToolTipExcluir => "Excluir um pedido existente";
         public override string ToolTipAdicionar => "Cadastrar um novo pedido";
 
-        public ControladorComanda(IRepositorioPessoas repositorioPessoas, IRepositorioMesa repositorioMesas, IRepositorioComanda repositorioPedido)
+        public ControladorComanda(IRepositorioPessoas repositorioPessoas, IRepositorioMesa repositorioMesas, IRepositorioComanda repositorioPedido, IRepositorioProduto repositorioProdutos)
         {
             this.repositorioPessoas = repositorioPessoas;
             this.repositorioMesas = repositorioMesas;
             this.repositorioPedido = repositorioPedido;
+            this.repositorioProdutos = repositorioProdutos;
         }
         public override void Adicionar()
         {
@@ -126,9 +128,9 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 
             List<Mesa> mesas = repositorioMesas.SelecionarTodos();
             List<Garçom> garçoms = repositorioPessoas.SelecionarTodos();
-            List<Produto> Lista = telaProduto.produtos;
+            List<Produto> produtos = repositorioProdutos.SelecionarTodos();
 
-            telaPedido.CarregarComboBoxProdutos(Lista);
+            telaPedido.CarregarComboBoxProdutos(produtos);
             telaPedido.CarregarComboBoxPedido(garçoms, mesas);
         }
 

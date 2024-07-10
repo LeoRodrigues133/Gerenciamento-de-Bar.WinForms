@@ -29,11 +29,11 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa
             string Salao;
 
             if (NumeroDaMesa >= 110)
-                Salao = $"Segundo Salão {NumeroDaMesa}";
+                Salao = $"Segundo Salão Mesa {NumeroDaMesa}";
             else if (NumeroDaMesa >= 210)
-                Salao = $"Terceico Salão {NumeroDaMesa}";
+                Salao = $"Terceico Salão Mesa {NumeroDaMesa}";
             else
-                Salao = $"Primeiro Salão {NumeroDaMesa}";
+                Salao = $"Primeiro Salão Mesa {NumeroDaMesa}";
 
             return Salao;
         }

@@ -11,8 +11,11 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 {
     public partial class TelaComandaForm : Form
     {
-        List<Comanda> comandas = new List<Comanda>();
         Comanda comanda;
+        ControladorComanda controladorPedido;
+        EnumCategoriaProduto categoriaSelecionada;
+        List<Comanda> comandas = new List<Comanda>();
+        List<Produto> produtos = new List<Produto>();
         public Comanda Comanda
         {
             set
@@ -25,14 +28,9 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             }
             get => comanda;
         }
-        EnumCategoriaProduto categoriaSelecionada;
-
-
-        ControladorComanda controladorPedido;
 
         public TelaComandaForm(ControladorComanda Controlador)
         {
-
             InitializeComponent();
             controladorPedido = Controlador;
         }
@@ -86,50 +84,45 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             txtQuantiaItens.Text = Convert.ToString(quantidade);
         }
 
-        EnumCategoriaProduto Comunicador(EnumCategoriaProduto t)
-        {
-
-            return t;
-        }
-
         private void btnComidas_Click(object sender, EventArgs e)
         {
             categoriaSelecionada = EnumCategoriaProduto.Comidas;
 
-            Comunicador(categoriaSelecionada);
             cmbProdutos.Text = string.Empty;
-            controladorPedido.CarregarDados(this);
+            AtualizarProdutos();
         }
 
         private void btnBebidas_Click(object sender, EventArgs e)
         {
             categoriaSelecionada = EnumCategoriaProduto.Bebidas;
 
-            Comunicador(categoriaSelecionada);
             cmbProdutos.Text = string.Empty;
-            controladorPedido.CarregarDados(this);
+            AtualizarProdutos();
         }
         private void btnServiços_Click(object sender, EventArgs e)
         {
             categoriaSelecionada = EnumCategoriaProduto.Serviços;
 
-            Comunicador(categoriaSelecionada);
             cmbProdutos.Text = string.Empty;
-            controladorPedido.CarregarDados(this);
+            AtualizarProdutos();
         }
-
-        public void CarregarComboBoxProdutos(List<Produto> produtos)
+        private void AtualizarProdutos()
         {
             cmbProdutos.Items.Clear();
-            var p = produtos.FindAll(x => x.CategoriaProduto == Comunicador(categoriaSelecionada));
-
-            foreach (Produto produto in p)
+            var produtosFiltrados = produtos.Where(p => p.CategoriaProduto == categoriaSelecionada).ToList();
+            foreach (var produto in produtosFiltrados)
             {
                 cmbProdutos.Items.Add(produto);
             }
         }
 
-        public void CarregarComboBoxPedido(List<Garçom> garçoms, List<Mesa> mesas)
+        public void CarregarComboBoxProdutos(List<Produto> produtos)
+        {
+            this.produtos = produtos;
+            AtualizarProdutos();
+        }
+
+            public void CarregarComboBoxPedido(List<Garçom> garçoms, List<Mesa> mesas)
         {
             foreach (var g in garçoms)
                 cmbGarçom.Items.Add(g);

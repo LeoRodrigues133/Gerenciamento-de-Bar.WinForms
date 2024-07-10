@@ -5,7 +5,7 @@
 namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
 {
     /// <inheritdoc />
-    public partial class FullMigration : Migration
+    public partial class addfull : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

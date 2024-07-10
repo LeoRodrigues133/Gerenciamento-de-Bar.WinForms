@@ -12,8 +12,8 @@ using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado;
 namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
 {
     [DbContext(typeof(BotecoDbContext))]
-    [Migration("20240710041917_Full-Migration")]
-    partial class FullMigration
+    [Migration("20240710134349_add-full")]
+    partial class addfull
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

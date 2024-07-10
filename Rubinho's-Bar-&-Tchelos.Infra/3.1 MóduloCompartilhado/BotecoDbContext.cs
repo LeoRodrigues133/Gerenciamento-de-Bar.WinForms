@@ -66,8 +66,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
 
                 produtoBuilder.Property(p => p.Valor).IsRequired().HasColumnType("varchar(30)");
 
-                produtoBuilder.Property(p => p.CategoriaProduto).IsRequired().HasColumnType("int");
-
+                produtoBuilder.Property(p => p.CategoriaProduto).IsRequired().HasConversion<int>();
             });
             modelBuilder.Entity<Garçom>(garcomBuilder =>
             {

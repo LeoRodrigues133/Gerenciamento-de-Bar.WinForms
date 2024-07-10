@@ -23,24 +23,6 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPessoas
         {
             InitializeComponent();
 
-
-            Garçom a = new("Tchelo", "123.111.123-89", EnumCargo.Garçom);
-            Garçom b = new("Tchelo", "123.222.123-89", EnumCargo.Tchelo);
-            Garçom c = new("Tchelo", "123.333.123-89", EnumCargo.Tchelo);
-            Garçom d = new("Tchelo", "123.444.123-89", EnumCargo.Recepicionista);
-            Garçom e = new("Tchelo", "123.555.123-89", EnumCargo.Garçom);
-            Garçom f = new("Tchelo", "123.667.123-89", EnumCargo.Garçom);
-            Garçom g = new("Tchelo", "123.777.123-89", EnumCargo.Garçom);
-
-            repositorioPessoas.Add(a);
-            repositorioPessoas.Add(b);
-            repositorioPessoas.Add(c);
-            repositorioPessoas.Add(d);
-            repositorioPessoas.Add(e);
-            repositorioPessoas.Add(f);
-            repositorioPessoas.Add(g);
-
-
             Array Cargos = Enum.GetValues(typeof(EnumCargo));
 
             foreach (EnumCargo x in Cargos)

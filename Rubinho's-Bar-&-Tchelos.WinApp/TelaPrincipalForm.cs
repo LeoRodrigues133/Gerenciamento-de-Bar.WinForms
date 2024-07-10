@@ -113,7 +113,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp
 
         private void pedidosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorComanda(repositorioPessoas, repositorioMesa, repositorioComanda);
+            controlador = new ControladorComanda(repositorioPessoas, repositorioMesa, repositorioComanda, repositorioProduto);
 
             ConfigurarTelaPrincipal(controlador);
         }

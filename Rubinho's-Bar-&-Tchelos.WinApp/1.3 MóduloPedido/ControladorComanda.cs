@@ -103,10 +103,14 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             MessageBoxButtons.YesNo,
             MessageBoxIcon.Warning);
 
-            if (resultado != DialogResult.Yes) return;
+            if (resultado == DialogResult.Yes)
+            {
+                repositorioPedido.Excluir(Selecionado.Id);
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Você excluiu a comanda {Selecionado.Id}!");
+                CarregarRegistros();
+                return;
+            }
 
-            TelaPrincipalForm.Instancia.AtualizarRodape(
-                $"Você excluiu a comanda {Selecionado.Id}!");
 
         }
 

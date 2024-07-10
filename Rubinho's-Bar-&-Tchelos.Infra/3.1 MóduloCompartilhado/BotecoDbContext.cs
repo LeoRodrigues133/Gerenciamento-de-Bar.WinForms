@@ -63,7 +63,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
                 produtoBuilder.Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
 
                 produtoBuilder.Property(p => p.Nome).IsRequired().HasColumnType("varchar(100)");
-
+                /
                 produtoBuilder.Property(p => p.Valor).IsRequired().HasColumnType("varchar(30)");
 
                 produtoBuilder.Property(p => p.CategoriaProduto).IsRequired().HasConversion<int>();
@@ -91,13 +91,13 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
                 .IsRequired()
                 .HasForeignKey("Mesa_Id")
                 .HasConstraintName("FK_TBComanda_TBMesa")
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.NoAction);
 
                 comandaBuilder.HasOne(c => c.Garçom).WithMany(g => g.Comandas)
                 .IsRequired()
                 .HasForeignKey("Garcom_Id")
                 .HasConstraintName("FK_TBComanda_TBGarcom")
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.NoAction);
 
                 comandaBuilder.Property(c => c.Status).IsRequired().HasColumnType("int");
 

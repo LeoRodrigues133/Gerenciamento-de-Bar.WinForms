@@ -43,9 +43,9 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 
             List<Pedido> ListaDePedidos = listProdutos.Items.Cast<Pedido>().ToList();
 
-            Comanda novaComanda = new Comanda(garçom!, status, mesa!, ListaDePedidos);
+            comanda = new Comanda(garçom!, status, mesa!, ListaDePedidos);
 
-            comandas.Add(novaComanda);
+            comandas.Add(comanda);
 
         }
 

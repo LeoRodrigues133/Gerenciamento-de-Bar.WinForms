@@ -22,7 +22,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa
         }
         public override void Adicionar()
         {
-            
+
             int EnumeradorDeMesas = repositorioMesas.SelecionarTodos().Count() * 10;
 
             Mesa novaMesa = new Mesa(EnumeradorDeMesas);
@@ -55,10 +55,10 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa
             {
                 repositorioMesas.Excluir(mesaSelecionada.Id);
                 CarregarRegistros();
+                TelaPrincipalForm.Instancia.AtualizarRodape("O mesa foi removida com sucesso");
                 return;
             }
 
-            TelaPrincipalForm.Instancia.AtualizarRodape("O mesa foi removida com sucesso");
 
         }
 

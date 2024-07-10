@@ -86,7 +86,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp._MóduloPessoas
 
             Garçom Selecionado = repositorioPessoas.SelecionarPorId(idSelecionado);
 
-            if(Selecionado == null)
+            if (Selecionado == null)
             {
                 TelaPrincipalForm.Instancia.AtualizarRodape(
                     "Não é possível realizar esta ação sem um registro selecionado");
@@ -99,11 +99,15 @@ namespace Rubinho_s_Bar___Tchelos.WinApp._MóduloPessoas
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning);
 
-            if(resultado != DialogResult.Yes) return;
+            if (resultado == DialogResult.Yes)
+            {
+                repositorioPessoas.Excluir(Selecionado.Id);
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Você demitiu {Selecionado.Nome}!");
+                CarregarRegistros();
+                return;
+            }
 
-            TelaPrincipalForm.Instancia.AtualizarRodape(
-                $"Você demitiu {Selecionado.Nome}!");
-            
+
         }
 
         public override void CarregarRegistros()

@@ -15,6 +15,8 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPessoas
             {
                 txtId.Text = value.Id.ToString();
                 txtNome.Text = value.Nome;
+                txtCpf.Text = value.Cpf;
+                cmbCargo.SelectedIndex = (int)value.Cargo;
             }
             get => garçom;
         }
@@ -32,8 +34,6 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPessoas
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-
-
 
             string Nome = txtNome.Text;
 

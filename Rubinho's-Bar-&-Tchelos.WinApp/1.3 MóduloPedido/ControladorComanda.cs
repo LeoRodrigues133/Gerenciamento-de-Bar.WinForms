@@ -12,10 +12,12 @@ using Rubinho_s_Bar___Tchelos.WinApp.MóduloCompartilhado;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloPessoas;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto;
+using Rubinho_s_Bar___Tchelos.WinApp._1._1_MóduloCompartilhado;
+using Rubinho_s_Bar___Tchelos.WinApp._1._3_MóduloPedido;
 
 namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 {
-    public class ControladorComanda : ControladorBase, IControladorEditavel
+    public class ControladorComanda : ControladorBase, IControladorEditavel, IControladorConcluir
     {
         IRepositorioMesa repositorioMesas;
         IRepositorioComanda repositorioPedido;
@@ -28,6 +30,8 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
         public string ToolTipEditar => "Editar um pedido existente";
         public override string ToolTipExcluir => "Excluir um pedido existente";
         public override string ToolTipAdicionar => "Cadastrar um novo pedido";
+
+        public string ToolTipConcluir => "Fechar uma comanda existente";
 
         public ControladorComanda(IRepositorioPessoas repositorioPessoas, IRepositorioMesa repositorioMesas, IRepositorioComanda repositorioPedido, IRepositorioProduto repositorioProdutos)
         {
@@ -143,6 +147,53 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             List<Comanda> comandas = repositorioPedido.SelecionarTodos();
 
             tabelaPedido.AtualizarRegistros(comandas);
+        }
+
+        public void Concluir()
+        {
+            int idSelecionado = tabelaPedido.ObterRegistroSelecionado();
+
+            Comanda contaSelecionada = repositorioPedido.SelecionarPorId(idSelecionado);
+
+            if (contaSelecionada == null)
+            {
+                MessageBox.Show(
+                    "Você precisa selecionar um registro para executar esta ação!",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
+            if (contaSelecionada.Status == EnumStatusPagamento.Pago)
+            {
+                MessageBox.Show(
+                    "Você não pode concluir uma conta já concluída!",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
+            TelaFechamentoComandas telaFechamento = new TelaFechamentoComandas();
+
+            telaFechamento.Comanda = contaSelecionada;
+
+            DialogResult resultado = telaFechamento.ShowDialog();
+
+            if (resultado != DialogResult.OK)
+                return;
+
+
+            Comanda registroEditado = telaFechamento.Comanda;
+
+            repositorioPedido.Editar(idSelecionado, registroEditado);
+
+            CarregarRegistros();
+
+            TelaPrincipalForm.Instancia.AtualizarRodape($"A Conta de Id \"{registroEditado.Id}\" foi fechada com sucesso!");
         }
     }
 }

@@ -12,6 +12,7 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido
         public Mesa Mesa { get; set; }
         public Garçom Garçom { get; set; }
         public EnumStatusPagamento Status { get; set; }
+        public DateTime DataConclusao { get; private set; }
         public List<Pedido> Pedidos { get; set; }
         public Comanda() { }
 
@@ -58,6 +59,12 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido
                 ValorTotal = 0;
                 p.Produto.Valor += ValorTotal;
             }
+        }
+
+        public void Concluir()
+        {
+            Status = EnumStatusPagamento.Pago;
+            DataConclusao = DateTime.Now;
         }
     }
 }

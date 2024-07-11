@@ -105,6 +105,8 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
                 comandaBuilder.Property(c => c.Status).IsRequired().HasColumnType("int");
 
                 comandaBuilder.Property(c => c.ValorTotal).IsRequired().HasColumnType("decimal");
+
+                comandaBuilder.Property(c => c.DataConclusao).HasColumnType("datetime");
             });
 
             base.OnModelCreating(modelBuilder);

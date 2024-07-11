@@ -12,6 +12,7 @@ using Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto;
 using Rubinho_s_Bar___Tchelos.WinApp._MóduloPessoas;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloCompartilhado;
+using Rubinho_s_Bar___Tchelos.WinApp._1._1_MóduloCompartilhado;
 
 namespace Rubinho_s_Bar___Tchelos.WinApp
 {
@@ -64,6 +65,8 @@ namespace Rubinho_s_Bar___Tchelos.WinApp
             btnEditar.Enabled = controladorSelecionado is IControladorEditavel;
             btnExcluir.Enabled = controladorSelecionado is ControladorBase;
 
+            btnFecharContas.Enabled = controladorSelecionado is IControladorConcluir;
+
             if (controladorSelecionado is IControladorEditavel)
                 btnEditar.Enabled = true;
 
@@ -75,6 +78,8 @@ namespace Rubinho_s_Bar___Tchelos.WinApp
             btnAdicionar.ToolTipText = controladorSelecionado.ToolTipAdicionar;
             btnExcluir.ToolTipText = controladorSelecionado.ToolTipExcluir;
 
+            if (controladorSelecionado is IControladorConcluir controladorConcluir)
+                btnFecharContas.ToolTipText = controladorConcluir.ToolTipConcluir;
 
         }
 
@@ -137,6 +142,12 @@ namespace Rubinho_s_Bar___Tchelos.WinApp
         private void btnPagamentos_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnFecharContas_Click(object sender, EventArgs e)
+        {
+            if (controlador is IControladorConcluir controladorConcluir)
+                controladorConcluir.Concluir();
         }
     }
 }

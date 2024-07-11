@@ -45,6 +45,8 @@
             toolStripSeparator1 = new ToolStripSeparator();
             btnGerarExtrato = new ToolStripButton();
             toolStripSeparator4 = new ToolStripSeparator();
+            btnFecharContas = new ToolStripButton();
+            toolStripSeparator3 = new ToolStripSeparator();
             toolStripTipo = new ToolStripLabel();
             pnlRegistros = new Panel();
             menuStrip1.SuspendLayout();
@@ -118,7 +120,7 @@
             // toolStrip1
             // 
             toolStrip1.ImageScalingSize = new Size(20, 20);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, toolStripSeparator2, btnPagamentos, toolStripSeparator1, btnGerarExtrato, toolStripSeparator4, toolStripTipo });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, toolStripSeparator2, btnPagamentos, toolStripSeparator1, btnGerarExtrato, toolStripSeparator4, btnFecharContas, toolStripSeparator3, toolStripTipo });
             toolStrip1.Location = new Point(0, 28);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(800, 41);
@@ -195,6 +197,20 @@
             toolStripSeparator4.Name = "toolStripSeparator4";
             toolStripSeparator4.Size = new Size(6, 41);
             // 
+            // btnFecharContas
+            // 
+            btnFecharContas.Enabled = false;
+            btnFecharContas.ImageTransparentColor = Color.Transparent;
+            btnFecharContas.Name = "btnFecharContas";
+            btnFecharContas.Size = new Size(86, 38);
+            btnFecharContas.Text = "Fechar Contas";
+            btnFecharContas.Click += btnFecharContas_Click;
+            // 
+            // toolStripSeparator3
+            // 
+            toolStripSeparator3.Name = "toolStripSeparator3";
+            toolStripSeparator3.Size = new Size(6, 41);
+            // 
             // toolStripTipo
             // 
             toolStripTipo.Font = new Font("Segoe UI", 11.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
@@ -257,5 +273,7 @@
         private ToolStripMenuItem funcionáriosToolStripMenuItem;
         private ToolStripMenuItem pedidosToolStripMenuItem;
         private ToolStripMenuItem produtosToolStripMenuItem;
+        private ToolStripButton btnFecharContas;
+        private ToolStripSeparator toolStripSeparator3;
     }
 }

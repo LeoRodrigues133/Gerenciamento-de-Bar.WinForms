@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa.Mesa" Collapsed="true">
+    <Position X="0.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAACAAAACAQAgAAAAAAAAAAA=</HashCode>
+      <FileName>2.2 MóduloMesa\Mesa.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido.Comanda" Collapsed="true">
+    <Position X="3.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAEAIAAAAAAAACAAAAAAYAQCAAAAAAAAAA=</HashCode>
+      <FileName>2.3 MóduloPedido\Comanda.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido.Pedidos.Pedido" Collapsed="true">
+    <Position X="3.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAEAAAAAACAAAAAAQAAAAAQAAAAAAE=</HashCode>
+      <FileName>2.3 MóduloPedido\2.3.1 Pedidos\Pedido.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Comanda" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Rubinho_s_Bar___Tchelos.Dominio.MóduloProduto.Produto" Collapsed="true">
+    <Position X="6.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEEAAgAAACEAAAAAQAAAAAAAAEAAAA=</HashCode>
+      <FileName>2.4 MóduloProduto\Produto.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Pedido" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Rubinho_s_Bar___Tchelos.Dominio.MóduloPessoas.Garçom" Collapsed="true">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAQAAAAGAAAAAACAAAAAAQABAAAAAAGAAAA=</HashCode>
+      <FileName>2.5 MóduloPessoas\Garçom.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Comanda" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Yu Gothic" Size="10" />
+</ClassDiagram>

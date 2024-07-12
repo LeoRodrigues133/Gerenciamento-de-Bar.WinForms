@@ -1,7 +1,7 @@
 ﻿using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido;
 using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido.Pedidos;
 
-namespace Rubinho_s_Bar___Tchelos.WinApp._1._3_MóduloPedido
+namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 {
     public partial class TelaFechamentoComandas : Form
     {

@@ -3,17 +3,8 @@ using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido;
 using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido.Pedidos;
 using Rubinho_s_Bar___Tchelos.Dominio.MóduloPessoas;
 using Rubinho_s_Bar___Tchelos.Dominio.MóduloProduto;
-using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloPedido;
-using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloPessoas;
-using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloProduto;
-using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloMesa;
-using Rubinho_s_Bar___Tchelos.WinApp._MóduloPessoas;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloCompartilhado;
-using Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa;
-using Rubinho_s_Bar___Tchelos.WinApp.MóduloPessoas;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto;
-using Rubinho_s_Bar___Tchelos.WinApp._1._1_MóduloCompartilhado;
-using Rubinho_s_Bar___Tchelos.WinApp._1._3_MóduloPedido;
 
 namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 {
@@ -30,8 +21,6 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
         public string ToolTipEditar => "Editar um pedido existente";
         public override string ToolTipExcluir => "Excluir um pedido existente";
         public override string ToolTipAdicionar => "Cadastrar um novo pedido";
-
-        public string ToolTipConcluir => "Fechar uma comanda existente";
 
         public ControladorComanda(IRepositorioPessoas repositorioPessoas, IRepositorioMesa repositorioMesas, IRepositorioComanda repositorioPedido, IRepositorioProduto repositorioProdutos)
         {
@@ -52,6 +41,8 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 
             Comanda novaComanda = tela.Comanda;
 
+            novaComanda.CalcularValor(novaComanda.Pedidos);
+
             repositorioPedido.Cadastrar(novaComanda);
 
             CarregarRegistros();
@@ -62,6 +53,10 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
         void IControladorEditavel.Editar()
         {
             TelaComandaForm tela = new TelaComandaForm(this);
+
+            tela.TravarDados();
+            CarregarDados(tela);
+            CarregarPedidos(tela);
 
             int idSelecionado = tabelaPedido.ObterRegistroSelecionado();
 
@@ -82,8 +77,10 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 
             Comanda comandaEditada = tela.Comanda;
 
+
             repositorioPedido.Editar(Selecionado.Id, comandaEditada);
 
+            comandaEditada.CalcularValor(comandaEditada.Pedidos);
             CarregarRegistros();
 
         }
@@ -128,18 +125,25 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             return tabelaPedido;
         }
 
-
-
         public void CarregarDados(TelaComandaForm telaPedido)
         {
-            TelaProdutoForm telaProduto = new();
-
             List<Mesa> mesas = repositorioMesas.SelecionarTodos();
             List<Garçom> garçoms = repositorioPessoas.SelecionarTodos();
             List<Produto> produtos = repositorioProdutos.SelecionarTodos();
 
+
             telaPedido.CarregarComboBoxProdutos(produtos);
             telaPedido.CarregarComboBoxPedido(garçoms, mesas);
+        }
+
+        public void CarregarPedidos(TelaComandaForm telaPedido)
+        {
+            int Selecionado = tabelaPedido.ObterRegistroSelecionado();
+            Comanda comandaSelecionada = repositorioPedido.SelecionarPorId(Selecionado);
+
+            List<Pedido> pedidos = comandaSelecionada.Pedidos;
+
+            telaPedido.CarregarListProdutos(pedidos);
         }
 
         public override void CarregarRegistros()
@@ -166,7 +170,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
                 return;
             }
 
-            if (contaSelecionada.Status == EnumStatusPagamento.Pago)
+            if (contaSelecionada.Status == EnumStatusPagamento.Fechada)
             {
                 MessageBox.Show(
                     "Você não pode concluir uma conta já concluída!",

@@ -22,7 +22,7 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido
             Status = status;
             Pedidos = pedidos;
             Garçom = garçom;
-            CalcularValor(pedidos);
+            DataConclusao = (DateTime)System.Data.SqlTypes.SqlDateTime.MinValue;
         }
 
         public override void AtualizarRegistro(EntidadeBase novoRegistro)
@@ -30,9 +30,10 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido
             Comanda a = (Comanda)novoRegistro;
 
             Pedidos = a.Pedidos;
+            ValorTotal = CalcularValor(Pedidos);
         }
 
-        public override List<string> Validar()
+        public override List<string> Validar()  
         {
             List<string> erros = new();
 
@@ -51,19 +52,19 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido
             return erros;
         }
 
-        void CalcularValor(List<Pedido> pedidos)
+        public decimal CalcularValor(List<Pedido> pedidos)
         {
+            ValorTotal = 0;
 
             foreach (Pedido p in pedidos)
-            {
-                ValorTotal = 0;
-                p.Produto.Valor += ValorTotal;
-            }
+                ValorTotal += p.Produto.Valor * p.Quantidade;
+
+            return ValorTotal;
         }
 
         public void Concluir()
         {
-            Status = EnumStatusPagamento.Pago;
+            Status = EnumStatusPagamento.Fechada;
             DataConclusao = DateTime.Now;
         }
     }

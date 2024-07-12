@@ -2,17 +2,16 @@ using Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa;
 using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido;
 using Rubinho_s_Bar___Tchelos.Dominio.MóduloProduto;
 using Rubinho_s_Bar___Tchelos.Dominio.MóduloPessoas;
+using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloMesa;
 using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloPedido;
 using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloProduto;
 using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloPessoas;
-using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloMesa;
 using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido;
+using Rubinho_s_Bar___Tchelos.WinApp.MóduloPessoas;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto;
-using Rubinho_s_Bar___Tchelos.WinApp._MóduloPessoas;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloCompartilhado;
-using Rubinho_s_Bar___Tchelos.WinApp._1._1_MóduloCompartilhado;
 
 namespace Rubinho_s_Bar___Tchelos.WinApp
 {
@@ -77,9 +76,6 @@ namespace Rubinho_s_Bar___Tchelos.WinApp
         {
             btnAdicionar.ToolTipText = controladorSelecionado.ToolTipAdicionar;
             btnExcluir.ToolTipText = controladorSelecionado.ToolTipExcluir;
-
-            if (controladorSelecionado is IControladorConcluir controladorConcluir)
-                btnFecharContas.ToolTipText = controladorConcluir.ToolTipConcluir;
 
         }
 

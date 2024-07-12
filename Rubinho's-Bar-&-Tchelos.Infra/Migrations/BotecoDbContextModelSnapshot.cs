@@ -46,6 +46,9 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("DataConclusao")
+                        .HasColumnType("datetime");
+
                     b.Property<int>("Garcom_Id")
                         .HasColumnType("int");
 

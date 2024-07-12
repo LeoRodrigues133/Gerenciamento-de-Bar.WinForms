@@ -51,12 +51,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
                 .HasConstraintName("FK_TBPedido_TBProduto")
                 .OnDelete(DeleteBehavior.NoAction);
 
-              //  pedidoBuilder.HasOne(pd => pd.Comanda).WithMany()
-              //.IsRequired()
-              //.HasForeignKey("Comanda_Id")
-              //.HasConstraintName("FK_TBPedido_TBComanda")
-              //.OnDelete(DeleteBehavior.NoAction);
-            });
+              });
             modelBuilder.Entity<Produto>(produtoBuilder =>
             {
                 produtoBuilder.ToTable("TBProduto");

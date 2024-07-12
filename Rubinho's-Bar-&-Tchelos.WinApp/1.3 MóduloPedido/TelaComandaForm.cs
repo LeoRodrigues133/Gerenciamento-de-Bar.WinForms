@@ -3,9 +3,6 @@ using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido;
 using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido.Pedidos;
 using Rubinho_s_Bar___Tchelos.Dominio.MóduloPessoas;
 using Rubinho_s_Bar___Tchelos.Dominio.MóduloProduto;
-using Rubinho_s_Bar___Tchelos.WinApp.MóduloCompartilhado;
-
-
 
 namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 {
@@ -33,6 +30,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
         {
             InitializeComponent();
             controladorPedido = Controlador;
+
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -46,7 +44,6 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             comanda = new Comanda(garçom!, status, mesa!, ListaDePedidos);
 
             comandas.Add(comanda);
-
         }
 
         private void btnAddItens_Click(object sender, EventArgs e)
@@ -61,8 +58,23 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             Pedido pedido = new Pedido(produto, quantiaAdicionada);
 
 
-            listProdutos.Items.Add(pedido);
+            if (listProdutos.SelectedItem != null)
 
+                listProdutos.Items.RemoveAt(listProdutos.SelectedIndex);
+            else
+                listProdutos.Items.Add(pedido);
+
+            PreencherValor(listProdutos);
+        }
+
+        void PreencherValor(ListBox list)
+        {
+            decimal ValorTotal = 0;
+
+            foreach (Pedido p in list.Items)
+                ValorTotal += p.Produto.Valor * p.Quantidade;
+
+            txtValorTotal.Text = $"{ValorTotal:C}";
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -89,6 +101,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             categoriaSelecionada = EnumCategoriaProduto.Comidas;
 
             cmbProdutos.Text = string.Empty;
+
             AtualizarProdutos();
         }
 
@@ -97,6 +110,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             categoriaSelecionada = EnumCategoriaProduto.Bebidas;
 
             cmbProdutos.Text = string.Empty;
+
             AtualizarProdutos();
         }
         private void btnServiços_Click(object sender, EventArgs e)
@@ -104,16 +118,18 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             categoriaSelecionada = EnumCategoriaProduto.Serviços;
 
             cmbProdutos.Text = string.Empty;
+
             AtualizarProdutos();
         }
         private void AtualizarProdutos()
         {
             cmbProdutos.Items.Clear();
+
             var produtosFiltrados = produtos.Where(p => p.CategoriaProduto == categoriaSelecionada).ToList();
+
             foreach (var produto in produtosFiltrados)
-            {
                 cmbProdutos.Items.Add(produto);
-            }
+
         }
 
         public void CarregarComboBoxProdutos(List<Produto> produtos)
@@ -135,6 +151,31 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 
             foreach (EnumStatusPagamento status in StatusPagamento)
                 cmbStatus.Items.Add(status);
+
+        }
+
+        public void CarregarListProdutos(List<Pedido> pedidos)
+        {
+            foreach (var p in pedidos)
+                listProdutos.Items.Add(p);
+        }
+
+        public void TravarDados()
+        {
+            cmbGarçom.Enabled = false;
+            cmbMesa.Enabled = false;
+            cmbStatus.Enabled = false;
+            TabComanda.SelectedTab = tabPagePedido;
+        }
+
+        private void listProdutos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string caminho = Directory.GetCurrentDirectory().Split(@"bin\")[0] + @"\Resources\";
+
+            if (listProdutos.SelectedIndex != -1)
+                btnAddItens.Image = Image.FromFile(caminho + "btnRemover.png");
+            else
+                btnAddItens.Image = Image.FromFile(caminho + "btnAdicionarItem.png");
 
         }
     }

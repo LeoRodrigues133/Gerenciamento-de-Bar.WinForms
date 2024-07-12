@@ -257,6 +257,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             listProdutos.Name = "listProdutos";
             listProdutos.Size = new Size(282, 242);
             listProdutos.TabIndex = 8;
+            listProdutos.SelectedIndexChanged += listProdutos_SelectedIndexChanged;
             // 
             // btnServiços
             // 

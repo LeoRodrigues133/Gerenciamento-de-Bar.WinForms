@@ -33,11 +33,7 @@
             cmbPeriodo = new ComboBox();
             btnBuscar = new Button();
             listExtrato = new ListBox();
-            cmbPeriodo = new ComboBox();
-            lblData = new Label();
-            cmbData = new ComboBox();
             btnCancelar = new Button();
-            btnBuscar = new Button();
             SuspendLayout();
             // 
             // comboBox1
@@ -45,7 +41,7 @@
             comboBox1.FormattingEnabled = true;
             comboBox1.Location = new Point(-182, 182);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(160, 23);
+            comboBox1.Size = new Size(160, 28);
             comboBox1.TabIndex = 0;
             // 
             // lblPeriodo
@@ -57,15 +53,6 @@
             lblPeriodo.TabIndex = 0;
             lblPeriodo.Text = "Periodo:";
             // 
-            // listExtrato
-            // 
-            listExtrato.Dock = DockStyle.Bottom;
-            listExtrato.FormattingEnabled = true;
-            listExtrato.Location = new Point(0, 141);
-            listExtrato.Name = "listExtrato";
-            listExtrato.Size = new Size(595, 404);
-            listExtrato.TabIndex = 1;
-            // 
             // cmbPeriodo
             // 
             cmbPeriodo.FormattingEnabled = true;
@@ -73,33 +60,6 @@
             cmbPeriodo.Name = "cmbPeriodo";
             cmbPeriodo.Size = new Size(249, 28);
             cmbPeriodo.TabIndex = 1;
-            // 
-            // lblData
-            // 
-            lblData.AutoSize = true;
-            lblData.Location = new Point(39, 74);
-            lblData.Name = "lblData";
-            lblData.Size = new Size(44, 20);
-            lblData.TabIndex = 0;
-            lblData.Text = "Data:";
-            // 
-            // cmbData
-            // 
-            cmbData.FormattingEnabled = true;
-            cmbData.Location = new Point(89, 71);
-            cmbData.Name = "cmbData";
-            cmbData.Size = new Size(189, 28);
-            cmbData.TabIndex = 2;
-            // 
-            // btnCancelar
-            // 
-            btnCancelar.DialogResult = DialogResult.Cancel;
-            btnCancelar.Location = new Point(466, 71);
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(117, 49);
-            btnCancelar.TabIndex = 4;
-            btnCancelar.Text = "Cancelar";
-            btnCancelar.UseVisualStyleBackColor = true;
             // 
             // btnBuscar
             // 
@@ -111,6 +71,25 @@
             btnBuscar.UseVisualStyleBackColor = true;
             btnBuscar.Click += btnBuscar_Click;
             // 
+            // listExtrato
+            // 
+            listExtrato.Dock = DockStyle.Bottom;
+            listExtrato.FormattingEnabled = true;
+            listExtrato.Location = new Point(0, 141);
+            listExtrato.Name = "listExtrato";
+            listExtrato.Size = new Size(595, 404);
+            listExtrato.TabIndex = 1;
+            // 
+            // btnCancelar
+            // 
+            btnCancelar.DialogResult = DialogResult.Cancel;
+            btnCancelar.Location = new Point(466, 71);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(117, 49);
+            btnCancelar.TabIndex = 4;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = true;
+            // 
             // TelaExtratoForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -118,9 +97,7 @@
             ClientSize = new Size(595, 545);
             Controls.Add(btnCancelar);
             Controls.Add(btnBuscar);
-            Controls.Add(cmbData);
             Controls.Add(cmbPeriodo);
-            Controls.Add(lblData);
             Controls.Add(listExtrato);
             Controls.Add(lblPeriodo);
             Controls.Add(comboBox1);
@@ -137,11 +114,7 @@
         private Label lblPeriodo;
         private ListBox listExtrato;
         private ComboBox cmbPeriodo;
-        private Label lblData;
-        private ComboBox cmbData;
         private Button btnCancelar;
         private Button btnBuscar;
-        private ListBox listExtrato;
-        private Button btnCancelar;
     }
 }

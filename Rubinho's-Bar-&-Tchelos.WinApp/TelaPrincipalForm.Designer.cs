@@ -41,11 +41,10 @@
             btnEditar = new ToolStripButton();
             btnExcluir = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
+            btnFecharContas = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
             btnGerarExtrato = new ToolStripButton();
             toolStripSeparator4 = new ToolStripSeparator();
-            btnFecharContas = new ToolStripButton();
-            toolStripSeparator3 = new ToolStripSeparator();
             toolStripTipo = new ToolStripLabel();
             pnlRegistros = new Panel();
             menuStrip1.SuspendLayout();
@@ -121,7 +120,7 @@
             // toolStrip1
             // 
             toolStrip1.ImageScalingSize = new Size(20, 20);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, toolStripSeparator2, btnFecharContas, toolStripSeparator1, btnGerarExtrato, toolStripSeparator4, toolStripSeparator3, toolStripTipo });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, toolStripSeparator2, btnFecharContas, toolStripSeparator1, btnGerarExtrato, toolStripSeparator4, toolStripTipo });
             toolStrip1.Location = new Point(0, 35);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(914, 41);
@@ -169,6 +168,16 @@
             toolStripSeparator2.Name = "toolStripSeparator2";
             toolStripSeparator2.Size = new Size(6, 41);
             // 
+            // btnFecharContas
+            // 
+            btnFecharContas.Enabled = false;
+            btnFecharContas.Image = Properties.Resources.btnComandas;
+            btnFecharContas.ImageTransparentColor = Color.Transparent;
+            btnFecharContas.Name = "btnFecharContas";
+            btnFecharContas.Size = new Size(125, 38);
+            btnFecharContas.Text = "Fechar Contas";
+            btnFecharContas.Click += btnFecharContas_Click;
+            // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
@@ -188,21 +197,6 @@
             // 
             toolStripSeparator4.Name = "toolStripSeparator4";
             toolStripSeparator4.Size = new Size(6, 41);
-            // 
-            // btnFecharContas
-            // 
-            btnFecharContas.Enabled = false;
-            btnFecharContas.Image = Properties.Resources.btnComandas;
-            btnFecharContas.ImageTransparentColor = Color.Transparent;
-            btnFecharContas.Name = "btnFecharContas";
-            btnFecharContas.Size = new Size(125, 38);
-            btnFecharContas.Text = "Fechar Contas";
-            btnFecharContas.Click += btnFecharContas_Click;
-            // 
-            // toolStripSeparator3
-            // 
-            toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new Size(6, 41);
             // 
             // toolStripTipo
             // 
@@ -268,6 +262,5 @@
         private ToolStripMenuItem pedidosToolStripMenuItem;
         private ToolStripMenuItem produtosToolStripMenuItem;
         private ToolStripButton btnFecharContas;
-        private ToolStripSeparator toolStripSeparator3;
     }
 }

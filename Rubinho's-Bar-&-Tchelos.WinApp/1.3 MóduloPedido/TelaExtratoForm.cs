@@ -41,26 +41,23 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 
             listExtrato.Items.Clear();
 
-            foreach (Comanda c in todasAsComandas)
-                listExtrato.Items.Add(c.ToString());
+            foreach (var c in todasAsComandas)
+                listExtrato.Items.Add(c);
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
-            {
+        {
             if (cmbPeriodo.SelectedItem == null)
                 return;
 
             EnumPeriodos periodo = (EnumPeriodos)cmbPeriodo.SelectedItem;
 
             List<Comanda> resultado = controladorPedido.MostrarExtratos(periodo);
-
-        public void CarregarComandas(List<Comanda> comandas)
-        {
             listExtrato.Items.Clear();
-
             foreach (var comanda in resultado)
+            {
                 listExtrato.Items.Add(comanda);
-
+            }
         }
     }
 }

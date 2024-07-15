@@ -33,10 +33,10 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido
         {
             List<string> erros = new();
 
-            if (Garçom.Id == null)
+            if (Garçom == null)
                 erros.Add("Não é possivel iniciar uma comanda sem definir um garçom");
 
-            if (Mesa.Id == null)
+            if (Mesa == null)
                 erros.Add("Não é possivel iniciar uma comanda sem definir uma mesa");
 
             if (Status == null)

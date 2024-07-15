@@ -5,6 +5,7 @@ using Rubinho_s_Bar___Tchelos.Dominio.MóduloPessoas;
 using Rubinho_s_Bar___Tchelos.Dominio.MóduloProduto;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloCompartilhado;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto;
+using Rubinho_s_Bar___Tchelos.WinApp._1._3_MóduloPedido;
 
 namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 {

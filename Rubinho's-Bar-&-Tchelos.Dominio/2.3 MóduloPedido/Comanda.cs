@@ -56,6 +56,7 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido
         {
             ValorTotal = 0;
 
+
             foreach (Pedido p in pedidos)
                 ValorTotal += p.Produto.Valor * p.Quantidade;
 

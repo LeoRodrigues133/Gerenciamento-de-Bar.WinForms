@@ -19,7 +19,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             grid.Rows.Clear();
 
             foreach (Comanda c in repositorio)
-                grid.Rows.Add(c.Id.ToString(),c.Mesa, c.Garçom,c.Status,$"{c.ValorTotal:C}");
+                grid.Rows.Add(c.Id.ToString(),c.Mesa, c.Garçom,c.Status,$"{c.CalcularValor(c.Pedidos,c.ValorTotal):C}");
         }
 
         public int ObterRegistroSelecionado()

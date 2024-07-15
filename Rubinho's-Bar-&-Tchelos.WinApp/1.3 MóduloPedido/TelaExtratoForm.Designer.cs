@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            comboBox1 = new ComboBox();
             lblPeriodo = new Label();
+            cmbPeriodo = new ComboBox();
+            btnBuscar = new Button();
             listExtrato = new ListBox();
             cmbPeriodo = new ComboBox();
             lblData = new Label();
@@ -36,6 +39,14 @@
             btnCancelar = new Button();
             btnBuscar = new Button();
             SuspendLayout();
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(-182, 182);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(160, 23);
+            comboBox1.TabIndex = 0;
             // 
             // lblPeriodo
             // 
@@ -112,6 +123,7 @@
             Controls.Add(lblData);
             Controls.Add(listExtrato);
             Controls.Add(lblPeriodo);
+            Controls.Add(comboBox1);
             Name = "TelaExtratoForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "TelaExtratoForm";
@@ -121,6 +133,7 @@
 
         #endregion
 
+        private ComboBox comboBox1;
         private Label lblPeriodo;
         private ListBox listExtrato;
         private ComboBox cmbPeriodo;
@@ -128,5 +141,7 @@
         private ComboBox cmbData;
         private Button btnCancelar;
         private Button btnBuscar;
+        private ListBox listExtrato;
+        private Button btnCancelar;
     }
 }

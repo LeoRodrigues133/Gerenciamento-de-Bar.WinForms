@@ -8,7 +8,7 @@ using Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto;
 
 namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 {
-    public class ControladorComanda : ControladorBase, IControladorEditavel, IControladorConcluir
+    public class ControladorComanda : ControladorBase, IControladorEditavel, IControladorConcluir, IControladorVisualizarExtratos
     {
         IRepositorioMesa repositorioMesas;
         IRepositorioComanda repositorioPedido;
@@ -125,16 +125,6 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             return tabelaPedido;
         }
 
-        public void CarregarDados(TelaComandaForm telaPedido)
-        {
-            List<Mesa> mesas = repositorioMesas.SelecionarTodos();
-            List<Garçom> garçoms = repositorioPessoas.SelecionarTodos();
-            List<Produto> produtos = repositorioProdutos.SelecionarTodos();
-
-
-            telaPedido.CarregarComboBoxProdutos(produtos);
-            telaPedido.CarregarComboBoxPedido(garçoms, mesas);
-        }
 
         public void CarregarPedidos(TelaComandaForm telaPedido)
         {
@@ -179,6 +169,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
                     MessageBoxIcon.Warning);
 
                 return;
+
             }
 
             TelaFechamentoComandas telaFechamento = new TelaFechamentoComandas();
@@ -199,5 +190,60 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 
             TelaPrincipalForm.Instancia.AtualizarRodape($"A Conta de Id \"{registroEditado.Id}\" foi fechada com sucesso!");
         }
+
+        public void VisualizarExtratos()
+        {
+            TelaExtratoForm tela = new TelaExtratoForm(this);
+
+            DialogResult resultado = tela.ShowDialog();
+
+            if (resultado == DialogResult.OK)
+                CarregarComandas(tela);
+
+        }
+
+        public void CarregarComandas(TelaExtratoForm telaExtrato)
+        {
+            List<Comanda> comandas = repositorioPedido.SelecionarTodos();
+
+            telaExtrato.BuscarTodasAsComandas(comandas);
+        }
+
+        public List<Comanda> MostrarExtratos(EnumPeriodos periodo)
+        {
+            List<Comanda> comandas = repositorioPedido.SelecionarTodos();
+
+            DateTime Agora = DateTime.Now;
+            DateTime DataInicio = Agora;
+
+            switch (periodo)
+            {
+                case EnumPeriodos.Dia:
+                    DataInicio = Agora.Date;
+                    break;
+                case EnumPeriodos.Semana:
+                    DataInicio = Agora.AddDays(-((int)Agora.DayOfWeek)).Date; 
+                    break;
+                case EnumPeriodos.Mes:
+                    DataInicio = new DateTime(Agora.Year, Agora.Month, 1);
+                    break;
+            }
+
+            var extratos = comandas.Where(c => c.Status == EnumStatusPagamento.Fechada && c.DataConclusao >= DataInicio && c.DataConclusao <= Agora).ToList();
+
+            return extratos;
+        }
+
+        public void CarregarDados(TelaComandaForm telaPedido)
+        {
+            List<Mesa> mesas = repositorioMesas.SelecionarTodos();
+            List<Garçom> garçoms = repositorioPessoas.SelecionarTodos();
+            List<Produto> produtos = repositorioProdutos.SelecionarTodos();
+
+
+            telaPedido.CarregarComboBoxProdutos(produtos);
+            telaPedido.CarregarComboBoxPedido(garçoms, mesas);
+        }
+
     }
 }

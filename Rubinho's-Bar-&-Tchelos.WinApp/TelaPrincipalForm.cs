@@ -65,6 +65,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp
             btnExcluir.Enabled = controladorSelecionado is ControladorBase;
 
             btnFecharContas.Enabled = controladorSelecionado is IControladorConcluir;
+            btnGerarExtrato.Enabled = controladorSelecionado is IControladorVisualizarExtratos;
 
             if (controladorSelecionado is IControladorEditavel)
                 btnEditar.Enabled = true;
@@ -144,6 +145,12 @@ namespace Rubinho_s_Bar___Tchelos.WinApp
         {
             if (controlador is IControladorConcluir controladorConcluir)
                 controladorConcluir.Concluir();
+        }
+
+        private void btnGerarExtrato_Click(object sender, EventArgs e)
+        {
+            if (controlador is IControladorVisualizarExtratos controladorExtratos)
+                controladorExtratos.VisualizarExtratos();
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido
             Status = status;
             Pedidos = pedidos;
             Garçom = garçom;
-            DataConclusao = (DateTime)System.Data.SqlTypes.SqlDateTime.MinValue;
+            DataConclusao = DateTime.Now;
         }
 
         public override void AtualizarRegistro(EntidadeBase novoRegistro)
@@ -66,6 +66,11 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido
         {
             Status = EnumStatusPagamento.Fechada;
             DataConclusao = DateTime.Now;
+        }
+
+        public override string ToString()
+        {
+            return $"Comanda {Id}: {DataConclusao.ToShortDateString()} - Valor: {ValorTotal:C}";
         }
     }
 }

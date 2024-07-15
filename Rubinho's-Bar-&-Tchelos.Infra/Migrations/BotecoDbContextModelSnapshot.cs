@@ -33,6 +33,9 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
                     b.Property<int>("NumeroDaMesa")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.ToTable("TBMesa", (string)null);

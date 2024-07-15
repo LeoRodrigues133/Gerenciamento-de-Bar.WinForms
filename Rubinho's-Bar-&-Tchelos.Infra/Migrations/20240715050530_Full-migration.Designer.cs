@@ -12,8 +12,8 @@ using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado;
 namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
 {
     [DbContext(typeof(BotecoDbContext))]
-    [Migration("20240712121817_add")]
-    partial class add
+    [Migration("20240715050530_Full-migration")]
+    partial class Fullmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,6 +35,9 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
 
                     b.Property<int>("NumeroDaMesa")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

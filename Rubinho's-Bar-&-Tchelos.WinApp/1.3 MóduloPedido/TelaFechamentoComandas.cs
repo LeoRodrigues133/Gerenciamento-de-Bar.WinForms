@@ -30,6 +30,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             comanda.Concluir();
+            comanda.Mesa.DesocuparMesa();
         }
     }
 }

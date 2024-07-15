@@ -2,15 +2,15 @@ using Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa;
 using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido;
 using Rubinho_s_Bar___Tchelos.Dominio.MóduloProduto;
 using Rubinho_s_Bar___Tchelos.Dominio.MóduloPessoas;
+using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloMesa;
 using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloPedido;
 using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloProduto;
 using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloPessoas;
-using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloMesa;
 using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido;
+using Rubinho_s_Bar___Tchelos.WinApp.MóduloPessoas;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto;
-using Rubinho_s_Bar___Tchelos.WinApp._MóduloPessoas;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloCompartilhado;
 
 namespace Rubinho_s_Bar___Tchelos.WinApp
@@ -63,7 +63,9 @@ namespace Rubinho_s_Bar___Tchelos.WinApp
             btnAdicionar.Enabled = controladorSelecionado is ControladorBase;
             btnEditar.Enabled = controladorSelecionado is IControladorEditavel;
             btnExcluir.Enabled = controladorSelecionado is ControladorBase;
-            btnGerarExtrato.Enabled = controladorSelecionado is IControladorVisualizarExtrato;
+
+            btnFecharContas.Enabled = controladorSelecionado is IControladorConcluir;
+            btnGerarExtrato.Enabled = controladorSelecionado is IControladorVisualizarExtratos;
 
             if (controladorSelecionado is IControladorEditavel)
                 btnEditar.Enabled = true;
@@ -134,15 +136,16 @@ namespace Rubinho_s_Bar___Tchelos.WinApp
             ConfigurarTelaPrincipal(controlador);
         }
 
-        private void btnPagamentos_Click(object sender, EventArgs e)
+        private void btnFecharContas_Click(object sender, EventArgs e)
         {
-
+            if (controlador is IControladorConcluir controladorConcluir)
+                controladorConcluir.Concluir();
         }
 
         private void btnGerarExtrato_Click(object sender, EventArgs e)
         {
-            if (controlador is IControladorVisualizarExtrato controladorExtrato)
-                controladorExtrato.MostrarExtrato();
+            if (controlador is IControladorVisualizarExtratos controladorExtrato)
+                controladorExtrato.VisualizarExtratos();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Rubinho_s_Bar___Tchelos.WinApp._1._3_MóduloPedido
+﻿namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 {
     partial class TelaExtratoForm
     {
@@ -41,32 +41,31 @@
             comboBox1.FormattingEnabled = true;
             comboBox1.Location = new Point(-182, 182);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(160, 23);
+            comboBox1.Size = new Size(160, 28);
             comboBox1.TabIndex = 0;
             // 
             // lblPeriodo
             // 
             lblPeriodo.AutoSize = true;
-            lblPeriodo.Location = new Point(64, 41);
+            lblPeriodo.Location = new Point(20, 40);
             lblPeriodo.Name = "lblPeriodo";
-            lblPeriodo.Size = new Size(51, 15);
-            lblPeriodo.TabIndex = 1;
-            lblPeriodo.Text = "Período:";
+            lblPeriodo.Size = new Size(63, 20);
+            lblPeriodo.TabIndex = 0;
+            lblPeriodo.Text = "Periodo:";
             // 
             // cmbPeriodo
             // 
             cmbPeriodo.FormattingEnabled = true;
-            cmbPeriodo.Location = new Point(121, 37);
+            cmbPeriodo.Location = new Point(89, 37);
             cmbPeriodo.Name = "cmbPeriodo";
-            cmbPeriodo.Size = new Size(257, 23);
-            cmbPeriodo.TabIndex = 2;
+            cmbPeriodo.Size = new Size(249, 28);
+            cmbPeriodo.TabIndex = 1;
             // 
             // btnBuscar
             // 
-            btnBuscar.DialogResult = DialogResult.OK;
-            btnBuscar.Location = new Point(279, 93);
+            btnBuscar.Location = new Point(343, 71);
             btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(108, 29);
+            btnBuscar.Size = new Size(117, 49);
             btnBuscar.TabIndex = 3;
             btnBuscar.Text = "Buscar";
             btnBuscar.UseVisualStyleBackColor = true;
@@ -76,31 +75,30 @@
             // 
             listExtrato.Dock = DockStyle.Bottom;
             listExtrato.FormattingEnabled = true;
-            listExtrato.ItemHeight = 15;
-            listExtrato.Location = new Point(0, 128);
+            listExtrato.Location = new Point(0, 141);
             listExtrato.Name = "listExtrato";
-            listExtrato.Size = new Size(513, 319);
-            listExtrato.TabIndex = 4;
+            listExtrato.Size = new Size(595, 404);
+            listExtrato.TabIndex = 1;
             // 
             // btnCancelar
             // 
             btnCancelar.DialogResult = DialogResult.Cancel;
-            btnCancelar.Location = new Point(393, 93);
+            btnCancelar.Location = new Point(466, 71);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(108, 29);
-            btnCancelar.TabIndex = 3;
+            btnCancelar.Size = new Size(117, 49);
+            btnCancelar.TabIndex = 4;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             // 
             // TelaExtratoForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(513, 447);
-            Controls.Add(listExtrato);
+            ClientSize = new Size(595, 545);
             Controls.Add(btnCancelar);
             Controls.Add(btnBuscar);
             Controls.Add(cmbPeriodo);
+            Controls.Add(listExtrato);
             Controls.Add(lblPeriodo);
             Controls.Add(comboBox1);
             Name = "TelaExtratoForm";
@@ -114,9 +112,9 @@
 
         private ComboBox comboBox1;
         private Label lblPeriodo;
-        private ComboBox cmbPeriodo;
-        private Button btnBuscar;
         private ListBox listExtrato;
+        private ComboBox cmbPeriodo;
         private Button btnCancelar;
+        private Button btnBuscar;
     }
 }

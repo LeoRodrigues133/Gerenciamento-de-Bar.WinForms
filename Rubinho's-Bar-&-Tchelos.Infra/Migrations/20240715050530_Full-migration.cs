@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
 {
     /// <inheritdoc />
-    public partial class configinicial : Migration
+    public partial class Fullmigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -31,7 +32,8 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NumeroDaMesa = table.Column<int>(type: "int", nullable: false)
+                    NumeroDaMesa = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -62,7 +64,8 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
                     ValorTotal = table.Column<decimal>(type: "decimal(18,0)", nullable: false),
                     Mesa_Id = table.Column<int>(type: "int", nullable: false),
                     Garcom_Id = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false)
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    DataConclusao = table.Column<DateTime>(type: "datetime", nullable: false)
                 },
                 constraints: table =>
                 {

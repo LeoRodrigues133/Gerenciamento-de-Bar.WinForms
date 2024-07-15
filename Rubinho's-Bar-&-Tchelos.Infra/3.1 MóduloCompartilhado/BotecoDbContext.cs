@@ -13,12 +13,12 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
         public DbSet<Garçom> Garçons { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Comanda> Comandas { get; set; }
-        public DbSet<Pedido> Pedidos { get; set; }  
+        public DbSet<Pedido> Pedidos { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionString = "Data Source=(LocalDb)\\MSSQLLocalDB;Initial Catalog=Boteco.DB;Integrated Security=True;Pooling=False;";
+            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=GestaoDeBarDb;Integrated Security=True;Pooling=False;";
 
             optionsBuilder.UseSqlServer(connectionString);
 
@@ -34,6 +34,8 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
                 mesaBuilder.Property(m => m.Id).IsRequired().ValueGeneratedOnAdd();
 
                 mesaBuilder.Property(m => m.NumeroDaMesa).IsRequired().HasColumnType("int");
+
+                mesaBuilder.Property(m => m.Status).IsRequired().HasColumnType("bit");
 
             });
             modelBuilder.Entity<Pedido>(pedidoBuilder =>
@@ -51,11 +53,6 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
                 .HasConstraintName("FK_TBPedido_TBProduto")
                 .OnDelete(DeleteBehavior.NoAction);
 
-              //  pedidoBuilder.HasOne(pd => pd.Comanda).WithMany()
-              //.IsRequired()
-              //.HasForeignKey("Comanda_Id")
-              //.HasConstraintName("FK_TBPedido_TBComanda")
-              //.OnDelete(DeleteBehavior.NoAction);
             });
             modelBuilder.Entity<Produto>(produtoBuilder =>
             {
@@ -64,11 +61,12 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
                 produtoBuilder.Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
 
                 produtoBuilder.Property(p => p.Nome).IsRequired().HasColumnType("varchar(100)");
-                
+
                 produtoBuilder.Property(p => p.Valor).IsRequired().HasColumnType("varchar(30)");
 
                 produtoBuilder.Property(p => p.CategoriaProduto).IsRequired().HasConversion<int>();
             });
+
             modelBuilder.Entity<Garçom>(garcomBuilder =>
             {
                 garcomBuilder.ToTable("TBGarçom");
@@ -82,6 +80,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
                 garcomBuilder.Property(g => g.Cargo).IsRequired().HasColumnType("int");
 
             });
+
             modelBuilder.Entity<Comanda>(comandaBuilder =>
             {
                 comandaBuilder.ToTable("TBComanda");
@@ -105,6 +104,8 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
                 comandaBuilder.Property(c => c.Status).IsRequired().HasColumnType("int");
 
                 comandaBuilder.Property(c => c.ValorTotal).IsRequired().HasColumnType("decimal");
+
+                comandaBuilder.Property(c => c.DataConclusao).HasColumnType("datetime");
             });
 
             base.OnModelCreating(modelBuilder);

@@ -12,6 +12,7 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido
         public Mesa Mesa { get; set; }
         public Garçom Garçom { get; set; }
         public EnumStatusPagamento Status { get; set; }
+        public DateTime DataConclusao { get; private set; }
         public List<Pedido> Pedidos { get; set; }
         public Comanda() { }
 
@@ -21,6 +22,7 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido
             Status = status;
             Pedidos = pedidos;
             Garçom = garçom;
+            DataConclusao = DateTime.Now;
         }
 
         public override void AtualizarRegistro(EntidadeBase novoRegistro)
@@ -28,9 +30,10 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido
             Comanda a = (Comanda)novoRegistro;
 
             Pedidos = a.Pedidos;
+            ValorTotal = CalcularValor(Pedidos);
         }
 
-        public override List<string> Validar()
+        public override List<string> Validar()  
         {
             List<string> erros = new();
 
@@ -49,20 +52,26 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido
             return erros;
         }
 
-         public decimal CalcularValor(List<Pedido> pedidos, decimal ValorTotal)
+        public decimal CalcularValor(List<Pedido> pedidos)
         {
+            ValorTotal = 0;
 
 
             foreach (Pedido p in pedidos)
-            {
-                if (p.Quantidade > 0)
-                {
-                    ValorTotal += p.Quantidade * p.Produto.Valor;
-                }
-                else
-                    p.Produto.Valor += ValorTotal;
-            }
+                ValorTotal += p.Produto.Valor * p.Quantidade;
+
             return ValorTotal;
+        }
+
+        public void Concluir()
+        {
+            Status = EnumStatusPagamento.Fechada;
+            DataConclusao = DateTime.Now;
+        }
+
+        public override string ToString()
+        {
+            return $"Comanda {Id}: {DataConclusao.ToShortDateString()} - Valor: {ValorTotal:C}";
         }
     }
 }

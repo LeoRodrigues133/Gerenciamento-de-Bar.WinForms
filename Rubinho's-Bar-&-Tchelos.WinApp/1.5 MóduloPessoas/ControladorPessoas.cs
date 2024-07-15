@@ -3,7 +3,7 @@ using Rubinho_s_Bar___Tchelos.WinApp.MóduloPessoas;
 using Rubinho_s_Bar___Tchelos.Dominio.MóduloPessoas;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloCompartilhado;
 
-namespace Rubinho_s_Bar___Tchelos.WinApp._MóduloPessoas
+namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPessoas
 {
     public class ControladorPessoas : ControladorBase, IControladorEditavel
     {

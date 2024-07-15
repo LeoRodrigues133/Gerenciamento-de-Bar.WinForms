@@ -33,6 +33,9 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
                     b.Property<int>("NumeroDaMesa")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.ToTable("TBMesa", (string)null);
@@ -45,6 +48,9 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DataConclusao")
+                        .HasColumnType("datetime");
 
                     b.Property<int>("Garcom_Id")
                         .HasColumnType("int");

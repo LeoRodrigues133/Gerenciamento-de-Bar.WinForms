@@ -9,9 +9,11 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa
 
         public int NumeroDaMesa { get; set; }
 
+        public bool Status { get; set; }
         public Mesa(int numeroDaMesa)
         {
             NumeroDaMesa = numeroDaMesa;
+            Status = false;
         }
         public override void AtualizarRegistro(EntidadeBase novoRegistro)
         {
@@ -35,6 +37,16 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa
                 Salao = $"Primeiro Salão Mesa {NumeroDaMesa}";
 
             return Salao;
+        }
+
+        public void OcuparMesa()
+        {
+            Status = true;
+        }
+
+        public void DesocuparMesa()
+        {
+            Status = false;
         }
 
         public override string ToString()

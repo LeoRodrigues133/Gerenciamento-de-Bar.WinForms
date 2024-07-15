@@ -1,13 +1,17 @@
+using Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa;
 using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido;
-using Rubinho_s_Bar___Tchelos.Infra.MóduloPedido;
-using Rubinho_s_Bar___Tchelos.Infra.MóduloPessoas;
-using Rubinho_s_Bar___Tchelos.Infra.MóduloProduto;
-using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado;
+using Rubinho_s_Bar___Tchelos.Dominio.MóduloProduto;
+using Rubinho_s_Bar___Tchelos.Dominio.MóduloPessoas;
+using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloPedido;
+using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloProduto;
+using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloPessoas;
 using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloMesa;
-using Rubinho_s_Bar___Tchelos.WinApp._MóduloPessoas;
-using Rubinho_s_Bar___Tchelos.WinApp.MóduloCompartilhado;
+using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido;
+using Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto;
+using Rubinho_s_Bar___Tchelos.WinApp._MóduloPessoas;
+using Rubinho_s_Bar___Tchelos.WinApp.MóduloCompartilhado;
 
 namespace Rubinho_s_Bar___Tchelos.WinApp
 {
@@ -17,10 +21,10 @@ namespace Rubinho_s_Bar___Tchelos.WinApp
 
         ControladorBase controlador;
 
-        RepositorioPessoasEmOrm repositorioPessoas;
-        RepositorioMesaEmOrm repositorioMesa;
-        RepositorioPedidoEmOrm repositorioPedido;
-        RepositorioProdutoEmOrm repositorioProduto;
+        IRepositorioPessoas repositorioPessoas;
+        IRepositorioMesa repositorioMesa;
+        IRepositorioComanda repositorioComanda;
+        IRepositorioProduto repositorioProduto;
 
         public static TelaPrincipalForm Instancia { get; private set; }
 
@@ -32,14 +36,12 @@ namespace Rubinho_s_Bar___Tchelos.WinApp
 
             Instancia = this;
 
-            BotecoDbContext dbContext = new();
+            BotecoDbContext dbContext = new BotecoDbContext();
 
             repositorioMesa = new RepositorioMesaEmOrm(dbContext);
-            repositorioPedido = new RepositorioPedidoEmOrm(dbContext);
             repositorioProduto = new RepositorioProdutoEmOrm(dbContext);
+            repositorioComanda = new RepositorioPedidoEmOrm(dbContext);
             repositorioPessoas = new RepositorioPessoasEmOrm(dbContext);
-
-
 
         }
 
@@ -61,6 +63,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp
             btnAdicionar.Enabled = controladorSelecionado is ControladorBase;
             btnEditar.Enabled = controladorSelecionado is IControladorEditavel;
             btnExcluir.Enabled = controladorSelecionado is ControladorBase;
+            btnGerarExtrato.Enabled = controladorSelecionado is IControladorVisualizarExtrato;
 
             if (controladorSelecionado is IControladorEditavel)
                 btnEditar.Enabled = true;
@@ -72,7 +75,6 @@ namespace Rubinho_s_Bar___Tchelos.WinApp
         {
             btnAdicionar.ToolTipText = controladorSelecionado.ToolTipAdicionar;
             btnExcluir.ToolTipText = controladorSelecionado.ToolTipExcluir;
-
 
         }
 
@@ -103,23 +105,44 @@ namespace Rubinho_s_Bar___Tchelos.WinApp
 
         private void funcionáriosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorPessoas();
+            controlador = new ControladorPessoas(repositorioPessoas);
 
             ConfigurarTelaPrincipal(controlador);
         }
 
+
         private void pedidosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorPedido();
+            controlador = new ControladorComanda(repositorioPessoas, repositorioMesa, repositorioComanda, repositorioProduto);
 
             ConfigurarTelaPrincipal(controlador);
         }
 
         private void mesasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladoMesa();
+            controlador = new ControladorMesa(repositorioMesa);
 
             ConfigurarTelaPrincipal(controlador);
+
+            controlador.CarregarRegistros();
+        }
+
+        private void produtosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            controlador = new ControladorProduto(repositorioProduto);
+
+            ConfigurarTelaPrincipal(controlador);
+        }
+
+        private void btnPagamentos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnGerarExtrato_Click(object sender, EventArgs e)
+        {
+            if (controlador is IControladorVisualizarExtrato controladorExtrato)
+                controladorExtrato.MostrarExtrato();
         }
     }
 }

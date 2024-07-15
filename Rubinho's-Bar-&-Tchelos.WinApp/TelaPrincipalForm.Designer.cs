@@ -47,8 +47,6 @@
             toolStripSeparator4 = new ToolStripSeparator();
             toolStripTipo = new ToolStripLabel();
             pnlRegistros = new Panel();
-            panel1 = new Panel();
-            panel2 = new Panel();
             menuStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
@@ -75,29 +73,30 @@
             // mesasToolStripMenuItem
             // 
             mesasToolStripMenuItem.Name = "mesasToolStripMenuItem";
-            mesasToolStripMenuItem.Size = new Size(180, 24);
+            mesasToolStripMenuItem.Size = new Size(161, 24);
             mesasToolStripMenuItem.Text = "Mesas";
             mesasToolStripMenuItem.Click += mesasToolStripMenuItem_Click;
             // 
             // funcionáriosToolStripMenuItem
             // 
             funcionáriosToolStripMenuItem.Name = "funcionáriosToolStripMenuItem";
-            funcionáriosToolStripMenuItem.Size = new Size(180, 24);
+            funcionáriosToolStripMenuItem.Size = new Size(161, 24);
             funcionáriosToolStripMenuItem.Text = "Funcionários";
             funcionáriosToolStripMenuItem.Click += funcionáriosToolStripMenuItem_Click;
             // 
             // pedidosToolStripMenuItem
             // 
             pedidosToolStripMenuItem.Name = "pedidosToolStripMenuItem";
-            pedidosToolStripMenuItem.Size = new Size(180, 24);
+            pedidosToolStripMenuItem.Size = new Size(161, 24);
             pedidosToolStripMenuItem.Text = "Pedidos";
             pedidosToolStripMenuItem.Click += pedidosToolStripMenuItem_Click;
             // 
             // produtosToolStripMenuItem
             // 
             produtosToolStripMenuItem.Name = "produtosToolStripMenuItem";
-            produtosToolStripMenuItem.Size = new Size(180, 24);
+            produtosToolStripMenuItem.Size = new Size(161, 24);
             produtosToolStripMenuItem.Text = "Produtos";
+            produtosToolStripMenuItem.Click += produtosToolStripMenuItem_Click;
             // 
             // statusStrip1
             // 
@@ -175,6 +174,7 @@
             btnPagamentos.Padding = new Padding(5);
             btnPagamentos.Size = new Size(98, 38);
             btnPagamentos.Text = "Comandas";
+            btnPagamentos.Click += btnPagamentos_Click;
             // 
             // toolStripSeparator1
             // 
@@ -189,6 +189,7 @@
             btnGerarExtrato.Padding = new Padding(5);
             btnGerarExtrato.Size = new Size(78, 38);
             btnGerarExtrato.Text = "Extrato";
+            btnGerarExtrato.Click += btnGerarExtrato_Click;
             // 
             // toolStripSeparator4
             // 
@@ -204,35 +205,16 @@
             // 
             // pnlRegistros
             // 
-            pnlRegistros.Dock = DockStyle.Fill;
-            pnlRegistros.Location = new Point(0, 69);
+            pnlRegistros.Location = new Point(0, 60);
             pnlRegistros.Name = "pnlRegistros";
-            pnlRegistros.Size = new Size(800, 356);
+            pnlRegistros.Size = new Size(800, 367);
             pnlRegistros.TabIndex = 3;
-            // 
-            // panel1
-            // 
-            panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(0, 69);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(800, 356);
-            panel1.TabIndex = 4;
-            // 
-            // panel2
-            // 
-            panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(0, 69);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(800, 356);
-            panel2.TabIndex = 5;
             // 
             // TelaPrincipalForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(panel2);
-            Controls.Add(panel1);
             Controls.Add(pnlRegistros);
             Controls.Add(toolStrip1);
             Controls.Add(statusStrip1);
@@ -272,8 +254,6 @@
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripLabel toolStripTipo;
-        private Panel panel1;
-        private Panel panel2;
         private ToolStripMenuItem mesasToolStripMenuItem;
         private ToolStripMenuItem funcionáriosToolStripMenuItem;
         private ToolStripMenuItem pedidosToolStripMenuItem;

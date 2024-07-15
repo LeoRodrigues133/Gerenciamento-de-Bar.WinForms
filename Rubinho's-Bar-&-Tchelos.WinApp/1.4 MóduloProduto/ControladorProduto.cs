@@ -1,6 +1,6 @@
 ﻿using Rubinho_s_Bar___Tchelos.Dominio.MóduloPessoas;
 using Rubinho_s_Bar___Tchelos.Dominio.MóduloProduto;
-using Rubinho_s_Bar___Tchelos.Infra.MóduloProduto;
+using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloProduto;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloCompartilhado;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloPessoas;
 
@@ -8,20 +8,17 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto
 {
     public class ControladorProduto : ControladorBase, IControladorEditavel
     {
-        RepositorioProdutoEmOrm repositorioProduto;
+        IRepositorioProduto repositorioProduto;
         TabelaProdutoControl tabelaProduto;
 
-        public ControladorProduto()
+        public ControladorProduto(IRepositorioProduto repositorioProduto)
         {
-
+            this.repositorioProduto = repositorioProduto;
         }
 
         public override string TipoCadastro => "Produtos";
-
         public override string ToolTipAdicionar => "Cadastrar um novo produto";
-
         string IControladorEditavel.ToolTipEditar => "Editar produto existente";
-
         public override string ToolTipExcluir => "Excluir produto";
 
         public override void Adicionar()
@@ -47,7 +44,9 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto
 
             repositorioProduto.Cadastrar(novoProduto);
 
-            CarregarProdutos();
+            TelaPrincipalForm.Instancia.AtualizarRodape($"O registro \"{novoProduto.Nome}\" foi criado com sucesso!");
+
+            CarregarRegistros();
         }
 
         void IControladorEditavel.Editar()
@@ -75,7 +74,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto
 
             repositorioProduto.Editar(Selecionado.Id, produtoEditado);
 
-            CarregarProdutos();
+            CarregarRegistros();
         }
 
         public override void Excluir()
@@ -97,10 +96,14 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning);
 
-            if (resultado != DialogResult.Yes) return;
+            if (resultado == DialogResult.Yes)
+            {
+                repositorioProduto.Excluir(Selecionado.Id);
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Você excluir o registro do produto {Selecionado.Nome}!");
+                CarregarRegistros();
+                return;
+            }
 
-            TelaPrincipalForm.Instancia.AtualizarRodape(
-                $"Você demitiu {Selecionado.Nome}!");
 
         }
 
@@ -109,12 +112,12 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto
             if (tabelaProduto == null)
                 tabelaProduto = new TabelaProdutoControl();
 
-            //CarregarPessoas();
+            CarregarRegistros();
 
             return tabelaProduto;
         }
-        
-        private void CarregarProdutos()
+
+        public override void CarregarRegistros()
         {
             List<Produto> produtos = repositorioProduto.SelecionarTodos();
 

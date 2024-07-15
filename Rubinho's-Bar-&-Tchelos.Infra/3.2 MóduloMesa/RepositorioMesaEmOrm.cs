@@ -19,7 +19,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloMesa
 
         public bool Editar(int id, Mesa editarRegistro)
         {
-            Mesa mesaSelecionada = dbContext.Mesas.Find(id);
+            Mesa mesaSelecionada = dbContext.Mesas.Find(id)!;
 
             if (mesaSelecionada == null)
                 return false;
@@ -33,7 +33,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloMesa
 
         public bool Excluir(int id)
         {
-            Mesa mesaSelecionada = dbContext.Mesas.Find(id);
+            Mesa mesaSelecionada = dbContext.Mesas.Find(id)!;
 
             if(mesaSelecionada == null)
                 return false;
@@ -46,7 +46,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloMesa
 
         public Mesa SelecionarPorId(int id)
         {
-            return dbContext.Mesas.Find(id);
+            return dbContext.Mesas.Find(id)!;
         }
 
         public List<Mesa> SelecionarTodos()

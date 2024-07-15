@@ -8,6 +8,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa
         public TabelaMesaControl()
         {
             InitializeComponent();
+
             grid.Columns.AddRange(CriarColunas());
 
             grid.ConfigurarGridSomenteLeitura();
@@ -19,7 +20,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa
             grid.Rows.Clear();
 
             foreach (Mesa m in repositorio)
-                grid.Rows.Add(m.Id.ToString(), m.NumeroDaMesa);
+                grid.Rows.Add(m.Id.ToString(), m.OrganizarMesas());
         }
 
         public int ObterRegistroSelecionado()
@@ -31,7 +32,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa
         {
             return new DataGridViewColumn[]                 {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "NumeroDaMesa", HeaderText = "Numero"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "NumeroDaMesa", HeaderText = "Numero"}
                 };
         }
     }

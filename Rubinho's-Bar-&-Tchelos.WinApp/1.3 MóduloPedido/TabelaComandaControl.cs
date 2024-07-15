@@ -3,9 +3,9 @@ using Rubinho_s_Bar___Tchelos.WinApp.MóduloCompartilhado;
 
 namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 {
-    public partial class TabelaPedidoControl : UserControl
+    public partial class TabelaComandaControl : UserControl
     {
-        public TabelaPedidoControl()
+        public TabelaComandaControl()
         {
             InitializeComponent();
             grid.Columns.AddRange(CriarColunas());
@@ -19,7 +19,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
             grid.Rows.Clear();
 
             foreach (Comanda c in repositorio)
-                grid.Rows.Add(c.Id.ToString(), c.Garçom);
+                grid.Rows.Add(c.Id.ToString(),c.Mesa, c.Garçom,c.Status,$"{c.CalcularValor(c.Pedidos,c.ValorTotal):C}");
         }
 
         public int ObterRegistroSelecionado()
@@ -31,7 +31,10 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
         {
             return new DataGridViewColumn[]                 {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Mesa", HeaderText = "Mesa"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "Garçom", HeaderText = "Garçom"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Status", HeaderText = "Pagamento"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Valor", HeaderText = "Valor"}
                 };
         }
     }

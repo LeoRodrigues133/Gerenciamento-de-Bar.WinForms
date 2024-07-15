@@ -21,7 +21,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto
             grid.Rows.Clear();
 
             foreach (Produto p in repositorio)
-                grid.Rows.Add(p.Id.ToString(), p.Nome, p.Valor, p.CategoriaProduto);
+                grid.Rows.Add(p.Id.ToString(), p.Nome, $"{p.Valor:C}", p.CategoriaProduto);
         }
 
         public int ObterRegistroSelecionado()
@@ -35,8 +35,8 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloProduto
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "Valor", HeaderText = "Valor"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "Quantidade", HeaderText = "Quantidade"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "Categoria", HeaderText = "Categoria"}
+                new DataGridViewTextBoxColumn { DataPropertyName = "Categoria", HeaderText = "Categoria"
+                }
                 };
         }
     }

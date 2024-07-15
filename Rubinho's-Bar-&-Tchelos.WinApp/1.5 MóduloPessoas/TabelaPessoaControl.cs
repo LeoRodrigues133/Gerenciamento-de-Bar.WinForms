@@ -20,7 +20,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPessoas
             grid.Rows.Clear();
 
             foreach (Garçom p in repositorio)
-                grid.Rows.Add(p.Id.ToString(), p.Nome, p.Cpf);
+                grid.Rows.Add(p.Id.ToString(), p.Nome, p.Cpf,p.Cargo);
         }
 
         public int ObterRegistroSelecionado()
@@ -33,7 +33,8 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPessoas
             return new DataGridViewColumn[]                 {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "Cpf", HeaderText = "Cpf"}
+                new DataGridViewTextBoxColumn { DataPropertyName = "Cpf", HeaderText = "Cpf"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Cargo", HeaderText = "Cargo"}
                 };
         }
     }

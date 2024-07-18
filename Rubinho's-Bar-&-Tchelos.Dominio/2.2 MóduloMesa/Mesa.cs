@@ -8,12 +8,13 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa
     {
 
         public int NumeroDaMesa { get; set; }
-
+        public List<Comanda> Comandas { get; set; }
         public bool Status { get; set; }
         public Mesa(int numeroDaMesa)
         {
             NumeroDaMesa = numeroDaMesa;
             Status = false;
+            Comandas = new List<Comanda>();
         }
         public override void AtualizarRegistro(EntidadeBase novoRegistro)
         {
@@ -23,6 +24,11 @@ namespace Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa
         public override List<string> Validar()
         {
             throw new NotImplementedException();
+        }
+        
+        public void AdicionarComanda(Comanda comanda)
+        {
+            Comandas.Add(comanda);
         }
 
         public string OrganizarMesas()

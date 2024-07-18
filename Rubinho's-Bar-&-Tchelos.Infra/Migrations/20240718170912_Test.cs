@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
 {
     /// <inheritdoc />
-    public partial class Fullmigration : Migration
+    public partial class Test : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -65,7 +65,8 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
                     Mesa_Id = table.Column<int>(type: "int", nullable: false),
                     Garcom_Id = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    DataConclusao = table.Column<DateTime>(type: "datetime", nullable: false)
+                    DataConclusao = table.Column<DateTime>(type: "datetime", nullable: false),
+                    Comanda_Id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -78,6 +79,11 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
                     table.ForeignKey(
                         name: "FK_TBComanda_TBMesa",
                         column: x => x.Mesa_Id,
+                        principalTable: "TBMesa",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_TBMesa_TBComanda",
+                        column: x => x.Comanda_Id,
                         principalTable: "TBMesa",
                         principalColumn: "Id");
                 });
@@ -106,6 +112,11 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
                         principalTable: "TBProduto",
                         principalColumn: "Id");
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TBComanda_Comanda_Id",
+                table: "TBComanda",
+                column: "Comanda_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TBComanda_Garcom_Id",

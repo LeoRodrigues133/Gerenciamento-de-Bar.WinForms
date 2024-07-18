@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa;
 using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido;
 using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido.Pedidos;
@@ -18,7 +19,12 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=GestaoDeBarDb;Integrated Security=True;Pooling=False;";
+            IConfigurationRoot config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            string connectionString = config.GetConnectionString("SqlServer")!;
 
             optionsBuilder.UseSqlServer(connectionString);
 
@@ -32,6 +38,12 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
                 mesaBuilder.ToTable("TBMesa");
 
                 mesaBuilder.Property(m => m.Id).IsRequired().ValueGeneratedOnAdd();
+
+                mesaBuilder.HasMany(m => m.Comandas).WithOne()
+                .IsRequired()
+                .HasForeignKey("Comanda_Id")
+                .HasConstraintName("FK_TBMesa_TBComanda")
+                .OnDelete(DeleteBehavior.NoAction);
 
                 mesaBuilder.Property(m => m.NumeroDaMesa).IsRequired().HasColumnType("int");
 

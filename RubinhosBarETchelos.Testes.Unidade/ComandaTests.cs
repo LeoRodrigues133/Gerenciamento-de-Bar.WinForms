@@ -9,13 +9,14 @@ namespace RubinhosBarETchelos.Testes.Unidade
     public class ComandaTests
     {
         [TestMethod]
+        [TestCategory("Testes Unitarios para comanda")]
         public void Deve_Validar_Conta_Corretamente()
         {
             // AAA = Triple A
 
             //arrange(preparação do teste)
 
-            Comanda comandaInvalida = new(null, null, 0, null);
+            Comanda comandaInvalida = new(null, 0, null, null);
 
             List<string> errosEsperados =
                 [
@@ -31,19 +32,22 @@ namespace RubinhosBarETchelos.Testes.Unidade
         }
 
         [TestMethod]
-        void Deve_Fechar_Comanda_Corretamente()
+        public void Deve_Fechar_Comanda_Corretamente()
         {
             // Arrange
-            Pedido pedido = new();
-            Mesa mesa = new();
-            Garçom garçom = new("Tchelo","156.156.155-98",0);
+            List<Pedido> pedidos = new();
+            Mesa mesa = new(1);
+            Garçom garçom = new("Tchelo", "156.156.155-98", 0);
 
 
-            Comanda novaComanda = new(pedido, garçom, 0, mesa);
+            Comanda novaComanda = new(garçom, EnumStatusPagamento.Fechada, mesa, pedidos);
 
             // Act
-            novaComanda.
+            novaComanda.Concluir();
+
             // Assert 
+            Assert.IsTrue(novaComanda.Status == EnumStatusPagamento.Fechada);
+            Assert.IsFalse(novaComanda.Mesa.Status);
 
         }
 

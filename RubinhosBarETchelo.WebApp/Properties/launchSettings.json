@@ -1,0 +1,17 @@
+﻿{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "http": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": false,
+      "applicationUrl": "http://localhost:5501",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": ""
+        "ConnectionStrings": {
+          "SqlServer": "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=BotecoDB;Integrated Security=True;Pooling=False;"
+        }
+      }
+    }
+  }
+}

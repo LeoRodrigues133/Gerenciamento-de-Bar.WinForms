@@ -66,6 +66,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp
 
             btnFecharContas.Enabled = controladorSelecionado is IControladorConcluir;
             btnGerarExtrato.Enabled = controladorSelecionado is IControladorVisualizarExtratos;
+            btnDetalharMesa.Enabled = controladorSelecionado is IControladorDetalhar;
 
             if (controladorSelecionado is IControladorEditavel)
                 btnEditar.Enabled = true;
@@ -122,7 +123,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp
 
         private void mesasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorMesa(repositorioMesa);
+            controlador = new ControladorMesa(repositorioMesa,repositorioComanda);
 
             ConfigurarTelaPrincipal(controlador);
 
@@ -146,6 +147,12 @@ namespace Rubinho_s_Bar___Tchelos.WinApp
         {
             if (controlador is IControladorVisualizarExtratos controladorExtrato)
                 controladorExtrato.VisualizarExtratos();
+        }
+
+        private void btnDetalharMesa_Click(object sender, EventArgs e)
+        {
+            if (controlador is IControladorDetalhar controladorMesa)
+                controladorMesa.DetalharMesa();
         }
     }
 }

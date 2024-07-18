@@ -1,13 +1,16 @@
 ﻿using Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa;
+using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido;
 using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloMesa;
+using Rubinho_s_Bar___Tchelos.WinApp._1._2_MóduloMesa;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloCompartilhado;
 
 namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa
 {
-    public class ControladorMesa : ControladorBase
+    public class ControladorMesa : ControladorBase, IControladorDetalhar
     {
 
         public IRepositorioMesa repositorioMesas;
+        public IRepositorioComanda repositorioComanda;
 
         public TabelaMesaControl tabelaMesas;
 
@@ -16,14 +19,22 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa
         public override string ToolTipAdicionar => "Adicionar uma nova mesa no salão";
         public override string ToolTipExcluir => "Remover uma mesa do salão";
 
-        public ControladorMesa(IRepositorioMesa repositorioMesas)
+        public ControladorMesa(IRepositorioMesa repositorioMesas, IRepositorioComanda repositorioComanda)
         {
             this.repositorioMesas = repositorioMesas;
+            this.repositorioComanda = repositorioComanda;
         }
         public override void Adicionar()
         {
 
             int EnumeradorDeMesas = repositorioMesas.SelecionarTodos().Count() * 10;
+
+            List<Mesa> listaDeMesas = repositorioMesas.SelecionarTodos();
+
+            Mesa buscador = listaDeMesas.Find(x => x.NumeroDaMesa == EnumeradorDeMesas)!;
+
+            if (buscador != null)
+                EnumeradorDeMesas += 1;
 
             Mesa novaMesa = new Mesa(EnumeradorDeMesas);
 
@@ -77,6 +88,35 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa
             CarregarRegistros();
 
             return tabelaMesas;
+        }
+
+        void carregarListaComandas(TelaDetalheMesaForm tela, Mesa mesa)
+        {
+            List<Comanda> repositorio = repositorioComanda.SelecionarTodos().FindAll(m => m.Mesa.Id == mesa.Id);
+
+
+            tela.carregarComandas(repositorio);
+        }
+
+        public void DetalharMesa()
+        {
+            int idSelecionado = tabelaMesas.ObterRegistroSelecionado();
+
+            Mesa mesaSelecionada = repositorioMesas.SelecionarPorId(idSelecionado);
+
+            if (mesaSelecionada == null)
+            {
+                TelaPrincipalForm.Instancia.AtualizarRodape("Não é possível realizar esta ação sem nenhuma mesa selecionada");
+                return;
+            }
+
+            TelaDetalheMesaForm tela = new TelaDetalheMesaForm();
+
+            carregarListaComandas(tela, mesaSelecionada);
+
+            DialogResult result = tela.ShowDialog();
+
+            if (result != DialogResult.OK) return;
         }
     }
 }

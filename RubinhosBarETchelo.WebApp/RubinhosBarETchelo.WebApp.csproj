@@ -7,6 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Html\inserir-mesa-form.html" />
+    <None Remove="Html\mensagem-mesa.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Html\inserir-mesa-form.html" />
+    <Content Include="Html\mensagem-mesa.html" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

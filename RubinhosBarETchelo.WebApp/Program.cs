@@ -20,11 +20,22 @@ namespace RubinhosBarETchelo.WebApp
 
             app.MapGet("/mesas/listar", ListarMesas);
 
-            app.MapGet("/mesas/inserir/{numeroMesa}", inserirMesa);
+            app.MapGet("/mesas/detalhar/{id }", detalharMesa);
 
-            app.MapGet("/mesas/detalhar/{id}", detalharMesa);
+            app.MapGet("mesas/Inserir", ExibirFormularioHtml);
+
+            app.MapPost("mesas/inserir", inserirMesa);
 
             app.Run();
+        }
+
+        private static Task ExibirFormularioHtml(HttpContext context)
+        {
+            string form = File.ReadAllText("Html/inserir-mesa-form.html");
+
+            context.Response.ContentType = "text/html";
+
+            return context.Response.WriteAsync(form);
         }
 
         private static Task detalharMesa(HttpContext context)
@@ -45,13 +56,13 @@ namespace RubinhosBarETchelo.WebApp
 
             detalhamento.AppendLine();
 
-                detalhamento.AppendLine("Histórico de comandas da mesa:");
+            detalhamento.AppendLine("Histórico de comandas da mesa:");
 
-                foreach (Comanda c in mesaSelecionda.Comandas)
-                    detalhamento.AppendLine("--> " + c.ToString());
-            
+            foreach (Comanda c in mesaSelecionda.Comandas)
+                detalhamento.AppendLine("--> " + c.ToString());
 
-            context.Response.ContentType = "text/plain; charset=utf-8";
+
+            context.Response.ContentType = "text/plain";
 
             return context.Response.WriteAsync(detalhamento.ToString());
         }
@@ -61,15 +72,20 @@ namespace RubinhosBarETchelo.WebApp
             BotecoDbContext db = new BotecoDbContext();
             IRepositorioMesa repositorioMesa = new RepositorioMesaEmOrm(db);
 
-            string num = context.GetRouteValue("numeroMesa")!.ToString()!;
+            int num = Convert.ToInt32(context.Request.Form["numero"].ToString());
 
-            Mesa novaMesa = new(Convert.ToInt32(num));
+            Mesa novaMesa = new(num);
 
             repositorioMesa.Cadastrar(novaMesa);
 
-            context.Response.ContentType = "text/plain; charset=utf-8";
+            context.Response.StatusCode = 201;
+            context.Response.ContentType = "text/html";
 
-            return context.Response.WriteAsync($"A mesa {novaMesa.Id} foi adicionada com sucesso!");
+            string html = File.ReadAllText("Html/mensagem-mesa.html");
+
+            html = html.Replace("#mensagem#", $"A mesa com o id \"{novaMesa.Id}\" foi cadastrada com sucesso!");
+
+            return context.Response.WriteAsync(html);
         }
 
         private static Task ListarMesas(HttpContext context)

@@ -36,8 +36,11 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa
 
             Mesa buscador = listaDeMesas.Find(x => x.NumeroDaMesa == EnumeradorDeMesas)!;
 
-            if (buscador != null)
-                EnumeradorDeMesas += 1;
+            while (buscador != null)
+            {
+                EnumeradorDeMesas++;
+                buscador = listaDeMesas.Find(x => x.NumeroDaMesa == EnumeradorDeMesas)!;
+            }
 
             Mesa novaMesa = new Mesa(EnumeradorDeMesas);
 

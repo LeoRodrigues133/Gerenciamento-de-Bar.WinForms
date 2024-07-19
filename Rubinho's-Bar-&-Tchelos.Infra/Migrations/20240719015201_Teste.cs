@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
 {
     /// <inheritdoc />
-    public partial class Test : Migration
+    public partial class Teste : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

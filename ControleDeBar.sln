@@ -19,15 +19,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Testes", "4. Testes", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RubinhosBarETchelos.Testes.Unidade", "RubinhosBarETchelos.Testes.Unidade\RubinhosBarETchelos.Testes.Unidade.csproj", "{9BC00E55-B3E8-459C-BE86-428569AA6333}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1 Unidade", "4.1 Unidade", "{4777D468-1517-411F-8010-7677772D4F2D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Unidade", "4. Unidade", "{4777D468-1517-411F-8010-7677772D4F2D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2 Integração", "4.2 Integração", "{117D3ADE-4895-4A65-ACD0-00DA3AFB1CD4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Integração", "4. Integração", "{117D3ADE-4895-4A65-ACD0-00DA3AFB1CD4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RubinhosBarETchelos.Testes.Integração", "RubinhosBarETchelos.Testes.Integração\RubinhosBarETchelos.Testes.Integração.csproj", "{5BC6440F-669E-496E-AC88-538E2C408338}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.1 Desktop", "1.1 Desktop", "{93E49A66-6C2A-470A-8D62-FAB13241E38E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Desktop", "1. Desktop", "{93E49A66-6C2A-470A-8D62-FAB13241E38E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.2 Web", "1.2 Web", "{E169A418-0269-425F-ABA4-2538A1352799}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Web", "1. Web", "{E169A418-0269-425F-ABA4-2538A1352799}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RubinhosBarETchelo.WebApp", "RubinhosBarETchelo.WebApp\RubinhosBarETchelo.WebApp.csproj", "{04F2DBAE-4FDE-4F33-8CFC-F490268F3881}"
 EndProject

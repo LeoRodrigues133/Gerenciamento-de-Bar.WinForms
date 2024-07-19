@@ -12,15 +12,15 @@ using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado;
 namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
 {
     [DbContext(typeof(BotecoDbContext))]
-    [Migration("20240718170912_Test")]
-    partial class Test
+    [Migration("20240719015201_Teste")]
+    partial class Teste
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.7")
+                .HasAnnotation("ProductVersion", "8.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);

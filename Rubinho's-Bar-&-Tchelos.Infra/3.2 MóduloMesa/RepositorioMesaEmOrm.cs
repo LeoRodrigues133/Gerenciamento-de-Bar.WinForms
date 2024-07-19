@@ -1,4 +1,5 @@
-﻿using Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa;
+﻿using Microsoft.EntityFrameworkCore;
+using Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa;
 using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado;
 
 namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloMesa
@@ -46,7 +47,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloMesa
 
         public Mesa SelecionarPorId(int id)
         {
-            return dbContext.Mesas.Find(id)!;
+            return dbContext.Mesas.Include(m => m.Comandas).FirstOrDefault(m => m.Id == id)!;
         }
 
         public List<Mesa> SelecionarTodos()

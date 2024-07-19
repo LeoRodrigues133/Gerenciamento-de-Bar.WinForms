@@ -137,9 +137,11 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 
         public override void CarregarRegistros()
         {
+            List<Mesa> mesas = repositorioMesas.SelecionarTodos();
+            List<Garçom> pessoas = repositorioPessoas.SelecionarTodos();
             List<Comanda> comandas = repositorioPedido.SelecionarTodos();
 
-            tabelaPedido.AtualizarRegistros(comandas);
+            tabelaPedido.AtualizarRegistros(comandas, mesas, pessoas);
         }
 
         public void Concluir()
@@ -221,7 +223,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
                     DataInicio = Agora.Date;
                     break;
                 case EnumPeriodos.Semana:
-                    DataInicio = Agora.AddDays(-((int)Agora.DayOfWeek)).Date; 
+                    DataInicio = Agora.AddDays(-((int)Agora.DayOfWeek)).Date;
                     break;
                 case EnumPeriodos.Mes:
                     DataInicio = new DateTime(Agora.Year, Agora.Month, 1);

@@ -1,5 +1,6 @@
 ﻿using Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa;
 using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido;
+using Rubinho_s_Bar___Tchelos.Dominio.MóduloProduto;
 using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloMesa;
 using Rubinho_s_Bar___Tchelos.WinApp._1._2_MóduloMesa;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloCompartilhado;
@@ -11,6 +12,7 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa
 
         public IRepositorioMesa repositorioMesas;
         public IRepositorioComanda repositorioComanda;
+        public IRepositorioProduto repositorioProduto;
 
         public TabelaMesaControl tabelaMesas;
 
@@ -19,10 +21,11 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa
         public override string ToolTipAdicionar => "Adicionar uma nova mesa no salão";
         public override string ToolTipExcluir => "Remover uma mesa do salão";
 
-        public ControladorMesa(IRepositorioMesa repositorioMesas, IRepositorioComanda repositorioComanda)
+        public ControladorMesa(IRepositorioMesa repositorioMesas, IRepositorioComanda repositorioComanda, IRepositorioProduto repositorioProduto)
         {
             this.repositorioMesas = repositorioMesas;
             this.repositorioComanda = repositorioComanda;
+            this.repositorioProduto = repositorioProduto;
         }
         public override void Adicionar()
         {
@@ -76,8 +79,10 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa
         public override void CarregarRegistros()
         {
             List<Mesa> mesas = repositorioMesas.SelecionarTodos();
+            List<Comanda> comandas = repositorioComanda.SelecionarTodos();
+            List<Produto> produtos = repositorioProduto.SelecionarTodos();
 
-            tabelaMesas.AtualizarRegistros(mesas);
+            tabelaMesas.AtualizarRegistros(mesas, comandas, produtos);
         }
 
         public override UserControl ObterListagem()

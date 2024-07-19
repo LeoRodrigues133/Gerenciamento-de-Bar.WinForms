@@ -1,8 +1,10 @@
 
 
 using Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa;
+using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido;
 using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado;
 using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloMesa;
+using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloPedido;
 using System.Text;
 
 namespace RubinhosBarETchelo.WebApp
@@ -20,27 +22,39 @@ namespace RubinhosBarETchelo.WebApp
 
             app.MapGet("/mesas/inserir/{numeroMesa}", inserirMesa);
 
-            //app.MapGet("/mesas/detalhar/{id}", detalharMesa);
+            app.MapGet("/mesas/detalhar/{id}", detalharMesa);
 
             app.Run();
         }
 
-        //private static Task detalharMesa(HttpContext context)
-        //{
-        //    BotecoDbContext db = new BotecoDbContext();
-        //    IRepositorioMesa repositorioMesa = new RepositorioMesaEmOrm(db);
+        private static Task detalharMesa(HttpContext context)
+        {
+            BotecoDbContext db = new BotecoDbContext();
+            IRepositorioMesa repositorioMesa = new RepositorioMesaEmOrm(db);
+            IRepositorioComanda repositorioComanda = new RepositorioPedidoEmOrm(db);
 
-        //    int id = Convert.ToInt32(context.GetRouteValue("id"));
+            int id = Convert.ToInt32(context.GetRouteValue("id"));
 
-        //    Mesa mesaSelecionda = repositorioMesa.SelecionarPorId(id);
+            Mesa mesaSelecionda = repositorioMesa.SelecionarPorId(id);
 
-        //    StringBuilder detalhamento = new StringBuilder();
+            StringBuilder detalhamento = new StringBuilder();
 
-        //    detalhamento.AppendLine("Numero:" + mesaSelecionda.NumeroDaMesa);
-        //    detalhamento.AppendLine("Status:" + (mesaSelecionda.Status ? "Ocupada" : "Desocupada"));
+            detalhamento.AppendLine("Numero:" + mesaSelecionda.NumeroDaMesa);
 
+            detalhamento.AppendLine("Status:" + (mesaSelecionda.Status ? "Ocupada" : "Desocupada"));
+
+            detalhamento.AppendLine();
+
+                detalhamento.AppendLine("Histórico de comandas da mesa:");
+
+                foreach (Comanda c in mesaSelecionda.Comandas)
+                    detalhamento.AppendLine("--> " + c.ToString());
             
-        //}
+
+            context.Response.ContentType = "text/plain; charset=utf-8";
+
+            return context.Response.WriteAsync(detalhamento.ToString());
+        }
 
         private static Task inserirMesa(HttpContext context)
         {
@@ -54,6 +68,7 @@ namespace RubinhosBarETchelo.WebApp
             repositorioMesa.Cadastrar(novaMesa);
 
             context.Response.ContentType = "text/plain; charset=utf-8";
+
             return context.Response.WriteAsync($"A mesa {novaMesa.Id} foi adicionada com sucesso!");
         }
 

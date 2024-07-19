@@ -25,7 +25,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloPedido
         {
             Comanda comandaSelecionada = dbContext.Comandas.Include(p => p.Pedidos).FirstOrDefault(c => c.Id == id)!;
 
-            if (comandaSelecionada == null) 
+            if (comandaSelecionada == null)
                 return false;
 
             comandaSelecionada.AtualizarRegistro(editarRegistro);
@@ -39,7 +39,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloPedido
         {
             Comanda comandaSelecionada = dbContext.Comandas.Include(x => x.Pedidos).FirstOrDefault(p => p.Id == id)!;
 
-            if(comandaSelecionada == null)
+            if (comandaSelecionada == null)
                 return false;
 
             dbContext.Pedidos.RemoveRange(comandaSelecionada.Pedidos);
@@ -52,7 +52,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloPedido
 
         public Comanda SelecionarPorId(int id)
         {
-            return dbContext.Comandas.Find(id)!;
+            return dbContext.Comandas.Include(c => c.Mesa).Include(c => c.Garçom).Include(c => c.Pedidos).FirstOrDefault(c => c.Id == id)!;
         }
 
         public List<Comanda> SelecionarTodos()

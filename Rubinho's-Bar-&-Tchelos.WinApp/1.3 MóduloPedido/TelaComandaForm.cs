@@ -44,9 +44,9 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloPedido
 
             comanda = new Comanda(garçom, status, mesa, ListaDePedidos);
 
-            mesa.AdicionarComanda(comanda);
-
             comandas.Add(comanda);
+
+            mesa.AdicionarComanda(comanda);
 
             if (status == EnumStatusPagamento.Fechada)
                 mesa.DesocuparMesa();

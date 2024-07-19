@@ -1,4 +1,6 @@
 ﻿using Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa;
+using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido;
+using Rubinho_s_Bar___Tchelos.Dominio.MóduloProduto;
 using Rubinho_s_Bar___Tchelos.WinApp.MóduloCompartilhado;
 
 namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa
@@ -15,11 +17,11 @@ namespace Rubinho_s_Bar___Tchelos.WinApp.MóduloMesa
             grid.ConfigurarGridZebrado();
 
         }
-        public void AtualizarRegistros(List<Mesa> repositorio)
+        public void AtualizarRegistros(List<Mesa> mesas, List<Comanda> comandas, List<Produto> produtos)
         {
             grid.Rows.Clear();
 
-            foreach (Mesa m in repositorio)
+            foreach (Mesa m in mesas)
                 grid.Rows.Add(m.Id.ToString(), m.OrganizarMesas(), m.Status ? "Ocupada" : "Desocupada");
         }
 

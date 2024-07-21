@@ -7,13 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Html\inserir-mesa-form.html" />
-    <None Remove="Html\mensagem-mesa.html" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Html\inserir-mesa-form.html" />
-    <Content Include="Html\mensagem-mesa.html" />
+    <None Include="Views\Mesa\detalhar.cshtml" />
+    <None Include="Views\Mesa\excluir.cshtml" />
+    <None Include="Views\Mesa\editar.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

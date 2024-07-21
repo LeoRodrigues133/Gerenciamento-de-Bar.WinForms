@@ -1,112 +1,18 @@
+namespace RubinhosBarETchelo.WebApp;
 
-
-using Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa;
-using Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido;
-using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado;
-using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloMesa;
-using Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloPedido;
-using System.Text;
-
-namespace RubinhosBarETchelo.WebApp
+public class Program
 {
-    public class Program
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
-        {
-            var builder = WebApplication.CreateBuilder(args);
-            var app = builder.Build();
+        var builder = WebApplication.CreateBuilder(args);
 
-            app.MapGet("/", OlaMundo);
+        builder.Services.AddControllersWithViews();
 
-            app.MapGet("/mesas/listar", ListarMesas);
+        var app = builder.Build();
 
-            app.MapGet("/mesas/detalhar/{id }", detalharMesa);
+        app.MapControllerRoute("default", "{controller}/{action}/{id:int?}");
 
-            app.MapGet("mesas/Inserir", ExibirFormularioHtml);
-
-            app.MapPost("mesas/inserir", inserirMesa);
-
-            app.Run();
-        }
-
-        private static Task ExibirFormularioHtml(HttpContext context)
-        {
-            string form = File.ReadAllText("Html/inserir-mesa-form.html");
-
-            context.Response.ContentType = "text/html";
-
-            return context.Response.WriteAsync(form);
-        }
-
-        private static Task detalharMesa(HttpContext context)
-        {
-            BotecoDbContext db = new BotecoDbContext();
-            IRepositorioMesa repositorioMesa = new RepositorioMesaEmOrm(db);
-            IRepositorioComanda repositorioComanda = new RepositorioPedidoEmOrm(db);
-
-            int id = Convert.ToInt32(context.GetRouteValue("id"));
-
-            Mesa mesaSelecionda = repositorioMesa.SelecionarPorId(id);
-
-            StringBuilder detalhamento = new StringBuilder();
-
-            detalhamento.AppendLine("Numero:" + mesaSelecionda.NumeroDaMesa);
-
-            detalhamento.AppendLine("Status:" + (mesaSelecionda.Status ? "Ocupada" : "Desocupada"));
-
-            detalhamento.AppendLine();
-
-            detalhamento.AppendLine("Histórico de comandas da mesa:");
-
-            foreach (Comanda c in mesaSelecionda.Comandas)
-                detalhamento.AppendLine("--> " + c.ToString());
-
-
-            context.Response.ContentType = "text/plain";
-
-            return context.Response.WriteAsync(detalhamento.ToString());
-        }
-
-        private static Task inserirMesa(HttpContext context)
-        {
-            BotecoDbContext db = new BotecoDbContext();
-            IRepositorioMesa repositorioMesa = new RepositorioMesaEmOrm(db);
-
-            int num = Convert.ToInt32(context.Request.Form["numero"].ToString());
-
-            Mesa novaMesa = new(num);
-
-            repositorioMesa.Cadastrar(novaMesa);
-
-            context.Response.StatusCode = 201;
-            context.Response.ContentType = "text/html";
-
-            string html = File.ReadAllText("Html/mensagem-mesa.html");
-
-            html = html.Replace("#mensagem#", $"A mesa com o id \"{novaMesa.Id}\" foi cadastrada com sucesso!");
-
-            return context.Response.WriteAsync(html);
-        }
-
-        private static Task ListarMesas(HttpContext context)
-        {
-            BotecoDbContext db = new BotecoDbContext();
-            IRepositorioMesa repositorioMesa = new RepositorioMesaEmOrm(db);
-
-            IEnumerable<string> mesasString = repositorioMesa.SelecionarTodos().Select(mesa => mesa.ToString());
-
-            string response = string.Join("\n", mesasString);
-
-
-            context.Response.ContentType = "text/plain; charset=utf-8";
-            return context.Response.WriteAsync(response);
-        }
-
-        private static Task OlaMundo(HttpContext context)
-        {
-            context.Response.ContentType = "text/plain; charset=utf-8";
-
-            return context.Response.WriteAsync("Olá mundo!");
-        }
+        app.Run();
     }
+
 }

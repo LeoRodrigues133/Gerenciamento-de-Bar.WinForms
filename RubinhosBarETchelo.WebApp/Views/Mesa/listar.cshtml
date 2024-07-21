@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+ <ul>
+        @foreach (var mesa in ViewBag.Mesas)
+        {
+                <li>
+                @mesa -
+                    <a href="/mesa/detalhar/@mesa.Id">[Detalhes]</a>
+                    <a href="/mesa/editar/@mesa.Id">[Editar]</a>
+                    <a href="/mesa/excluir/@mesa.Id">[Excluir]</a>
+                </li>
+        }
+</ul>
+    <button>
+    <a href="/mesas/inserir">Inserir Nova Mesa</a>
+    </button>
+</body>
+</html>

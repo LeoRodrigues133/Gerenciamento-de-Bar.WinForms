@@ -1,0 +1,31 @@
+﻿@{
+    var mesa = ViewBag.mesa;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <h1>Detalhes da Mesa</h1>
+
+    <p>Id: @mesa.Id</p>
+    <p>Número: @mesa.NumeroDaMesa</p>
+    <p>Status: @(mesa.Status ? "Ocupada" : "Desocupada")</p>
+
+    @if (mesa.Comandas.Count > 0)
+    {
+    <p>Contas relacionadas à mesa:</p>
+
+    <ul>
+        @foreach(var comanda in mesa.Comandas)
+        {
+        <li>@comanda.ToString()</li>
+        }
+    </ul>
+    }
+
+</body>
+</html>

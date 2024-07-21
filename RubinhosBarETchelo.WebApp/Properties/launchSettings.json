@@ -7,7 +7,7 @@
       "launchBrowser": false,
       "applicationUrl": "http://localhost:5501",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": ""
+        "ASPNETCORE_ENVIRONMENT": "development"
       },
         "ConnectionStrings": {
           "SqlServer": "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=BotecoDB;Integrated Security=True;Pooling=False;"

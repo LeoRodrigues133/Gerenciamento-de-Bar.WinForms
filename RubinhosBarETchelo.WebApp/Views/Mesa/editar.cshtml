@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <form action="/mesas/editar/@ViewBag.Mesa.Id" method="post">
+
+        <label>Número da Mesa: </label> <br />
+        <input name="numero" value="@ViewBag.Mesa.NumeroDaMesa" />
+
+        <input name="ocupada" type="checkbox" @(ViewBag.Mesa.Status ? "checked='checked'" : "" ) />
+
+        <button>Gravar</button>
+
+    </form>
+    <button>
+        <a href="/mesas/listar">Listar Mesas</a>
+    </button>
+</body>
+</html>

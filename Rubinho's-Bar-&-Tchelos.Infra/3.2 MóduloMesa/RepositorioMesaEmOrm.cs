@@ -34,7 +34,8 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloMesa
 
         public bool Excluir(int id)
         {
-            Mesa mesaSelecionada = dbContext.Mesas.Find(id)!;
+            Mesa mesaSelecionada = dbContext.Mesas.Include(m => m.Comandas)
+                .FirstOrDefault(m => m.Id == id)!;
 
             if(mesaSelecionada == null)
                 return false;

@@ -27,4 +27,16 @@
     <ProjectReference Include="..\Rubinho's-Bar-&amp;-Tchelos.Infra\RubinhosBarETchelos.Infra.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\Garçom\inserir.cshtml.cs" />
+  </ItemGroup>
+
 </Project>

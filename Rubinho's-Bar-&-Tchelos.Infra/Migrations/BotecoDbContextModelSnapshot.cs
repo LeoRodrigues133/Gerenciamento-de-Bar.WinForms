@@ -17,7 +17,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.6")
+                .HasAnnotation("ProductVersion", "8.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -49,7 +49,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Comanda_Id")
+                    b.Property<int?>("Comanda_Id")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DataConclusao")
@@ -86,7 +86,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("Conta_Id")
+                    b.Property<int?>("Comanda_Id")
                         .HasColumnType("int");
 
                     b.Property<int>("Produto_Id")
@@ -97,7 +97,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Conta_Id");
+                    b.HasIndex("Comanda_Id");
 
                     b.HasIndex("Produto_Id");
 
@@ -157,8 +157,6 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
                     b.HasOne("Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa.Mesa", null)
                         .WithMany("Comandas")
                         .HasForeignKey("Comanda_Id")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired()
                         .HasConstraintName("FK_TBMesa_TBComanda");
 
                     b.HasOne("Rubinho_s_Bar___Tchelos.Dominio.MóduloPessoas.Garçom", "Garçom")
@@ -171,7 +169,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
                     b.HasOne("Rubinho_s_Bar___Tchelos.Dominio.MóduloMesa.Mesa", "Mesa")
                         .WithMany()
                         .HasForeignKey("Mesa_Id")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_TBComanda_TBMesa");
 
@@ -184,7 +182,8 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Migrations
                 {
                     b.HasOne("Rubinho_s_Bar___Tchelos.Dominio.MóduloPedido.Comanda", null)
                         .WithMany("Pedidos")
-                        .HasForeignKey("Conta_Id");
+                        .HasForeignKey("Comanda_Id")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Rubinho_s_Bar___Tchelos.Dominio.MóduloProduto.Produto", "Produto")
                         .WithMany()

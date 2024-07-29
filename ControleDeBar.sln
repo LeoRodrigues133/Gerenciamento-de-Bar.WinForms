@@ -29,7 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Desktop", "1. Desktop", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Web", "1. Web", "{E169A418-0269-425F-ABA4-2538A1352799}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RubinhosBarETchelo.WebApp", "RubinhosBarETchelo.WebApp\RubinhosBarETchelo.WebApp.csproj", "{04F2DBAE-4FDE-4F33-8CFC-F490268F3881}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RubinhosBarETchelo.WebApp", "RubinhosBarETchelo.WebApp\RubinhosBarETchelo.WebApp.csproj", "{04F2DBAE-4FDE-4F33-8CFC-F490268F3881}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

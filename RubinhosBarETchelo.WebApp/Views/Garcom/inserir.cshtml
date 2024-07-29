@@ -1,0 +1,53 @@
+@using Rubinho_s_Bar___Tchelos.Dominio.MóduloPessoas
+@{
+    Layout = "_Layout";
+    ViewBag.Tittle = "Cadastrar Funcionário";
+
+}
+
+<div class="container">
+    <div class="col card m-5 p-4 gap-2 bg-light shadow bg-body rounded">
+        <form class="d-grid gap-4" action="/garcom/inserir" method="post">
+
+            <div class="mt-2">
+                <label class="control-label fw-semibold">Nome:</label>
+                <input class="form-control" type="text" name="nome" />
+            </div>
+            
+            <div class="mt-2">
+                <label class="control-label fw-semibold">CPF:</label>
+                <input class="form-control" type="text" name="cpf" id="cpf"/>
+            </div>
+            
+            <select class="custom-select">
+            @foreach(EnumCargo cargo in Enum.GetValues(typeof(EnumCargo)))
+            {
+                    <option value="@cargo">@cargo</option>
+
+            }
+            </select>
+
+            <div class="mt-2 d-grid gap-2 d-md-block">
+                <button class="btn btn-primary px-5">
+                    <i class="bi bi-floppy-fill me-1"></i>
+                    Gravar
+                </button>
+
+                <a class="btn btn-secondary px-5" href="/garcom/listar">
+                    <i class="bi bi-arrow-return-left me-1"></i>
+                    Voltar
+                </a>
+
+            </div>
+        </form>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#cpf").mask("000.000.000-00", { reverse: false })
+        });
+    </script>
+}

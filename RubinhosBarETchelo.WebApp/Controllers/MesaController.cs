@@ -7,7 +7,6 @@ namespace RubinhosBarETchelo.WebApp.Controllers;
 
 public class MesaController : Controller
 {
-
     public ViewResult Listar()
     {
         BotecoDbContext db = new BotecoDbContext();
@@ -17,56 +16,37 @@ public class MesaController : Controller
 
         ViewBag.Mesas = mesas;
 
+        ViewBag.Mensagem = TempData["Mensagem"];
+
         return View();
     }
 
-    public ViewResult Inserir()
-    {
-        return View();
-    }
-
-    [HttpPost]
-    public ViewResult Inserir(Mesa novaMesa)
+    public IActionResult Inserir(Mesa novaMesa)
     {
         BotecoDbContext db = new BotecoDbContext();
         IRepositorioMesa repositorioMesa = new RepositorioMesaEmOrm(db);
+
+        int EnumeradorDeMesas = repositorioMesa.SelecionarTodos().Count() * 10;
+
+        List<Mesa> listaDeMesas = repositorioMesa.SelecionarTodos();
+
+        Mesa buscador = listaDeMesas.Find(x => x.NumeroDaMesa == EnumeradorDeMesas)!;
+
+        while (buscador != null)
+        {
+            EnumeradorDeMesas++;
+            buscador = listaDeMesas.Find(x => x.NumeroDaMesa == EnumeradorDeMesas)!;
+        }
+
+        novaMesa = new(EnumeradorDeMesas);
 
         repositorioMesa.Cadastrar(novaMesa);
 
         HttpContext.Response.StatusCode = 201;
 
-        ViewBag.Mensagem = $"O registro com ID {novaMesa.Id} foi cadastrado com sucesso!";
+        TempData["Mensagem"] = "Mesa adicionada com sucesso!";
 
-        return View("notificacao");
-    }
-
-    public ViewResult Editar(int id)
-    {
-        BotecoDbContext db = new BotecoDbContext();
-        IRepositorioMesa repositorioMesa = new RepositorioMesaEmOrm(db);
-
-        Mesa mesaSelecionada = repositorioMesa.SelecionarPorId(id);
-
-        ViewBag.Mesa = mesaSelecionada;
-
-        return View();
-    }
-
-    [HttpPost]
-    public ViewResult Editar(int id, Mesa mesaAtualizada)
-    {
-        BotecoDbContext db = new BotecoDbContext();
-        IRepositorioMesa repositorioMesa = new RepositorioMesaEmOrm(db);
-
-        Mesa mesa = repositorioMesa.SelecionarPorId(id);
-
-        mesaAtualizada.Status = HttpContext.Request.Form["ocupada"] == "on";
-
-        repositorioMesa.Editar(mesa.Id, mesaAtualizada);
-
-        ViewBag.Mensagem = $"O registro com ID {mesa.Id} foi editado com sucesso!";
-
-        return View("notificacao");
+        return RedirectToAction("Listar");
     }
 
     public ViewResult Excluir(int id)
@@ -82,14 +62,16 @@ public class MesaController : Controller
     }
 
     [HttpPost, ActionName("Excluir")]
-    public ViewResult ExcluirMesa(int id)
+    public ViewResult confirmarExclusao(int id)
     {
         BotecoDbContext db = new BotecoDbContext();
         IRepositorioMesa repositorioMesa = new RepositorioMesaEmOrm(db);
 
-        Mesa mesa = repositorioMesa.SelecionarPorId(id);
+        Mesa mesaSelecionada = repositorioMesa.SelecionarPorId(id);
+        repositorioMesa.Excluir(mesaSelecionada.Id);
 
-        ViewBag.Mensagem = $"O registro com ID {mesa.Id} foi excluído com sucesso!";
+        ViewBag.Mensagem = $"O registro com ID {mesaSelecionada.Id} foi excluído com sucesso!";
+        ViewBag.Link = "/mesa/listar";
 
         return View("notificacao");
     }
@@ -102,6 +84,7 @@ public class MesaController : Controller
         Mesa mesaSelecionada = repositorioMesa.SelecionarPorId(id);
 
         ViewBag.mesa = mesaSelecionada;
+        ViewBag.Link = "/mesa/listar";
 
         return View();
     }

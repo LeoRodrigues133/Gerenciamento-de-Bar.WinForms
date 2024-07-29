@@ -40,10 +40,9 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
                 mesaBuilder.Property(m => m.Id).IsRequired().ValueGeneratedOnAdd();
 
                 mesaBuilder.HasMany(m => m.Comandas).WithOne()
-                .IsRequired()
+                .IsRequired(false)
                 .HasForeignKey("Comanda_Id")
-                .HasConstraintName("FK_TBMesa_TBComanda")
-                .OnDelete(DeleteBehavior.NoAction);
+                .HasConstraintName("FK_TBMesa_TBComanda");
 
                 mesaBuilder.Property(m => m.NumeroDaMesa).IsRequired().HasColumnType("int");
 
@@ -103,7 +102,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
                 .IsRequired()
                 .HasForeignKey("Mesa_Id")
                 .HasConstraintName("FK_TBComanda_TBMesa")
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.Cascade);
 
                 comandaBuilder.HasOne(c => c.Garçom).WithMany(g => g.Comandas)
                 .IsRequired()
@@ -111,7 +110,10 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
                 .HasConstraintName("FK_TBComanda_TBGarcom")
                 .OnDelete(DeleteBehavior.NoAction);
 
-                comandaBuilder.HasMany(c => c.Pedidos).WithOne().HasForeignKey("Conta_Id");
+                comandaBuilder.HasMany(c => c.Pedidos)
+                .WithOne()
+                .HasForeignKey("Comanda_Id")
+                .OnDelete(DeleteBehavior.Cascade);
 
                 comandaBuilder.Property(c => c.Status).IsRequired().HasColumnType("int");
 

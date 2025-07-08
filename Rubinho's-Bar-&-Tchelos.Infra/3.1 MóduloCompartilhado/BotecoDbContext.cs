@@ -18,7 +18,7 @@ namespace Rubinho_s_Bar___Tchelos.Infra.Orm.MóduloCompartilhado
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=GestaoDeBarDb;Integrated Security=True;Pooling=False;";
+            string connectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=GestaoDeBarDb;Integrated Security=True;Pooling=False;";
 
             optionsBuilder.UseSqlServer(connectionString);
 
